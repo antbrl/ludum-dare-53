@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var tool_ghost = $Navigation2D/ToolGhost
+@onready var tile_map = $Navigation2D/TileMap
 var mode = Globals.DEFAULT_MODE
 
 func _ready():
@@ -21,7 +22,8 @@ func switch_mode(_mode: Globals.Mode):
 	tool_ghost.visible = mode == Globals.Mode.CONSTRUCTION
 
 func build_tool():
-	pass
+	var mouse_cell = tile_map.get_mouse_cell_data()
+	get_cell_tile_data(Globals.TileMapLayers.TOOLS, mouse_cell)
 
 func destroy_tool():
 	pass
