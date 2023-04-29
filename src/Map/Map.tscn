@@ -1,13 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsyeo6hp2ok5q"]
+[gd_scene load_steps=8 format=3 uid="uid://dsyeo6hp2ok5q"]
 
 [ext_resource type="Script" path="res://src/Map/Map.gd" id="1_lb1fb"]
 [ext_resource type="PackedScene" uid="uid://bqdyskkc8us6p" path="res://src/Crate/Crate.tscn" id="2_qey5k"]
 [ext_resource type="TileSet" uid="uid://btva60fymbhib" path="res://assets/sprites/tileset.tres" id="3"]
 [ext_resource type="PackedScene" uid="uid://bary4m4n2w5tt" path="res://src/Trampoline/trampoline.tscn" id="3_4s3lf"]
 [ext_resource type="PackedScene" uid="uid://cu86mnbuy308e" path="res://src/Truck/truck.tscn" id="4_8ry0r"]
-[ext_resource type="Texture2D" uid="uid://bprdj2krbpywu" path="res://assets/sprites/player.png" id="5_0robw"]
 [ext_resource type="Script" path="res://src/Map/TileMap.gd" id="5_e6tt0"]
-[ext_resource type="Script" path="res://src/Map/ToolGhost.gd" id="7_ne84s"]
+[ext_resource type="PackedScene" uid="uid://c35yk86ipmq4o" path="res://src/Map/tool_ghost.tscn" id="6_x85yr"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_lb1fb")
@@ -39,11 +38,7 @@ layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(-65527, 589843, 5, 131082, 589843, 5)
 script = ExtResource("5_e6tt0")
 
-[node name="ToolGhost" type="Sprite2D" parent="Navigation2D"]
-modulate = Color(1, 1, 1, 0.45098)
-scale = Vector2(0.084, 0.084)
-texture = ExtResource("5_0robw")
-script = ExtResource("7_ne84s")
+[node name="ToolGhost" parent="Navigation2D" instance=ExtResource("6_x85yr")]
 
 [node name="Truck" parent="." instance=ExtResource("4_8ry0r")]
 position = Vector2(1223, -426)

@@ -1,11 +1,14 @@
 extends Sprite2D
 
 @onready var tile_map = $"../TileMap"
+@onready var mouse_cell = tile_map.get_mouse_cell()
 
 func _ready():
-	pass # Replace with function body.
+	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var mouse_cell = tile_map.get_mouse_cell()
-	position = tile_map.map_to_local(mouse_cell)
+	var new_mouse_cell = tile_map.get_mouse_cell()
+	if mouse_cell != new_mouse_cell:
+		var tween = create_tween()
+		tween.tween_property(self, "position", tile_map.map_to_local(new_mouse_cell), 0.05)
+	mouse_cell = new_mouse_cell
