@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://big4ylpojk2gh"]
+
+[ext_resource type="PackedScene" uid="uid://bqdyskkc8us6p" path="res://src/Crate/Crate.tscn" id="1_vr8x8"]
+[ext_resource type="PackedScene" uid="uid://cu86mnbuy308e" path="res://src/Truck/truck.tscn" id="2_u5pj0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_r222b"]
+bounce = 0.01
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7k5q"]
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vnyb"]
+size = Vector2(410, 20)
+
+[node name="Physics" type="Node2D"]
+
+[node name="Crate" parent="." instance=ExtResource("1_vr8x8")]
+physics_material_override = SubResource("PhysicsMaterial_r222b")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, 100)
+zoom = Vector2(0.3, 0.3)
+
+[node name="Trampoline" type="StaticBody2D" parent="."]
+position = Vector2(-98, 790)
+rotation = 0.332008
+physics_material_override = SubResource("PhysicsMaterial_k7k5q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trampoline"]
+modulate = Color(0, 1, 1, 1)
+self_modulate = Color(0.278431, 1, 0.917647, 1)
+shape = SubResource("RectangleShape2D_7vnyb")
+
+[node name="Truck" parent="." instance=ExtResource("2_u5pj0")]
+position = Vector2(721, 582)
+scale = Vector2(24.39, 24.39)
