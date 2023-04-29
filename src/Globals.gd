@@ -6,3 +6,7 @@ enum Mode {
 }
 
 const DEFAULT_MODE = Mode.THROW
+
+enum Tool {
+	TRAMPOLINE = 0
+}
