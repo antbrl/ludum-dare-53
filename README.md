@@ -1,5 +1,5 @@
-# LD-Base
+# Ludum Dare 53
 
-This repository contains a template Godot 3 game.
+Entry for the Ludum Dare 53 game jam 
 
-As Ludum Daron team, regularly contesting in Ludum Dare gamejam, we use this template to start the event with a minimal code.
+Made by the Ludum Darons Team in 72h
