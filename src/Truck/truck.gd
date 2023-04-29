@@ -1,10 +1,5 @@
 extends AnimatableBody2D
-
-func _ready():
-	pass
-
-func _process(delta):
-	pass
+signal crate_dropped
 
 func _on_target_body_entered(body):
-	print('Crate dropped')
+	emit_signal("crate_dropped")

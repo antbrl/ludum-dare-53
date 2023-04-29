@@ -2,17 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://bqdyskkc8us6p" path="res://src/Crate/Crate.tscn" id="1_vr8x8"]
 [ext_resource type="PackedScene" uid="uid://cu86mnbuy308e" path="res://src/Truck/truck.tscn" id="2_u5pj0"]
+[ext_resource type="Script" path="res://src/Physics/GameMaster.gd" id="3_ift6m"]
+[ext_resource type="PackedScene" uid="uid://bary4m4n2w5tt" path="res://src/Trampoline/trampoline.tscn" id="4_3mglf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_r222b"]
-bounce = 0.01
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7k5q"]
-bounce = 1.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vnyb"]
-size = Vector2(410, 20)
 
 [node name="Physics" type="Node2D"]
+
+[node name="GameMaster" type="Node" parent="."]
+script = ExtResource("3_ift6m")
 
 [node name="Crate" parent="." instance=ExtResource("1_vr8x8")]
 physics_material_override = SubResource("PhysicsMaterial_r222b")
@@ -21,16 +19,12 @@ physics_material_override = SubResource("PhysicsMaterial_r222b")
 offset = Vector2(0, 100)
 zoom = Vector2(0.3, 0.3)
 
-[node name="Trampoline" type="StaticBody2D" parent="."]
-position = Vector2(-98, 790)
-rotation = 0.332008
-physics_material_override = SubResource("PhysicsMaterial_k7k5q")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Trampoline"]
-modulate = Color(0, 1, 1, 1)
-self_modulate = Color(0.278431, 1, 0.917647, 1)
-shape = SubResource("RectangleShape2D_7vnyb")
-
 [node name="Truck" parent="." instance=ExtResource("2_u5pj0")]
 position = Vector2(721, 582)
 scale = Vector2(24.39, 24.39)
+
+[node name="Trampoline" parent="." instance=ExtResource("4_3mglf")]
+position = Vector2(6.19888e-06, 829)
+rotation = 0.114556
+
+[connection signal="crate_dropped" from="Truck" to="GameMaster" method="_on_truck_crate_dropped"]

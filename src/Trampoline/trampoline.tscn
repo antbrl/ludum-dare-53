@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bary4m4n2w5tt"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fcdlk"]
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4k7og"]
+size = Vector2(400, 40)
+
+[node name="Trampoline" type="AnimatableBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_fcdlk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4k7og")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
