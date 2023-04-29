@@ -13,17 +13,17 @@ func _process(delta):
 func _input(event):
 	if event.is_action_pressed("build"):
 		if mode == Globals.Mode.CONSTRUCTION:
-			build_tool()
+			tile_map.tryBuildAtMouse(0)
 	elif event.is_action_pressed("destroy"):
 		if mode == Globals.Mode.CONSTRUCTION:
-			destroy_tool()
+			tile_map.tryDestroyAtMouse()
+
 func switch_mode(_mode: Globals.Mode):
 	mode = _mode
 	tool_ghost.visible = mode == Globals.Mode.CONSTRUCTION
 
 func build_tool():
 	var mouse_cell = tile_map.get_mouse_cell_data()
-	get_cell_tile_data(Globals.TileMapLayers.TOOLS, mouse_cell)
 
 func destroy_tool():
 	pass
