@@ -24,7 +24,7 @@ position = Vector2(721, 582)
 scale = Vector2(24.39, 24.39)
 
 [node name="Trampoline" parent="." instance=ExtResource("4_3mglf")]
-position = Vector2(6.19888e-06, 829)
+position = Vector2(3, 942)
 rotation = 0.114556
 
 [connection signal="crate_dropped" from="Truck" to="GameMaster" method="_on_truck_crate_dropped"]

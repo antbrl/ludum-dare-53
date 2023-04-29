@@ -22,7 +22,7 @@ Globals="*res://src/Globals.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/finder/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 
