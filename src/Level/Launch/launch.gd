@@ -3,7 +3,7 @@ extends Node2D
 @onready var launch_area = get_node("LaunchArea")
 @onready var test_box = get_node("TestBox")
 
-const force = 500
+const force = 1000
 const max_dist = 300.0
 const full_follow_dist = 50
 const max_speed = 2000.0
@@ -84,8 +84,7 @@ func _on_test_box_input_event(viewport, event, shape_idx):
 			capture()
 
 func _input(event):
-	# TODO scroll wheel
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
 		cursor_status = event.is_pressed()
 		if box_selected == true && !cursor_status:
 			just_released = true
