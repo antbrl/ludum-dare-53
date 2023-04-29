@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b64ya7wbmnxjq"]
+[gd_scene load_steps=3 format=3 uid="uid://b64ya7wbmnxjq"]
 
 [ext_resource type="TileSet" uid="uid://c2n6f7ubm0lti" path="res://assets/tileset/tileset.tres" id="1_rubpi"]
+[ext_resource type="Script" path="res://src/Map/TileMap.gd" id="2_01kfn"]
 
-[node name="medieval" type="TileMap"]
+[node name="Medieval" type="TileMap"]
 tile_set = ExtResource("1_rubpi")
 format = 2
 layer_0/name = "background"
@@ -29,3 +30,11 @@ layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array(-196601, 196609, 2, -524281, 196609, 3, -458745, 196609, 2, -393209, 196609, 2, -327673, 196609, 2, -262137, 196609, 2, -524280, 196609, 3, -524279, 196609, 3, -524278, 196609, 3, -524277, 196609, 3, -786419, 65537, 5, -655347, 65537, 5, -917491, 65537, 5)
+layer_4/name = "tool"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 0)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = 0
+layer_4/tile_data = PackedInt32Array()
+script = ExtResource("2_01kfn")

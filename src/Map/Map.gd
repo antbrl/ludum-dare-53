@@ -21,9 +21,3 @@ func _input(event):
 func switch_mode(_mode: Globals.Mode):
 	mode = _mode
 	tool_ghost.visible = mode == Globals.Mode.CONSTRUCTION
-
-func build_tool():
-	var mouse_cell = tile_map.get_mouse_cell_data()
-
-func destroy_tool():
-	pass

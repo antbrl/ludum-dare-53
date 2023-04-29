@@ -14,7 +14,9 @@ enum Tool {
 const WallableTools: Array[Tool] = []
 
 enum TileMapLayers {
-	WALLS = 0,
-	TOOLS = 1,
-	COSMETIC = 2
+	BACKGROUND = 0,
+	STRUCTURE = 1,
+	GROUND = 2,
+	DETAILS = 3,
+	TOOL = 4
 }

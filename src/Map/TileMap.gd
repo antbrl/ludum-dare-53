@@ -11,19 +11,25 @@ func get_mouse_cell_data(layer: Globals.TileMapLayers) -> TileData:
 
 func canBuildAtMouse(tool: Globals.Tool) -> bool:
 	# Checks if another tool is already dropped on that tile
-	var tool_cell = get_mouse_cell_data(Globals.TileMapLayers.TOOLS)
+	var tool_cell = get_mouse_cell_data(Globals.TileMapLayers.TOOL)
 	if tool_cell != null:
 		return false
 	
 	# Checks if a wall is dropped at this cell and tool cannot be built on a wall
-	var wall_cell = get_mouse_cell_data(Globals.TileMapLayers.WALLS)
+	var wall_cell = get_mouse_cell_data(Globals.TileMapLayers.STRUCTURE)
 	if wall_cell != null && tool not in Globals.WallableTools:
 		return false
+	
+	# Checks if a ground is dropped at this cell
+	var ground_cell = get_mouse_cell_data(Globals.TileMapLayers.GROUND)
+	if ground_cell != null:
+		return false
+
 	return true
 
 func canDestroyAtMouse() -> bool:
 	# Checks if another tool is already dropped on that tile
-	var tool_cell = get_mouse_cell_data(Globals.TileMapLayers.TOOLS)
+	var tool_cell = get_mouse_cell_data(Globals.TileMapLayers.TOOL)
 	if tool_cell == null:
 		return false
 	return true
