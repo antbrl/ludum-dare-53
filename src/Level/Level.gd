@@ -24,6 +24,5 @@ func init(level_number, nb_coins):
 func end_level():
 	emit_signal("end_of_level")
 
-
 func _on_hud_mode_change(mode):
 	map.switch_mode(mode)

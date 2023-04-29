@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://fkx747pj67wj"]
+[gd_scene load_steps=5 format=3 uid="uid://fkx747pj67wj"]
 
 [ext_resource type="Script" path="res://src/Level/Level.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dsyeo6hp2ok5q" path="res://src/Map/Map.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://dwiu4cm7rlq0p" path="res://src/HUD/HUD.tscn" id="3_p81om"]
+[ext_resource type="PackedScene" uid="uid://dvdkb5aco084l" path="res://src/Level/Launch/launch.tscn" id="4_wcpjk"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1")
@@ -12,5 +13,7 @@ script = ExtResource("1")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UI" instance=ExtResource("3_p81om")]
+
+[node name="Launch" parent="." instance=ExtResource("4_wcpjk")]
 
 [connection signal="mode_change" from="UI/HUD" to="." method="_on_hud_mode_change"]

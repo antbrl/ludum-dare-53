@@ -23,6 +23,7 @@ var capture_point = null
 func capture():
 	test_box.gravity_scale = 1
 	box_selected = true
+	print("captured")
 
 func release(delta, max):
 	if (last_box_pos != null):
@@ -36,6 +37,7 @@ func release(delta, max):
 			if (current_velocity.length() > max_speed):
 				current_velocity *= max_speed/current_velocity.length()
 			test_box.linear_velocity = current_velocity
+	print("released")
 
 func _physics_process(delta):
 	if (just_released):
@@ -84,6 +86,7 @@ func _on_test_box_input_event(viewport, event, shape_idx):
 			capture()
 
 func _input(event):
+	# TODO scroll wheel
 	if event is InputEventMouseButton:
 		cursor_status = event.is_pressed()
 		if box_selected == true && !cursor_status:
