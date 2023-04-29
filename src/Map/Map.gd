@@ -13,7 +13,7 @@ func _process(delta):
 func _input(event):
 	if event.is_action_pressed("build"):
 		if mode == Globals.Mode.CONSTRUCTION:
-			tile_map.tryBuildAtMouse(0)
+			tile_map.tryBuildAtMouse(Globals.Tool.PORTAL)
 	elif event.is_action_pressed("destroy"):
 		if mode == Globals.Mode.CONSTRUCTION:
 			tile_map.tryDestroyAtMouse()

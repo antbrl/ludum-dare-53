@@ -8,21 +8,31 @@ enum Mode {
 const DEFAULT_MODE = Mode.THROW
 
 enum Tool {
-	TRAMPOLINE = 0
+	NONE = 0,
+	PORTAL = 1,
+	TRAMPOLINE = 2,
 }
-
-const WallableTools: Array[Tool] = []
 
 enum TileMapLayers {
 	BACKGROUND = 0,
 	STRUCTURE = 1,
 	GROUND = 2,
 	DETAILS = 3,
-	TOOL = 4
+	TOOL = 4,
+	TOOL_WHITELIST_PORTAL = 5,
+	TOOL_WHITELIST_TRAMPOLINE = 6,
 }
 
 enum TileSetSources {
+	TOOL = 0,
 	ALL = 1,
 	BACKGROUND = 2,
-	TOOLS = 3
+}
+
+enum Direction {
+	NONE = 0,
+	LEFT = 1,
+	UP = 2,
+	RIGHT = 3,
+	BOTTOM = 4,
 }
