@@ -4,9 +4,11 @@ signal end_of_level
 signal game_over
 
 var level_number
+var mode = Globals.DEFAULT_MODE
 
 @onready var hud = $UI/HUD
 @onready var truck = $Map/Truck
+@onready var map = $Map
 
 func _ready():
 	assert(
@@ -21,3 +23,7 @@ func init(level_number, nb_coins):
 
 func end_level():
 	emit_signal("end_of_level")
+
+
+func _on_hud_mode_change(mode):
+	map.switch_mode(mode)

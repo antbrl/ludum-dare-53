@@ -12,3 +12,5 @@ script = ExtResource("1")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UI" instance=ExtResource("3_p81om")]
+
+[connection signal="mode_change" from="UI/HUD" to="." method="_on_hud_mode_change"]

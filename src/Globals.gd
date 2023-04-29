@@ -1,3 +1,8 @@
 extends Node
 
-const SAMPLE_GLOBAL_VARIABLE = 1
+enum Mode {
+	THROW = 0,
+	CONSTRUCTION = 1
+}
+
+const DEFAULT_MODE = Mode.THROW

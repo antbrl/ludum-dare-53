@@ -4,7 +4,7 @@ extends Sprite2D
 @onready var mouse_cell = tile_map.get_mouse_cell()
 
 func _ready():
-	pass
+	visible = Globals.DEFAULT_MODE == Globals.Mode.CONSTRUCTION
 
 func _process(delta):
 	var new_mouse_cell = tile_map.get_mouse_cell()
