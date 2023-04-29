@@ -76,6 +76,8 @@ func _on_launch_area_mouse_entered():
 
 func _on_launch_area_mouse_exited():
 	mouse_in_area = false
+	if box_selected == true:
+		just_released = true
 
 func _on_test_box_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
@@ -86,7 +88,7 @@ func _on_test_box_input_event(viewport, event, shape_idx):
 func _input(event):
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
 		cursor_status = event.is_pressed()
-		if box_selected == true && !cursor_status:
+		if box_selected == true:
 			just_released = true
 
 func _on_launch_area_body_entered(body):
