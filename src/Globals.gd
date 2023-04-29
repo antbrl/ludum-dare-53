@@ -20,3 +20,9 @@ enum TileMapLayers {
 	DETAILS = 3,
 	TOOL = 4
 }
+
+enum TileSetSources {
+	ALL = 1,
+	BACKGROUND = 2,
+	TOOLS = 3
+}

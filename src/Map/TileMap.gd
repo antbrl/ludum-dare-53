@@ -35,7 +35,7 @@ func canDestroyAtMouse() -> bool:
 	return true
 
 func _build(pos: Vector2, tool: Globals.Tool):
-	print('BUILT')
+	set_cell(Globals.TileMapLayers.TOOL, pos, Globals.TileSetSources.TOOLS, Vector2(tool, 0))
 
 func _destroy(pos: Vector2):
 	print('DESTROYED')
