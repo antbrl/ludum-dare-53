@@ -36,6 +36,10 @@ position = Vector2(-42, 698)
 position = Vector2(18, 0)
 shape = SubResource("SegmentShape2D_htq20")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="body_entered" from="LaunchArea" to="." method="_on_launch_area_body_entered"]
+[connection signal="body_exited" from="LaunchArea" to="." method="_on_launch_area_body_exited"]
 [connection signal="mouse_entered" from="LaunchArea" to="." method="_on_launch_area_mouse_entered"]
 [connection signal="mouse_exited" from="LaunchArea" to="." method="_on_launch_area_mouse_exited"]
 [connection signal="input_event" from="TestBox" to="." method="_on_test_box_input_event"]

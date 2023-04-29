@@ -23,7 +23,6 @@ var capture_point = null
 func capture():
 	test_box.gravity_scale = 1
 	box_selected = true
-	print("captured")
 
 func release(delta, max):
 	if (last_box_pos != null):
@@ -37,7 +36,6 @@ func release(delta, max):
 			if (current_velocity.length() > max_speed):
 				current_velocity *= max_speed/current_velocity.length()
 			test_box.linear_velocity = current_velocity
-	print("released")
 
 func _physics_process(delta):
 	if (just_released):
@@ -91,3 +89,9 @@ func _input(event):
 		cursor_status = event.is_pressed()
 		if box_selected == true && !cursor_status:
 			just_released = true
+
+func _on_launch_area_body_entered(body):
+	box_in_area = true
+
+func _on_launch_area_body_exited(body):
+	box_in_area = false
