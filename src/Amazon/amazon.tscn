@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://gyflj0oj7pue"]
+
+[ext_resource type="Script" path="res://src/Amazon/amazon.gd" id="1_ytipk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xr38w"]
+size = Vector2(3056, 1384)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bisim"]
+size = Vector2(60, 60)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_htq20"]
+a = Vector2(2050, -39)
+b = Vector2(-1011, -40)
+
+[node name="amazon" type="Node2D"]
+script = ExtResource("1_ytipk")
+
+[node name="LaunchArea" type="Area2D" parent="."]
+
+[node name="LaunchCollisionShape" type="CollisionShape2D" parent="LaunchArea"]
+position = Vector2(494, -36)
+shape = SubResource("RectangleShape2D_xr38w")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TestBox" type="RigidBody2D" parent="."]
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestBox"]
+shape = SubResource("RectangleShape2D_bisim")
+debug_color = Color(0.952941, 0, 0.552941, 0.419608)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(-42, 698)
+
+[node name="GroundCollision" type="CollisionShape2D" parent="Ground"]
+position = Vector2(18, 0)
+shape = SubResource("SegmentShape2D_htq20")
+
+[connection signal="mouse_entered" from="LaunchArea" to="." method="_on_launch_area_mouse_entered"]
+[connection signal="mouse_exited" from="LaunchArea" to="." method="_on_launch_area_mouse_exited"]
+[connection signal="input_event" from="TestBox" to="." method="_on_test_box_input_event"]
