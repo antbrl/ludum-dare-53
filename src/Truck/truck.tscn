@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cu86mnbuy308e"]
+[gd_scene load_steps=6 format=3 uid="uid://cu86mnbuy308e"]
+
+[ext_resource type="Script" path="res://src/Truck/truck.gd" id="1_y6pkj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pejxw"]
 absorbent = true
@@ -12,6 +14,7 @@ size = Vector2(21, 4)
 
 [node name="Truck" type="AnimatableBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_pejxw")
+script = ExtResource("1_y6pkj")
 
 [node name="Collision" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 9)
@@ -28,7 +31,11 @@ scale = Vector2(21, 7)
 texture = SubResource("PlaceholderTexture2D_hlq15")
 
 [node name="Target" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Target"]
 position = Vector2(-0.5, 9)
 shape = SubResource("RectangleShape2D_nbm2n")
+
+[connection signal="body_entered" from="Target" to="." method="_on_target_body_entered"]
