@@ -1,8 +1,9 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c2n6f7ubm0lti"]
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://c2n6f7ubm0lti"]
 
 [ext_resource type="Texture2D" uid="uid://dd1kq7gmpe2a1" path="res://assets/tileset/tileset.png" id="2_k8835"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c16iw"]
+resource_name = "All"
 texture = ExtResource("2_k8835")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -181,6 +182,57 @@ texture_region_size = Vector2i(32, 32)
 1:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:6/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ngib"]
+resource_name = "Background (no-collision)"
+texture = ExtResource("2_k8835")
+texture_region_size = Vector2i(32, 32)
+0:2/0 = 0
+0:2/0/modulate = Color(0.662745, 0.662745, 0.662745, 1)
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0 = 0
+1:2/0/modulate = Color(0.662745, 0.662745, 0.662745, 1)
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0 = 0
+2:2/0/modulate = Color(0.662745, 0.662745, 0.662745, 1)
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+0:3/0 = 0
+0:3/0/modulate = Color(0.662745, 0.662745, 0.662745, 1)
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
+1:3/0 = 0
+1:3/0/modulate = Color(0.662745, 0.662745, 0.662745, 1)
+1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_0/angular_velocity = 0.0
+2:3/0 = 0
+2:3/0/modulate = Color(0.662745, 0.662745, 0.662745, 1)
+2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_0/angular_velocity = 0.0
+0:4/0 = 0
+0:4/0/modulate = Color(0.662745, 0.662745, 0.662745, 1)
+0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:4/0/physics_layer_0/angular_velocity = 0.0
+1:4/0 = 0
+1:4/0/modulate = Color(0.662745, 0.662745, 0.662745, 1)
+1:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:4/0/physics_layer_0/angular_velocity = 0.0
+2:4/0 = 0
+2:4/0/modulate = Color(0.662745, 0.662745, 0.662745, 1)
+2:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:4/0/physics_layer_0/angular_velocity = 0.0
+0:5/0 = 0
+0:5/0/modulate = Color(0.662745, 0.662745, 0.662745, 1)
+0:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:5/0/physics_layer_0/angular_velocity = 0.0
+0:6/0 = 0
+0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:6/0/physics_layer_0/angular_velocity = 0.0
+1:6/0 = 0
+1:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:6/0/physics_layer_0/angular_velocity = 0.0
+
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
@@ -199,3 +251,4 @@ terrain_set_3/mode = 2
 terrain_set_3/terrain_0/name = "Castle"
 terrain_set_3/terrain_0/color = Color(0, 0.85098, 0.14902, 1)
 sources/1 = SubResource("TileSetAtlasSource_c16iw")
+sources/2 = SubResource("TileSetAtlasSource_6ngib")
