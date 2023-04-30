@@ -9,6 +9,7 @@ signal tool_destroyed(tool: Globals.Tool, pos: Vector2i)
 @onready var tools = $Tools
 
 @onready var Trampoline = preload("res://src/Trampoline/trampoline.tscn")
+@onready var Portal = preload("res://src/Portal/Portal.tscn")
 
 var mode = Globals.DEFAULT_MODE
 var current_tool = Globals.DEFAULT_TOOL
@@ -35,7 +36,9 @@ func _on_tile_map_build_tool(tool, pos, metadata):
 	print('build tool %d, pos (%d, %d), dir %d' % [tool, pos.x, pos.y, metadata.direction])
 	var tool_instance: Node2D = null
 	match tool:
-#		Globals.Tool.PORTAL:
+		Globals.Tool.PORTAL:
+			tool_instance = Portal.instantiate()
+			tool_instance.direction = metadata.direction
 		Globals.Tool.TRAMPOLINE:
 			tool_instance = Trampoline.instantiate()
 	if tool_instance == null:

@@ -36,5 +36,5 @@ enum Direction {
 	LEFT = 1,
 	UP = 2,
 	RIGHT = 3,
-	BOTTOM = 4,
+	DOWN = 4,
 }

@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://jii3160pqbj"]
+
+[ext_resource type="Script" path="res://src/Portal/Portal.gd" id="1_mispx"]
+[ext_resource type="Texture2D" uid="uid://b4b2rqc1dkvuu" path="res://assets/sprites/portal.png" id="1_y4ubs"]
+
+[sub_resource type="Gradient" id="Gradient_wg1qe"]
+offsets = PackedFloat32Array(0.886364, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_m7epf"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0480769, 0.463942, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.310617, 0.310617, 0.310617, 1, 0.059144, 0.059144, 0.059144, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tc736"]
+gradient = SubResource("Gradient_m7epf")
+
+[node name="Portal" type="Node2D"]
+script = ExtResource("1_mispx")
+
+[node name="Portal" type="Sprite2D" parent="."]
+position = Vector2(-16, 0)
+texture = ExtResource("1_y4ubs")
+
+[node name="GPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-14, 0)
+amount = 15
+lifetime = 1.5
+lifetime_randomness = 0.2
+fixed_fps = 30
+local_coords = true
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(1, 32)
+spread = 70.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+color = Color(0.811765, 0.541176, 0.796078, 1)
+color_ramp = SubResource("Gradient_wg1qe")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(16, 0)
+color = Color(0.811765, 0.541176, 0.796078, 1)
+energy = 2.0
+texture = SubResource("GradientTexture2D_tc736")

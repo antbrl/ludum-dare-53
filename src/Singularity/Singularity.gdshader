@@ -17,3 +17,6 @@ void fragment() {
 void vertex() {
 	UV = VERTEX;
 }
+
+void light() {
+}
