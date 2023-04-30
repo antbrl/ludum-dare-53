@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://byfrygi5um7b1"]
+[gd_scene load_steps=2 format=3 uid="uid://byfrygi5um7b1"]
+
+[ext_resource type="Script" path="res://src/HUD/action_ui.gd" id="1_7v0bc"]
 
 [node name="ActionUI" type="Control"]
 layout_mode = 3
@@ -8,6 +10,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_7v0bc")
+
+[node name="SwitchModeButton" type="Button" parent="."]
+layout_mode = 2
+offset_right = 157.0
+offset_bottom = 31.0
+size_flags_horizontal = 0
+text = "Construction mode"
 
 [node name="ToolList" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -18,3 +28,5 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[connection signal="pressed" from="SwitchModeButton" to="." method="_on_switch_mode_button_pressed"]

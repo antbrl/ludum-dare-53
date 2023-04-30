@@ -38,9 +38,6 @@ func init(level_number, tools_quantity):
 func end_level():
 	emit_signal("end_of_level")
 
-func _on_hud_mode_change(mode):
-	map.switch_mode(mode)
-
 func _on_map_tool_built(tool, pos, metadata):
 	var tool_template = tools_dict.get(tool)
 	assert(tool_template, 'No tool template associated to tool ' + str(tool))
@@ -54,3 +51,6 @@ func _on_map_tool_destroyed(tool, pos):
 
 func _on_tool_selected(tool_template):
 	map.update_tool(tool_template)
+
+func _on_action_ui_mode_change(mode):
+	map.switch_mode(mode)
