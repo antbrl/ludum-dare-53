@@ -31,7 +31,11 @@ func _ready():
 
 	action_ui.init(templates.get_children())
 
-func init(level_number, tools_quantity):
+func init(level_number, map: PackedScene, tools_quantity):
+	var map_instance = map.instantiate()
+	add_child(map_instance)
+	move_child(map_instance, 0)
+
 	self.level_number = level_number
 	self.tools_quantity = tools_quantity
 

@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Map
+
 signal tool_built(tool: Globals.Tool, pos: Vector2i, metadata: Dictionary)
 signal tool_destroyed(tool: Globals.Tool, pos: Vector2i)
 

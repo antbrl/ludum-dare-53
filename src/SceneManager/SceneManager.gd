@@ -15,6 +15,7 @@ var current_scene : set = set_scene
 
 @onready var viewport = $SubViewportContainer/SubViewport
 
+@export var maps: Array[PackedScene]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -60,7 +61,7 @@ var tools_availibility = {
 func _load_level():
 	var scene = game.instantiate()
 	
-	scene.init(current_level_number, tools_availibility)
+	scene.init(current_level_number, maps[current_level_number], tools_availibility)
 
 	scene.connect("end_of_level", Callable(self, "_on_end_of_level"))
 	scene.connect("game_over", Callable(self, "_on_game_over"))
