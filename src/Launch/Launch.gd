@@ -22,7 +22,6 @@ var crate_scene = preload("res://src/Crate/Crate.tscn")
 func register_crate(new_crate):
 	new_crate.connect("clicked", handle_click)
 	new_crate.connect("killme", kill_crate) # TODO move to map
-	print("follow")
 
 func _ready():
 	for c in crates.get_children():
@@ -101,4 +100,5 @@ func kill_crate(crate):
 	var new_crate = crate_scene.instantiate()
 	new_crate.global_position = launch_area.to_global(Vector2(-250, 0))
 	crates.add_child(new_crate)
+	register_crate(new_crate)
 	cam.back_to_default()
