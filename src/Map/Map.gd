@@ -13,6 +13,7 @@ signal tool_destroyed(tool_slot: InventorySlot, pos: Vector2i, quantity: int)
 
 @onready var Trampoline = preload("res://src/Trampoline/trampoline.tscn")
 @onready var Portal = preload("res://src/Portal/Portal.tscn")
+@onready var singularity = preload("res://src/Singularity/Singularity.tscn")
 
 @export var inventory: Array[InventorySlot]
 
@@ -53,6 +54,10 @@ func _on_tile_map_build_tool(tool, pos, metadata):
 			tool_instance.direction = metadata.direction
 		Globals.Tool.TRAMPOLINE:
 			tool_instance = Trampoline.instantiate()
+		Globals.Tool.SINGULARITY:
+			tool_instance = singularity.instantiate()
+		_:
+			assert(false, 'Missing tool')
 	if tool_instance == null:
 		return
 	tool_instance.position = tile_map.map_to_local(pos) * tile_map.scale

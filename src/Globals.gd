@@ -19,6 +19,7 @@ enum Tool {
 	NONE = 0,
 	PORTAL = 1,
 	TRAMPOLINE = 2,
+	SINGULARITY = 3
 }
 
 const DEFAULT_TOOL = Tool.TRAMPOLINE
@@ -31,6 +32,7 @@ enum TileMapLayers {
 	TOOL = 4,
 	TOOL_WHITELIST_PORTAL = 5,
 	TOOL_WHITELIST_TRAMPOLINE = 6,
+	TOOL_WHITELIST_SINGULARITY = 7,
 }
 
 enum TileSetSources {

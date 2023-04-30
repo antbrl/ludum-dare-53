@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=7 format=3 uid="uid://jmja37wug37s"]
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://jmja37wug37s"]
 
 [ext_resource type="Script" path="res://src/Game/game_settings.gd" id="1_6baoe"]
 [ext_resource type="Script" path="res://src/Tool/ToolTemplate.gd" id="2_vdkyx"]
 [ext_resource type="Texture2D" uid="uid://b4b2rqc1dkvuu" path="res://assets/sprites/portal.png" id="3_k7m7q"]
 [ext_resource type="Texture2D" uid="uid://ba2hoigmj5w8y" path="res://assets/sprites/trampoline.png" id="4_5l6u7"]
+[ext_resource type="Texture2D" uid="uid://51pr2epmlqdm" path="res://assets/sprites/icon.png" id="5_r7v51"]
 
 [sub_resource type="Resource" id="Resource_mw5a7"]
 script = ExtResource("2_vdkyx")
@@ -17,6 +18,12 @@ texture = ExtResource("4_5l6u7")
 tool_name = "Trampoline"
 tool_id = 2
 
+[sub_resource type="Resource" id="Resource_h255h"]
+script = ExtResource("2_vdkyx")
+texture = ExtResource("5_r7v51")
+tool_name = "Singularity"
+tool_id = 3
+
 [resource]
 script = ExtResource("1_6baoe")
-tool_templates = Array[ExtResource("2_vdkyx")]([SubResource("Resource_mw5a7"), SubResource("Resource_c63kg")])
+tool_templates = Array[ExtResource("2_vdkyx")]([SubResource("Resource_mw5a7"), SubResource("Resource_c63kg"), SubResource("Resource_h255h")])
