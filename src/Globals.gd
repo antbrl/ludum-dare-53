@@ -8,6 +8,11 @@ func get_tool_template(tool: Globals.Tool) -> ToolTemplate:
 			return t
 	return null
 
+enum Phase {
+	TRIAL = 0,
+	CHALLENGE = 1
+}
+
 enum Mode {
 	THROW = 0,
 	CONSTRUCTION = 1

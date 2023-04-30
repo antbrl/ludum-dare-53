@@ -7,6 +7,7 @@ signal killme(id)
 signal clicked(id)
 
 @onready var timer = $Timer
+@onready var launcher = $"../../Launch"
 
 var prev_pos = null
 var prev_rot = null
@@ -29,6 +30,8 @@ func thrown():
 
 func _ready():
 	prev_pos = position
+	self.connect("clicked", launcher.handle_click)
+	self.connect("killme", launcher.kill_crate)
 
 func _physics_process(delta):
 	for influence in in_range_physic_tools:

@@ -1,8 +1,9 @@
 extends Node2D
 
 @onready var launch_area = $LaunchArea
-@onready var crates = get_node("../Crates")
-@onready var cam = get_node("../Camera2D")
+@onready var crates = $"../Crates"
+@onready var cam = $"../Camera2D"
+@onready var game = $"../.."
 
 const snap_dist = 150.0
 const max_speed = 1400.0
@@ -20,14 +21,6 @@ var selected_crate_anchor   = null
 var disabled = false
 
 var crate_scene = preload("res://src/Crate/Crate.tscn")
-
-func register_crate(new_crate):
-	new_crate.connect("clicked", handle_click)
-	new_crate.connect("killme", kill_crate) # TODO move to map
-
-func _ready():
-	for c in crates.get_children():
-		register_crate(c)
 
 func capture(id):
 	selected_crate = id
@@ -110,6 +103,5 @@ func kill_crate(crate):
 	var new_crate = crate_scene.instantiate()
 	new_crate.global_position = launch_area.to_global(Vector2(-250, 0))
 	crates.add_child(new_crate)
-	register_crate(new_crate)
 	cam.back_to_default()
 	disabled = false

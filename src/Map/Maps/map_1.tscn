@@ -39,3 +39,6 @@ layer_7/tile_data = PackedInt32Array(-589807, 0, 2, -589806, 0, 2, -655342, 0, 2
 
 [node name="Singularity" parent="Tools" index="0" instance=ExtResource("2_vaq42")]
 position = Vector2(282, -551)
+
+[node name="Target" parent="." index="5"]
+position = Vector2(1157, -340)
