@@ -5,6 +5,7 @@ extends Node2D
 
 const snap_dist = 150.0
 const max_speed = 1400.0
+const max_rot = 1000.0
 
 var mouse_in_area = false
 var click_pressed = false
@@ -60,6 +61,7 @@ func _physics_process(delta):
 		var com_anchor_vec = crate_pos - selected_crate.global_position
 		selected_crate.global_position += pos_diff
 		selected_crate.angular_velocity += -.05 * pos_diff.cross(com_anchor_vec)
+		selected_crate.angular_velocity = clamp(selected_crate.angular_velocity, -max_rot, max_rot)
 		selected_crate_last_pos = crate_pos
 
 func _on_launch_area_mouse_entered():

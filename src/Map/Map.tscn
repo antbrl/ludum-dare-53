@@ -40,7 +40,22 @@ position = Vector2(497, -73)
 [node name="Crates" type="Node2D" parent="."]
 
 [node name="Crate" parent="Crates" instance=ExtResource("2_qey5k")]
-position = Vector2(-239, -534)
+position = Vector2(-93, 609)
+
+[node name="Crate2" parent="Crates" instance=ExtResource("2_qey5k")]
+position = Vector2(-139, 606)
+
+[node name="Crate3" parent="Crates" instance=ExtResource("2_qey5k")]
+position = Vector2(-116, 556)
+
+[node name="Crate4" parent="Crates" instance=ExtResource("2_qey5k")]
+position = Vector2(-184, 611)
+
+[node name="Crate5" parent="Crates" instance=ExtResource("2_qey5k")]
+position = Vector2(-165, 557)
+
+[node name="Crate6" parent="Crates" instance=ExtResource("2_qey5k")]
+position = Vector2(-140, 511)
 
 [connection signal="build_tool" from="TileMap" to="." method="_on_tile_map_build_tool"]
 [connection signal="destroy_tool" from="TileMap" to="." method="_on_tile_map_destroy_tool"]

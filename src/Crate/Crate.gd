@@ -42,5 +42,4 @@ func _on_timer_timeout():
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
-			print("le salam")
 			emit_signal("clicked", self)
