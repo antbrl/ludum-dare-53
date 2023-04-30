@@ -42,6 +42,6 @@ func _on_timer_timeout():
 	emit_signal("killme", self)
 
 func _on_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
+	if in_launch_area && event is InputEventMouseButton:
 		if event.is_pressed():
 			emit_signal("clicked", self)
