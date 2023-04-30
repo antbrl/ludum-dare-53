@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpbu0bhjy7tph"]
+[gd_scene load_steps=10 format=3 uid="uid://cpbu0bhjy7tph"]
 
 [ext_resource type="Script" path="res://src/Map/Map.gd" id="1_lb1fb"]
 [ext_resource type="PackedScene" uid="uid://bqdyskkc8us6p" path="res://src/Crate/Crate.tscn" id="2_qey5k"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c30ynk6qk8e7t" path="res://src/Singularity/Singularity.tscn" id="6_dtas2"]
 [ext_resource type="PackedScene" uid="uid://c35yk86ipmq4o" path="res://src/Map/tool_ghost.tscn" id="6_x85yr"]
 [ext_resource type="PackedScene" uid="uid://cqtltj48l5ode" path="res://src/Launch/Launch.tscn" id="8_6t0vn"]
+[ext_resource type="Script" path="res://src/Map/Camera2D.gd" id="9_a8rtx"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_lb1fb")
@@ -32,15 +33,15 @@ position = Vector2(365, -402)
 position = Vector2(1223, -426)
 scale = Vector2(30, 30)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(497, -73)
-
 [node name="Launch" parent="." instance=ExtResource("8_6t0vn")]
 
 [node name="Crates" type="Node2D" parent="."]
 
 [node name="Crate" parent="Crates" instance=ExtResource("2_qey5k")]
 position = Vector2(-239, -534)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("9_a8rtx")
 
 [connection signal="build_tool" from="TileMap" to="." method="_on_tile_map_build_tool"]
 [connection signal="destroy_tool" from="TileMap" to="." method="_on_tile_map_destroy_tool"]

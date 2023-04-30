@@ -37,7 +37,6 @@ func switch_mode(_mode: Globals.Mode):
 	mode = _mode
 	tool_ghost.visible = mode == Globals.Mode.CONSTRUCTION
 
-
 func _on_tile_map_build_tool(tool, pos, metadata):
 	print('build tool %d, pos (%d, %d), dir %d' % [tool, pos.x, pos.y, metadata.direction])
 	var tool_instance: Node2D = null
