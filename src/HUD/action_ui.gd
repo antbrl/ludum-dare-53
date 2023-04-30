@@ -37,6 +37,8 @@ func add_tool(tool_template):
 	tool_instance.connect("tool_selected", level._on_tool_selected)
 	tool_list.add_child(tool_instance)
 	tool_instance.init(tool_template)
+	if tool_template.tool_id == Globals.DEFAULT_TOOL:
+		tool_instance._on_pressed()
 
 func _on_switch_mode_button_pressed():
 	if mode == Globals.Mode.THROW:

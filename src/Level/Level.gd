@@ -43,7 +43,6 @@ func _on_map_tool_built(tool, pos, metadata):
 	assert(tool_template, 'No tool template associated to tool ' + str(tool))
 	tool_template.quantity -= 1
 
-
 func _on_map_tool_destroyed(tool, pos):
 	var tool_template = tools_dict.get(tool)
 	assert(tool_template, 'No tool template associated to tool ' + str(tool))
