@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6qr2e7rf3li1"]
+
+[ext_resource type="Script" path="res://src/Tool/PhysicsTool.gd" id="1_uqjig"]
+
+[node name="PhysicalTool" type="Area2D"]
+collision_layer = 5
+script = ExtResource("1_uqjig")

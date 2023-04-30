@@ -1,14 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://bary4m4n2w5tt"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fcdlk"]
-friction = 0.0
-bounce = 1.0
+[ext_resource type="Script" path="res://src/Tool/Trampoline/trampoline.gd" id="1_r8rr0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4k7og"]
 size = Vector2(400, 40)
 
-[node name="Trampoline" type="AnimatableBody2D"]
-physics_material_override = SubResource("PhysicsMaterial_fcdlk")
+[node name="Trampoline" type="Area2D"]
+script = ExtResource("1_r8rr0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4k7og")

@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://jii3160pqbj"]
+[gd_scene load_steps=6 format=3 uid="uid://b6e5c0iscdww1"]
 
-[ext_resource type="Script" path="res://src/Portal/Portal.gd" id="1_mispx"]
-[ext_resource type="Texture2D" uid="uid://b4b2rqc1dkvuu" path="res://assets/sprites/portal.png" id="1_y4ubs"]
+[ext_resource type="Script" path="res://src/Tool/Portal/Portal.gd" id="1_6g6il"]
+[ext_resource type="Texture2D" uid="uid://b4b2rqc1dkvuu" path="res://assets/sprites/portal.png" id="2_y1po2"]
 
 [sub_resource type="Gradient" id="Gradient_wg1qe"]
 offsets = PackedFloat32Array(0.886364, 1)
@@ -15,12 +15,12 @@ colors = PackedColorArray(1, 1, 1, 1, 0.310617, 0.310617, 0.310617, 1, 0.059144,
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tc736"]
 gradient = SubResource("Gradient_m7epf")
 
-[node name="Portal" type="Node2D"]
-script = ExtResource("1_mispx")
+[node name="Portal" type="Area2D"]
+script = ExtResource("1_6g6il")
 
 [node name="Portal" type="Sprite2D" parent="."]
 position = Vector2(-16, 0)
-texture = ExtResource("1_y4ubs")
+texture = ExtResource("2_y1po2")
 
 [node name="GPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(-14, 0)

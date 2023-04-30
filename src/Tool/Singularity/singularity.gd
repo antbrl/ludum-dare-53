@@ -1,7 +1,5 @@
 extends PhysicsTool
 
-class_name Singularity
-
 const FAILURE_DISTANCE_SQ_THRESHOLD = 300
 
 

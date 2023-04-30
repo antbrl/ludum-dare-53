@@ -13,5 +13,5 @@ func _process(delta):
 	pass
 
 
-func add_physics_modifier(crate: RigidBody2D):
+func add_physics_modifier(crate: Crate):
 	pass

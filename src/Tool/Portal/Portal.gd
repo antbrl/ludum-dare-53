@@ -1,6 +1,6 @@
 @tool
 
-extends Node2D
+extends PhysicsTool
 
 @export var direction: Globals.Direction = Globals.Direction.NONE:
 	get:

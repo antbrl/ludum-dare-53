@@ -11,9 +11,9 @@ signal tool_destroyed(tool_slot: InventorySlot, pos: Vector2i, quantity: int)
 @onready var tools = $Tools
 @onready var level = $".."
 
-@onready var Trampoline = preload("res://src/Trampoline/trampoline.tscn")
-@onready var Portal = preload("res://src/Portal/Portal.tscn")
-@onready var singularity = preload("res://src/Singularity/Singularity.tscn")
+@onready var Trampoline = preload("res://src/Tool/Trampoline/trampoline.tscn")
+@onready var Portal = preload("res://src/Tool/Portal/Portal.tscn")
+@onready var singularity = preload("res://src/Tool/Singularity/Singularity.tscn")
 
 @export var inventory: Array[InventorySlot]
 
