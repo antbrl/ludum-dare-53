@@ -4,6 +4,9 @@
 [ext_resource type="Script" path="res://src/HUD/HUD.gd" id="2"]
 
 [sub_resource type="FontFile" id="1"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 fallbacks = Array[Font]([ExtResource("1")])
 face_index = null
 embolden = null

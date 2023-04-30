@@ -4,5 +4,3 @@
 
 [node name="ToolTemplate" type="Node"]
 script = ExtResource("1_2pa5b")
-tool_name = null
-quantity = null

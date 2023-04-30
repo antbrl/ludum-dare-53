@@ -25,3 +25,6 @@ func set_quantity(_quantity: int):
 
 func get_texture():
 	return texture 
+
+func get_tool_name():
+	return tool_name
