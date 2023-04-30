@@ -68,7 +68,7 @@ func _physics_process(delta):
 		var pos_diff   = cursor_pos - crate_pos
 		var com_anchor_vec = crate_pos - selected_crate.global_position
 		selected_crate.global_position += pos_diff
-		selected_crate.angular_velocity += -.05 * pos_diff.cross(com_anchor_vec)
+		selected_crate.angular_velocity += -1 * pos_diff.normalized().cross(com_anchor_vec)
 		selected_crate.angular_velocity = clamp(selected_crate.angular_velocity, -max_rot, max_rot)
 		selected_crate_last_pos = crate_pos
 
