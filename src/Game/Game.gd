@@ -10,13 +10,12 @@ var mode = Globals.DEFAULT_MODE
 @onready var action_ui = $UI/ActionUI
 
 @onready var map = $Map
-@onready var target = $Map/Target
 
 var map_scene
 
 func _ready():
 	self.map = self.map.create_instance(true, map_scene)
-	self.target = map.get_node("Target")
+	var target = map.get_node("Target")
 
 	assert(level_number != null, "init must be called before creating Level scene")
 	hud.set_level_number(level_number)
