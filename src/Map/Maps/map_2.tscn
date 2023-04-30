@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfl3g6bp2fbet"]
+[gd_scene load_steps=7 format=3 uid="uid://dvqnqc87u23eq"]
 
 [ext_resource type="PackedScene" uid="uid://cerdlyf71wibk" path="res://src/Map/Map.tscn" id="1_dknvj"]
 [ext_resource type="Script" path="res://src/Game/inventory_slot.gd" id="2_veed3"]
@@ -21,6 +21,7 @@ quantity = 3
 
 [node name="Map1" instance=ExtResource("1_dknvj")]
 inventory = Array[ExtResource("2_veed3")]([SubResource("Resource_rjju2"), SubResource("Resource_c4kb5"), SubResource("Resource_vc47j")])
+n_challenge_crates = 5
 
 [node name="TileMap" parent="." index="0"]
 position = Vector2(1, 0)
