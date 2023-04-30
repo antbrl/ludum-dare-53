@@ -11,12 +11,9 @@ var mode = Globals.DEFAULT_MODE
 @onready var map = $Map
 
 func _ready():
-	assert(
-		level_number != null, "init must be called before creating Level scene"
-	)
+	assert(level_number != null, "init must be called before creating Level scene")
 	hud.set_level_number(level_number)
 	truck.connect("crate_dropped", end_level)
-
 
 func init(level_number, nb_coins):
 	self.level_number = level_number

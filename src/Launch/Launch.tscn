@@ -1,33 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvdkb5aco084l"]
+[gd_scene load_steps=4 format=3 uid="uid://cqtltj48l5ode"]
 
-[ext_resource type="Script" path="res://src/Level/Launch/launch.gd" id="1_8aljf"]
+[ext_resource type="Script" path="res://src/Launch/Launch.gd" id="1_3ki5j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr38w"]
 size = Vector2(1017, 1384)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bisim"]
-size = Vector2(60, 60)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_htq20"]
 a = Vector2(14, -37)
 b = Vector2(-1011, -40)
 
 [node name="Launch" type="Node2D"]
-script = ExtResource("1_8aljf")
+script = ExtResource("1_3ki5j")
 
 [node name="LaunchArea" type="Area2D" parent="."]
 
 [node name="LaunchCollisionShape" type="CollisionShape2D" parent="LaunchArea"]
 position = Vector2(-525.5, -36)
 shape = SubResource("RectangleShape2D_xr38w")
-
-[node name="TestBox" type="RigidBody2D" parent="."]
-position = Vector2(-136, 0)
-input_pickable = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestBox"]
-shape = SubResource("RectangleShape2D_bisim")
-debug_color = Color(0.952941, 0, 0.552941, 0.419608)
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(-42, 698)
@@ -40,4 +29,3 @@ shape = SubResource("SegmentShape2D_htq20")
 [connection signal="body_exited" from="LaunchArea" to="." method="_on_launch_area_body_exited"]
 [connection signal="mouse_entered" from="LaunchArea" to="." method="_on_launch_area_mouse_entered"]
 [connection signal="mouse_exited" from="LaunchArea" to="." method="_on_launch_area_mouse_exited"]
-[connection signal="input_event" from="TestBox" to="." method="_on_test_box_input_event"]
