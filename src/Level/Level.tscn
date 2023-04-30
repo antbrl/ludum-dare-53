@@ -28,6 +28,10 @@ script = ExtResource("4_ppcsy")
 texture = ExtResource("6_bwvw0")
 tool_name = "Trampoline"
 
+[node name="Portal" parent="ToolTemplates" instance=ExtResource("5_oyoyj")]
+texture = ExtResource("6_bwvw0")
+tool_name = "Portal"
+
 [connection signal="tool_built" from="Map" to="." method="_on_map_tool_built"]
 [connection signal="tool_destroyed" from="Map" to="." method="_on_map_tool_destroyed"]
 [connection signal="mode_change" from="UI/HUD" to="." method="_on_hud_mode_change"]
