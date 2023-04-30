@@ -17,6 +17,8 @@ var selected_crate          = null
 var selected_crate_last_pos = null
 var selected_crate_anchor   = null
 
+var disabled = false
+
 var crate_scene = preload("res://src/Crate/Crate.tscn")
 
 func register_crate(new_crate):
@@ -41,13 +43,15 @@ func release(delta):
 	else:
 		selected_crate.linear_velocity = Vector2(0, 0)
 	just_released = false
+	selected_crate.thrown()
 	cam.follow(selected_crate)
 	selected_crate = null
+	disabled = true
 
 func _physics_process(delta):
 	if (just_released):
 		release(delta)
-	elif (selected_crate == null && click_pressed): # Snapping
+	elif (selected_crate == null && click_pressed && !disabled): # Snapping
 		selected_crate_anchor = Vector2(0, 0)
 		var best = null
 		for c in crates.get_children():
@@ -77,12 +81,12 @@ func _on_launch_area_mouse_exited():
 		just_released = true
 
 func handle_click(crate):
-	if (selected_crate == null):
+	if (selected_crate == null && !disabled):
 		selected_crate_anchor = crate.to_local(get_global_mouse_position())
 		capture(crate)
 
 func _input(event):
-	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
+	if !disabled && event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
 		click_pressed = event.is_pressed()
 		if selected_crate != null:
 			just_released = true
@@ -102,3 +106,4 @@ func kill_crate(crate):
 	crates.add_child(new_crate)
 	register_crate(new_crate)
 	cam.back_to_default()
+	disabled = false
