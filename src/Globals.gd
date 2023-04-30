@@ -13,6 +13,8 @@ enum Tool {
 	TRAMPOLINE = 2,
 }
 
+const DEFAULT_TOOL = Tool.TRAMPOLINE
+
 enum TileMapLayers {
 	BACKGROUND = 0,
 	STRUCTURE = 1,

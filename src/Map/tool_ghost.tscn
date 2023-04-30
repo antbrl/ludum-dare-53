@@ -5,6 +5,7 @@
 
 [node name="ToolGhost" type="Sprite2D"]
 modulate = Color(1, 1, 1, 0.45098)
+top_level = true
 scale = Vector2(0.084, 0.084)
 texture = ExtResource("1_6gfrh")
 script = ExtResource("2_k0a5w")
