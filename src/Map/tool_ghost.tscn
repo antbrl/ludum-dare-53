@@ -1,11 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c35yk86ipmq4o"]
+[gd_scene load_steps=2 format=3 uid="uid://c35yk86ipmq4o"]
 
-[ext_resource type="Texture2D" uid="uid://bprdj2krbpywu" path="res://assets/sprites/player.png" id="1_6gfrh"]
 [ext_resource type="Script" path="res://src/Map/ToolGhost.gd" id="2_k0a5w"]
 
 [node name="ToolGhost" type="Sprite2D"]
 modulate = Color(1, 1, 1, 0.45098)
 top_level = true
-scale = Vector2(0.084, 0.084)
-texture = ExtResource("1_6gfrh")
 script = ExtResource("2_k0a5w")

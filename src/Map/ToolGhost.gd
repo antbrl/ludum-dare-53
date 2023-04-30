@@ -23,3 +23,6 @@ func update():
 	modulate = Color(1, 1, 1, 0.45)
 	if not tile_map.can_build_on_cell(mouse_cell, current_tool):
 		modulate = Color(0.92, 0, 0.14, 0.45)
+
+func tool_changed(tool_texture: Texture2D):
+	texture = tool_texture

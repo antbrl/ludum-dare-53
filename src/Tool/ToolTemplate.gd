@@ -2,17 +2,18 @@ extends Node
 
 class_name ToolTemplate
 
-@export var tool_id: int
 @export var texture : Texture2D
 @export var tool_name : String
 
+var tool_id: int
 var available: bool
 var quantity : int
 
 func _ready():
 	pass
 
-func init(quantity: int):
+func init(tool_id: int, quantity: int):
+	self.tool_id = tool_id
 	self.quantity = quantity
 	self.available = quantity > 0
 

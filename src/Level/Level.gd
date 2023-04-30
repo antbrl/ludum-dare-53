@@ -26,11 +26,9 @@ func _ready():
 	
 	for tool in tools_dict.keys():
 		var tool_template = tools_dict.get(tool)
-		
 		var quantity = tools_quantity.get(tool, 0)
-		
-		tool_template.init(quantity)
-		print(tool_template)
+		tool_template.init(tool, quantity)
+
 	action_ui.init(templates.get_children())
 
 func init(level_number, tools_quantity):
@@ -55,5 +53,4 @@ func _on_map_tool_destroyed(tool, pos):
 	tool_template.quantity += 1
 
 func _on_tool_selected(tool_template):
-	print(tool_template)
-	pass
+	map.update_tool(tool_template)
