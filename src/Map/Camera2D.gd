@@ -5,7 +5,7 @@ var default_position = null
 
 const transition_duration = 1.0
 const default_zoom = Vector2(1, 1)
-const follow_zoom = Vector2(2.5, 2.5)
+const follow_zoom = Vector2(2, 2)
 
 var transition_status = null
 var transition_from = null
@@ -23,7 +23,7 @@ func follow(object):
 	transition_from = global_position
 	transition_status = 0.0
 
-func _process(delta):
+func _physics_process(delta):
 	if transition_status != null:
 		transition_status += delta
 		var transition_to = default_position
