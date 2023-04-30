@@ -12,11 +12,6 @@
 [node name="Map" type="Node2D"]
 script = ExtResource("1_lb1fb")
 
-[node name="Crates" type="Node2D" parent="."]
-
-[node name="Crate" parent="Crates" instance=ExtResource("2_qey5k")]
-position = Vector2(-239, -534)
-
 [node name="Tools" type="Node2D" parent="."]
 
 [node name="Trampoline" parent="Tools" instance=ExtResource("3_4s3lf")]
@@ -41,6 +36,11 @@ scale = Vector2(30, 30)
 position = Vector2(497, -73)
 
 [node name="Launch" parent="." instance=ExtResource("8_6t0vn")]
+
+[node name="Crates" type="Node2D" parent="."]
+
+[node name="Crate" parent="Crates" instance=ExtResource("2_qey5k")]
+position = Vector2(-239, -534)
 
 [connection signal="build_tool" from="TileMap" to="." method="_on_tile_map_build_tool"]
 [connection signal="destroy_tool" from="TileMap" to="." method="_on_tile_map_destroy_tool"]

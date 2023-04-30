@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var launch_area = $LaunchArea
-@onready var crate = $TestBox
+@onready var crates = get_node("../Crates")
 
 const snap_dist = 150.0
 const max_speed = 1400.0
@@ -15,11 +15,13 @@ var just_released = false
 var last_crate_pos = null
 
 var anchor = null
+var crate = null
 
 func init(new_crate):
 	crate = new_crate
 	crate_in_area = launch_area.overlaps_body(crate)
 	crate.connect("input_event", _on_crate_input_event)
+	crate.connect("killme", kill_crate) # TODO move to map
 
 func capture():
 	crate.linear_velocity = Vector2(0, 0)
@@ -78,3 +80,9 @@ func _on_launch_area_body_entered(body):
 func _on_launch_area_body_exited(body):
 	if (body == crate):
 		crate_in_area = false
+
+func _on_timer_timeout():
+	pass
+
+func kill_crate(crate):
+	crate.queue_free()
