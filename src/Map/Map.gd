@@ -7,6 +7,7 @@ signal tool_destroyed(tool: Globals.Tool, pos: Vector2i)
 @onready var tile_map = $TileMap
 @onready var launch_area = $Launch
 @onready var tools = $Tools
+@onready var level = $".."
 
 @onready var Trampoline = preload("res://src/Trampoline/trampoline.tscn")
 @onready var Portal = preload("res://src/Portal/Portal.tscn")
@@ -21,6 +22,11 @@ func _process(delta):
 
 func _input(event):
 	if event.is_action_pressed("build"):
+		var quantity = level.tools_dict.get(current_tool).get_quantity()
+		print(quantity)
+		if quantity <= 0:
+			return
+
 		if mode == Globals.Mode.CONSTRUCTION:
 			tile_map.try_build_at_mouse(current_tool)
 	elif event.is_action_pressed("destroy"):

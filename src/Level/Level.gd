@@ -43,7 +43,6 @@ func end_level():
 func _on_hud_mode_change(mode):
 	map.switch_mode(mode)
 
-
 func _on_map_tool_built(tool, pos, metadata):
 	var tool_template = tools_dict.get(tool)
 	assert(tool_template, 'No tool template associated to tool ' + str(tool))
