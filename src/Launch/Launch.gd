@@ -41,7 +41,7 @@ func _physics_process(delta):
 	elif (!crate_selected && mouse_in_area && crate_in_area && click_pressed):
 		# Snapping
 		if ((get_global_mouse_position() - crate.global_position).length() <= snap_dist):
-			anchor = crate.to_local(get_global_mouse_position())
+			anchor = Vector2(0, 0)
 			capture()
 	elif (crate_selected && mouse_in_area && crate_in_area):
 		var cursor_pos = get_global_mouse_position()
