@@ -6,80 +6,88 @@ extends Node2D
 const snap_dist = 150.0
 const max_speed = 1400.0
 
-var crate_selected = false
-var crate_in_area = true
 var mouse_in_area = false
 var click_pressed = false
 
 var just_released = false
-var last_crate_pos = null
 
-var anchor = null
-var crate = null
+var selected_crate          = null
+var selected_crate_last_pos = null
+var selected_crate_anchor   = null
 
-func init(new_crate):
-	crate = new_crate
-	crate_in_area = launch_area.overlaps_body(crate)
-	crate.connect("input_event", _on_crate_input_event)
-	crate.connect("killme", kill_crate) # TODO move to map
+func register_crate(new_crate):
+	new_crate.connect("clicked", handle_click)
+	new_crate.connect("killme", kill_crate) # TODO move to map
 
-func capture():
-	crate.linear_velocity = Vector2(0, 0)
-	crate_selected = true
+func _ready():
+	for c in crates.get_children():
+		register_crate(c)
+
+func capture(id):
+	selected_crate = id
+	selected_crate.linear_velocity = Vector2(0, 0)
 
 func release(delta):
-	if (last_crate_pos != null):
-		just_released = false
-		crate_selected = false
-		var current_velocity = (crate.to_global(anchor) - last_crate_pos)/delta
+	assert(selected_crate != null, "no crate selected")
+	if (selected_crate_last_pos != null):
+		var current_velocity = (selected_crate.to_global(selected_crate_anchor) - selected_crate_last_pos)/delta
 		if (current_velocity.length() > max_speed):
 			current_velocity *= max_speed/current_velocity.length()
-		crate.linear_velocity = current_velocity
+		selected_crate.linear_velocity = current_velocity
+	else:
+		selected_crate.linear_velocity = Vector2(0, 0)
+	just_released = false
+	selected_crate = null
 
 func _physics_process(delta):
 	if (just_released):
 		release(delta)
-	elif (!crate_selected && mouse_in_area && crate_in_area && click_pressed):
-		# Snapping
-		if ((get_global_mouse_position() - crate.global_position).length() <= snap_dist):
-			anchor = Vector2(0, 0)
-			capture()
-	elif (crate_selected && mouse_in_area && crate_in_area):
+	elif (selected_crate == null && click_pressed): # Snapping
+		selected_crate_anchor = Vector2(0, 0)
+		var best = null
+		for c in crates.get_children():
+			var c_dist = (get_global_mouse_position() - c.global_position).length()
+			if (c.in_launch_area && c_dist <= snap_dist):
+				if (best == null || best > c_dist):
+					best = c_dist
+					selected_crate = c
+		if best != null:
+			capture(selected_crate)
+	elif (selected_crate != null && mouse_in_area && selected_crate.in_launch_area):
 		var cursor_pos = get_global_mouse_position()
-		var crate_pos  = crate.to_global(anchor)
+		var crate_pos  = selected_crate.to_global(selected_crate_anchor)
 		var pos_diff   = cursor_pos - crate_pos
-		var com_anchor_vec = crate_pos - crate.global_position
-		crate.global_position += pos_diff
-		crate.angular_velocity += -.05 * pos_diff.cross(com_anchor_vec)
-		last_crate_pos = crate_pos
+		var com_anchor_vec = crate_pos - selected_crate.global_position
+		selected_crate.global_position += pos_diff
+		selected_crate.angular_velocity += -.05 * pos_diff.cross(com_anchor_vec)
+		selected_crate_last_pos = crate_pos
 
 func _on_launch_area_mouse_entered():
 	mouse_in_area = true
 
 func _on_launch_area_mouse_exited():
 	mouse_in_area = false
-	if crate_selected == true:
+	if selected_crate != null:
 		just_released = true
 
-func _on_crate_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.is_pressed():
-			anchor = crate.to_local(get_global_mouse_position())
-			capture()
+func handle_click(crate):
+	if (selected_crate == null):
+		selected_crate_anchor = crate.to_local(get_global_mouse_position())
+		capture(crate)
 
 func _input(event):
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
 		click_pressed = event.is_pressed()
-		if crate_selected == true:
+		if selected_crate != null:
 			just_released = true
 
 func _on_launch_area_body_entered(body):
-	if (body == crate):
-		crate_in_area = true
+	if (body.get_parent() == crates):
+		body.set_launch_area(true)
 
 func _on_launch_area_body_exited(body):
-	if (body == crate):
-		crate_in_area = false
+	if (body.get_parent() == crates):
+		body.set_launch_area(false)
 
 func _on_timer_timeout():
 	pass

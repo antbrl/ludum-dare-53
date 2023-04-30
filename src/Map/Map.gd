@@ -15,9 +15,6 @@ var current_tool = Globals.DEFAULT_TOOL
 
 var tools_instances := Dictionary()
 
-func _ready():
-	launch_area.init($Crates/Crate)
-
 func _process(delta):
 	pass
 
