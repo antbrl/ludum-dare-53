@@ -31,8 +31,8 @@ func _ready():
 	prev_pos = position
 
 func _physics_process(delta):
-	#	var singularity: PhysicsTool = get_parent().get_parent().get_node("Singularity")
-	#	singularity.add_physics_modifier(self)
+	for influence in in_range_physic_tools:
+		influence.add_physics_modifier(self)
 	# Keep alive if moving
 	if (launched && prev_pos != null && prev_rot != null && ((prev_pos - position).length() > epsilon || prev_rot - rotation > rot_epsilon)):
 		timer.start(depop_delay)
@@ -57,7 +57,9 @@ func _on_input_event(viewport, event, shape_idx):
 
 func _on_detection_area_entered(area):
 	in_range_physic_tools.append(area)
+	print('Object Entered')
 
 
 func _on_detection_area_exited(area):
 	in_range_physic_tools.erase(area)
+	print('Object Left')

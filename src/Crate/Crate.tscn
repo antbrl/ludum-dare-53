@@ -23,6 +23,7 @@ wait_time = 1.5
 one_shot = true
 
 [node name="Detection" type="Area2D" parent="."]
+collision_mask = 5
 
 [node name="CollisionShape" type="CollisionShape2D" parent="Detection"]
 shape = SubResource("RectangleShape2D_cm2xa")
