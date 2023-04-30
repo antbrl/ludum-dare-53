@@ -2,8 +2,8 @@ extends Node2D
 
 class_name Map
 
-signal tool_built(tool: Globals.Tool, pos: Vector2i, metadata: Dictionary)
-signal tool_destroyed(tool: Globals.Tool, pos: Vector2i)
+signal tool_built(tool_slot: InventorySlot, pos: Vector2i, metadata: Dictionary, quantity: int)
+signal tool_destroyed(tool_slot: InventorySlot, pos: Vector2i, quantity: int)
 
 @onready var tool_ghost = $ToolGhost
 @onready var tile_map = $TileMap
@@ -13,6 +13,8 @@ signal tool_destroyed(tool: Globals.Tool, pos: Vector2i)
 
 @onready var Trampoline = preload("res://src/Trampoline/trampoline.tscn")
 @onready var Portal = preload("res://src/Portal/Portal.tscn")
+
+@export var inventory: Array[InventorySlot]
 
 var mode = Globals.DEFAULT_MODE
 var current_tool = Globals.DEFAULT_TOOL
@@ -28,9 +30,10 @@ func _process(delta):
 
 func _input(event):
 	if event.is_action_pressed("build"):
-		var quantity = level.tools_dict.get(current_tool).get_quantity()
-		if quantity <= 0:
-			return
+		for slot in inventory:
+			if slot.tool_id == current_tool:
+				if slot.quantity <= 0:
+					return
 
 		if mode == Globals.Mode.CONSTRUCTION:
 			tile_map.try_build_at_mouse(current_tool)
@@ -58,13 +61,21 @@ func _on_tile_map_build_tool(tool, pos, metadata):
 	tools_instances[pos] = tool_instance
 	tools.add_child(tool_instance)
 	
-	emit_signal("tool_built", tool, pos, metadata)
 	tool_ghost.update()
+	
+	for slot in inventory:
+		if slot.tool_id == tool:
+			slot.quantity -= 1
+			emit_signal("tool_built", slot, pos, metadata)
 
 func _on_tile_map_destroy_tool(tool, pos):
 	if tools_instances.has(pos):
 		tools_instances[pos].queue_free()
 		tools_instances.erase(pos)
 		
-		emit_signal("tool_destroyed", tool, pos)
 		tool_ghost.update()
+
+		for slot in inventory:
+			if slot.tool_id == tool:
+				slot.quantity += 1
+				emit_signal("tool_destroyed", slot, pos)

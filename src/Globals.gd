@@ -1,5 +1,13 @@
 extends Node
 
+@onready var game_settings = preload("res://src/Game/game_settings.tres")
+
+func get_tool_template(tool: Globals.Tool) -> ToolTemplate:
+	for t in game_settings.tool_templates:
+		if t.tool_id == tool:
+			return t
+	return null
+
 enum Mode {
 	THROW = 0,
 	CONSTRUCTION = 1

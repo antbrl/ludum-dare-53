@@ -52,16 +52,10 @@ func set_scene(new_scene):
 	current_scene = new_scene
 	viewport.add_child(current_scene)
 
-
-var tools_availibility = {
-	Globals.Tool.TRAMPOLINE: 1,
-	Globals.Tool.PORTAL: 2
-}
-
 func _load_level():
 	var scene = game.instantiate()
 	
-	scene.init(current_level_number, maps[current_level_number], tools_availibility)
+	scene.init(current_level_number, maps[current_level_number])
 
 	scene.connect("end_of_level", Callable(self, "_on_end_of_level"))
 	scene.connect("game_over", Callable(self, "_on_game_over"))
@@ -100,7 +94,7 @@ func _on_restart_select_level():
 
 func _load_end_level():
 	var scene = change_level.instantiate()
-	scene.init(current_level_number, tools_availibility)
+	scene.init(current_level_number)
 
 	scene.connect("next_level", Callable(self, "_on_next_level"))
 
