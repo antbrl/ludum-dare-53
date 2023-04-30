@@ -55,6 +55,10 @@ func _input(event):
 
 func switch_mode(_mode: Globals.Mode):
 	mode = _mode
+	if (_mode == Globals.Mode.CONSTRUCTION):
+		launch_area.disabled = true
+	else:
+		launch_area.disabled = false
 	tool_ghost.visible = mode == Globals.Mode.CONSTRUCTION
 
 func _on_tile_map_build_tool(tool, pos, metadata):

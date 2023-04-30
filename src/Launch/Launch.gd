@@ -97,7 +97,6 @@ func _on_launch_area_body_exited(body):
 	if (body.get_parent() == crates):
 		body.set_launch_area(false)
 		if (body == selected_crate):
-			print("IN")
 			just_released = true
 
 func kill_crate(crate):

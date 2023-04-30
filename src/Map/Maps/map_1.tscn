@@ -36,4 +36,4 @@ layer_7/tile_data = PackedInt32Array(-589807, 0, 2, -589806, 0, 2, -655342, 0, 2
 position = Vector2(282, -551)
 
 [node name="CollisionShape2D" parent="Bounds" index="0"]
-position = Vector2(439, -279.5)
+position = Vector2(2314, 248)
