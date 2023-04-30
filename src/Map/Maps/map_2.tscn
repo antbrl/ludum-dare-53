@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cerdlyf71wibk" path="res://src/Map/Map.tscn" id="1_dknvj"]
 [ext_resource type="Script" path="res://src/Game/inventory_slot.gd" id="2_veed3"]
-[ext_resource type="PackedScene" uid="uid://c30ynk6qk8e7t" path="res://src/Singularity/Singularity.tscn" id="3_o4kcy"]
+[ext_resource type="PackedScene" uid="uid://c30ynk6qk8e7t" path="res://src/Tool/Singularity/Singularity.tscn" id="3_o4kcy"]
 
 [sub_resource type="Resource" id="Resource_rjju2"]
 script = ExtResource("2_veed3")
@@ -47,3 +47,6 @@ scale = Vector2(5, 5)
 
 [node name="Crate" parent="Crates" index="0"]
 position = Vector2(-238, -534)
+
+[node name="CollisionShape2D" parent="Bounds" index="0"]
+position = Vector2(468, -347.5)
