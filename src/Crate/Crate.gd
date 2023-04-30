@@ -18,6 +18,8 @@ const rot_epsilon = 1
 var in_launch_area = false
 var in_range_physic_tools: Array[PhysicsTool]
 
+var hit = false
+
 func set_launch_area(v):
 	in_launch_area = v
 	if !in_launch_area:

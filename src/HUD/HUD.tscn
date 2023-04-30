@@ -60,12 +60,11 @@ mouse_filter = 1
 text = "/"
 
 [node name="PackageCounter" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/PackageCounter"]
 layout_mode = 2
 text = "Packages: "
 
-[node name="Number" type="Label" parent="VBoxContainer/VBoxContainer/PackageCounter"]
+[node name="Icons" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/PackageCounter"]
 layout_mode = 2

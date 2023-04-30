@@ -16,6 +16,7 @@ signal tool_destroyed(tool_slot: InventorySlot, pos: Vector2i, quantity: int)
 @onready var singularity = preload("res://src/Tool/Singularity/Singularity.tscn")
 
 @export var inventory: Array[InventorySlot]
+@export var n_challenge_crates: int
 
 var mode = Globals.DEFAULT_MODE:
 	set(value):
@@ -32,6 +33,9 @@ var tools_instances := Dictionary()
 func update_tool(tool_template: ToolTemplate):
 	current_tool = tool_template.tool_id
 	tool_ghost.tool_changed(tool_template.texture)
+
+func _ready():
+	assert(n_challenge_crates > 0, "negative n_challenge_crates")
 
 func _process(delta):
 	pass

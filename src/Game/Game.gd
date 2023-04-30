@@ -7,7 +7,7 @@ var level_number
 var mode = Globals.DEFAULT_MODE
 var phase = Globals.Phase.TRIAL
 
-var challenge_crates_left = 5
+var challenge_crates_left
 var challenge_score = 0
 
 @onready var hud = $UI/HUD
@@ -24,11 +24,14 @@ func _ready():
 	var launcher = map.get_node("Launch")
 
 	assert(level_number != null, "init must be called before creating Level scene")
-	hud.set_level_number(level_number)
+
 	target.connect("crate_dropped", crate_dropped)
 	launcher.connect("crate_killed", crate_killed)
 	
+	self.challenge_crates_left = map.n_challenge_crates
+	
 	action_ui.init(map)
+	hud.init(self.level_number, self.challenge_crates_left)
 
 func init(level_number, map: PackedScene):
 	self.map_scene = map
@@ -38,20 +41,23 @@ func crate_dropped():
 	if phase == Globals.Phase.TRIAL:
 		go_to_challenge_phase()
 	else:
+		hud.hit()
 		challenge_score += 1
-		hud.update_package_counter(challenge_score)
 
-func crate_killed():
+func crate_killed(crate):
 	if phase == Globals.Phase.CHALLENGE:
 		challenge_crates_left -= 1
-		if challenge_crates_left == 0:
+		if challenge_crates_left == -1:
 			emit_signal("end_of_level")
+		
+		if not crate.hit:
+			hud.miss()
 
 func go_to_challenge_phase():
 	popup.pop_message('Now, 5 packages in a row', 3.0)
 	phase = Globals.Phase.CHALLENGE
 	action_ui.go_to_challenge_phase()
-	hud.go_to_challenge_phase(challenge_crates_left)
+	hud.go_to_challenge_phase()
 
 func _on_tool_selected(tool_template):
 	map.update_tool(tool_template)

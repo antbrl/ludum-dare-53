@@ -101,7 +101,7 @@ func _on_launch_area_body_exited(body):
 			just_released = true
 
 func kill_crate(crate):
-	emit_signal("crate_killed")
+	emit_signal("crate_killed", crate)
 	crate.queue_free()
 	var new_crate = crate_scene.instantiate()
 	new_crate.global_position = launch_area.to_global(Vector2(-250, 0))
