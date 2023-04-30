@@ -56,3 +56,8 @@ func switch_mode(mode: Globals.Mode):
 	else:
 		switch_mode_button.text = 'Throw mode'
 	emit_signal("mode_change", mode)
+
+func go_to_challenge_phase():
+	switch_mode(Globals.Mode.THROW)
+	switch_mode_button.disabled = true
+	

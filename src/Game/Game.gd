@@ -6,7 +6,9 @@ signal game_over
 var level_number
 var mode = Globals.DEFAULT_MODE
 var phase = Globals.Phase.TRIAL
+
 var challenge_crates_left = 5
+var challenge_score = 0
 
 @onready var hud = $UI/HUD
 @onready var action_ui = $UI/ActionUI
@@ -33,12 +35,17 @@ func crate_dropped():
 	if phase == Globals.Phase.TRIAL:
 		go_to_challenge_phase()
 	else:
+		challenge_score += 1
+
+func crate_lost():
+	if phase == Globals.Phase.CHALLENGE:
 		challenge_crates_left -= 1
 		if challenge_crates_left == 0:
 			emit_signal("end_of_level")
 
 func go_to_challenge_phase():
 	phase = Globals.Phase.CHALLENGE
+	action_ui.go_to_challenge_phase()
 
 func _on_tool_selected(tool_template):
 	map.update_tool(tool_template)
