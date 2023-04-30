@@ -31,8 +31,8 @@ func _ready():
 	prev_pos = position
 
 func _physics_process(delta):
-	var singularity: PhysicsTool = get_parent().get_parent().get_node("Singularity")
-	singularity.add_physics_modifier(self)
+	#	var singularity: PhysicsTool = get_parent().get_parent().get_node("Singularity")
+	#	singularity.add_physics_modifier(self)
 	# Keep alive if moving
 	if (launched && prev_pos != null && prev_rot != null && ((prev_pos - position).length() > epsilon || prev_rot - rotation > rot_epsilon)):
 		timer.start(depop_delay)

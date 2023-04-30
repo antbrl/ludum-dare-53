@@ -1,29 +1,21 @@
 [gd_scene load_steps=6 format=3 uid="uid://cu86mnbuy308e"]
 
-[ext_resource type="Script" path="res://src/Truck/truck.gd" id="1_y6pkj"]
+[ext_resource type="Script" path="res://src/Target/target.gd" id="1_boqqq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pejxw"]
 absorbent = true
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g6swc"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hlq15"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbm2n"]
 size = Vector2(21, 4)
 
-[node name="Truck" type="AnimatableBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0km4m"]
+size = Vector2(21, 7)
+
+[node name="Target" type="AnimatableBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_pejxw")
-script = ExtResource("1_y6pkj")
-
-[node name="Collision" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, 9)
-polygon = PackedVector2Array(-10.5, -1.5, 10.5, -1.5, 10.5, -16.5, 25.5, -16.5, 25.5, 2.5, 10.5, 2.5, 10.5, 5.5, -10.5, 5.5)
-
-[node name="Front" type="Sprite2D" parent="."]
-position = Vector2(17.5, 2.5)
-scale = Vector2(15, 19)
-texture = SubResource("PlaceholderTexture2D_g6swc")
+script = ExtResource("1_boqqq")
 
 [node name="Trailer" type="Sprite2D" parent="."]
 position = Vector2(-0.5, 11.5)
@@ -37,5 +29,9 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Target"]
 position = Vector2(-0.5, 9)
 shape = SubResource("RectangleShape2D_nbm2n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 11.5)
+shape = SubResource("RectangleShape2D_0km4m")
 
 [connection signal="body_entered" from="Target" to="." method="_on_target_body_entered"]

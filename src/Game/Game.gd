@@ -7,7 +7,7 @@ var level_number
 var mode = Globals.DEFAULT_MODE
 
 @onready var hud = $UI/HUD
-@onready var truck = $Map/Truck
+@onready var target = $Map/Target
 @onready var map = $Map
 
 @onready var action_ui = $UI/ActionUI
@@ -22,7 +22,7 @@ var tools_quantity
 func _ready():
 	assert(level_number != null, "init must be called before creating Level scene")
 	hud.set_level_number(level_number)
-	truck.connect("crate_dropped", end_level)
+	target.connect("crate_dropped", end_level)
 	
 	for tool in tools_dict.keys():
 		var tool_template = tools_dict.get(tool)
