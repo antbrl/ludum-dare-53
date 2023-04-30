@@ -48,6 +48,10 @@ func _physics_process(delta):
 			else:
 				zoom = Tween.interpolate_value(zoom_from, default_zoom - zoom_from, zoom_transition_status, transition_zoom_duration, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 		if (transition_status > total_transition_duration):
+			if followed != null:
+				zoom = follow_zoom
+			else:
+				zoom = default_zoom
 			transition_status = null
 	elif followed != null:
 		global_position = followed.global_position
