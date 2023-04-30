@@ -27,7 +27,6 @@ func _process(delta):
 func _input(event):
 	if event.is_action_pressed("build"):
 		var quantity = level.tools_dict.get(current_tool).get_quantity()
-		print(quantity)
 		if quantity <= 0:
 			return
 
@@ -42,7 +41,6 @@ func switch_mode(_mode: Globals.Mode):
 	tool_ghost.visible = mode == Globals.Mode.CONSTRUCTION
 
 func _on_tile_map_build_tool(tool, pos, metadata):
-	print('build tool %d, pos (%d, %d), dir %d' % [tool, pos.x, pos.y, metadata.direction])
 	var tool_instance: Node2D = null
 	match tool:
 		Globals.Tool.PORTAL:
@@ -62,7 +60,6 @@ func _on_tile_map_build_tool(tool, pos, metadata):
 	tool_ghost.update()
 
 func _on_tile_map_destroy_tool(tool, pos):
-	print('build tool %d, pos (%d, %d)' % [tool, pos.x, pos.y])
 	if tools_instances.has(pos):
 		tools_instances[pos].queue_free()
 		tools_instances.erase(pos)
