@@ -1,7 +1,6 @@
 extends Control
 
 var current_level_number = 0
-var nb_coins = 0
 
 var current_player: AudioStreamPlayer
 var current_scene : set = set_scene
@@ -53,9 +52,14 @@ func set_scene(new_scene):
 	viewport.add_child(current_scene)
 
 
+var tools_availibility = {
+	Globals.Tool.TRAMPOLINE: 1
+}
+
 func _load_level():
 	var scene = level.instantiate()
-	scene.init(current_level_number, nb_coins)
+	
+	scene.init(current_level_number, tools_availibility)
 
 	scene.connect("end_of_level", Callable(self, "_on_end_of_level"))
 	scene.connect("game_over", Callable(self, "_on_game_over"))
@@ -94,7 +98,7 @@ func _on_restart_select_level():
 
 func _load_end_level():
 	var scene = change_level.instantiate()
-	scene.init(current_level_number, nb_coins)
+	scene.init(current_level_number, tools_availibility)
 
 	scene.connect("next_level", Callable(self, "_on_next_level"))
 

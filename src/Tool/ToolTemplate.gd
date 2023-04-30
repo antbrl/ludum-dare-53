@@ -13,9 +13,9 @@ var quantity : int
 func _ready():
 	pass
 
-func init(_available: bool, _quantity: int):
-	available = _available
-	quantity = _quantity
+func init(quantity: int):
+	self.quantity = quantity
+	self.available = quantity > 0
 
 func get_quantity():
 	return quantity

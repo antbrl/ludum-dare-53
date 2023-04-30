@@ -11,8 +11,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+func init(templates):
+	for tool_template in templates:
+		if tool_template.available:
+			add_tool(tool_template)
 
-func _on_tool_templates_new_tool(tool_template):
+func add_tool(tool_template):
 	var tool_instance = tool_ui_scene.instantiate()
 	tool_list.add_child(tool_instance)
 	tool_instance.init(tool_template)

@@ -10,19 +10,32 @@ var mode = Globals.DEFAULT_MODE
 @onready var truck = $Map/Truck
 @onready var map = $Map
 
+@onready var action_ui = $UI/ActionUI
+@onready var templates = $ToolTemplates
 @onready var tools_dict = {
 	Globals.Tool.TRAMPOLINE: $ToolTemplates/Trampoline,
-	Globals.Tool.PORTAL: $Map/Tools/Trampoline
+	Globals.Tool.PORTAL: $ToolTemplates/Portal
 }
+
+var tools_quantity
 
 func _ready():
 	assert(level_number != null, "init must be called before creating Level scene")
 	hud.set_level_number(level_number)
 	truck.connect("crate_dropped", end_level)
-
-func init(level_number, nb_coins):
-	self.level_number = level_number
 	
+	for tool in tools_dict.keys():
+		var tool_template = tools_dict.get(tool)
+		
+		var quantity = tools_quantity.get(tool, 0)
+		
+		tool_template.init(quantity)
+		print(tool_template)
+	action_ui.init(templates.get_children())
+
+func init(level_number, tools_quantity):
+	self.level_number = level_number
+	self.tools_quantity = tools_quantity
 
 func end_level():
 	emit_signal("end_of_level")
