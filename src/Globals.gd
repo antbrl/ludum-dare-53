@@ -8,6 +8,17 @@ func get_tool_template(tool: Globals.Tool) -> ToolTemplate:
 			return t
 	return null
 
+func get_tool_whitelist_layer(tool: Globals.Tool):
+	match tool:
+		Globals.Tool.PORTAL:
+			return Globals.TileMapLayers.TOOL_WHITELIST_PORTAL
+		Globals.Tool.TRAMPOLINE:
+			return Globals.TileMapLayers.TOOL_WHITELIST_TRAMPOLINE
+		Globals.Tool.SINGULARITY:
+			return Globals.TileMapLayers.TOOL_WHITELIST_SINGULARITY
+		_:
+			assert(false, 'Missing tool')
+
 enum Phase {
 	TRIAL = 0,
 	CHALLENGE = 1
@@ -38,6 +49,7 @@ enum TileMapLayers {
 	TOOL_WHITELIST_PORTAL = 5,
 	TOOL_WHITELIST_TRAMPOLINE = 6,
 	TOOL_WHITELIST_SINGULARITY = 7,
+	TOOL_OVERLAY = 8,
 }
 
 enum TileSetSources {

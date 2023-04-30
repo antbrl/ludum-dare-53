@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://c35yk86ipmq4o"]
+[gd_scene load_steps=3 format=3 uid="uid://c35yk86ipmq4o"]
 
+[ext_resource type="PackedScene" uid="uid://bdgiihryuooli" path="res://assets/ui/HoverHint.tscn" id="2_21euv"]
 [ext_resource type="Script" path="res://src/Map/ToolGhost.gd" id="2_k0a5w"]
 
-[node name="ToolGhost" type="Sprite2D"]
+[node name="ToolGhost" type="Node2D"]
+script = ExtResource("2_k0a5w")
+
+[node name="Sprite" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.45098)
 top_level = true
-script = ExtResource("2_k0a5w")
+
+[node name="HoverHint" parent="." instance=ExtResource("2_21euv")]
+texture_filter = 1
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 8.0
+offset_bottom = 8.0

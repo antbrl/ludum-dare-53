@@ -1,0 +1,27 @@
+[gd_resource type="StyleBoxTexture" load_steps=6 format=3 uid="uid://b2w1p34kek8p1"]
+
+[ext_resource type="Texture2D" uid="uid://bksawtlkcjlpl" path="res://assets/ui/hover_hint.png" id="1_ws3hx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w0aa"]
+atlas = ExtResource("1_ws3hx")
+region = Rect2(0, 0, 9, 9)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h40vb"]
+load_path = "res://.godot/imported/hover_hint.png-f48ee3fc6f76bff5229a326bcd0e9e5e.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7sym"]
+atlas = SubResource("CompressedTexture2D_h40vb")
+region = Rect2(9, 0, 9, 9)
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_del5g"]
+frames = 2
+frame_0/texture = SubResource("AtlasTexture_5w0aa")
+frame_1/texture = SubResource("AtlasTexture_y7sym")
+frame_1/duration = 1.0
+
+[resource]
+texture = SubResource("AnimatedTexture_del5g")
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0

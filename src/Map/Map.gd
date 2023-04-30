@@ -17,8 +17,15 @@ signal tool_destroyed(tool_slot: InventorySlot, pos: Vector2i, quantity: int)
 
 @export var inventory: Array[InventorySlot]
 
-var mode = Globals.DEFAULT_MODE
-var current_tool = Globals.DEFAULT_TOOL
+var mode = Globals.DEFAULT_MODE:
+	set(value):
+		mode = value
+		tile_map.update_tool_overlay(mode, current_tool)
+
+var current_tool = Globals.DEFAULT_TOOL:
+	set(value):
+		current_tool = value
+		tile_map.update_tool_overlay(mode, current_tool)
 
 var tools_instances := Dictionary()
 
@@ -67,6 +74,7 @@ func _on_tile_map_build_tool(tool, pos, metadata):
 	tools.add_child(tool_instance)
 	
 	tool_ghost.update()
+	tile_map.update_tool_overlay(mode, current_tool)
 	
 	for slot in inventory:
 		if slot.tool_id == tool:
@@ -79,6 +87,7 @@ func _on_tile_map_destroy_tool(tool, pos):
 		tools_instances.erase(pos)
 		
 		tool_ghost.update()
+		tile_map.update_tool_overlay(mode, current_tool)
 
 		for slot in inventory:
 			if slot.tool_id == tool:

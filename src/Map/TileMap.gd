@@ -29,22 +29,13 @@ func can_destroy_on_cell(pos: Vector2i) -> bool:
 	return true
 
 func get_tool_template_data(pos: Vector2i, tool: Globals.Tool):
-	var layer: Globals.TileMapLayers
-	match tool:
-		Globals.Tool.PORTAL:
-			layer = Globals.TileMapLayers.TOOL_WHITELIST_PORTAL
-		Globals.Tool.TRAMPOLINE:
-			layer = Globals.TileMapLayers.TOOL_WHITELIST_TRAMPOLINE
-		Globals.Tool.SINGULARITY:
-			layer = Globals.TileMapLayers.TOOL_WHITELIST_SINGULARITY
-		_:
-			assert(false, 'Missing tool')
+	var layer = Globals.get_tool_whitelist_layer(tool)
 	var data = get_cell_tile_data(layer, pos)
 	if data == null:
 		return null
 	return {
 		data = data,
-		atlas_coords = get_cell_atlas_coords(layer, pos)
+		atlas_coords = get_cell_atlas_coords(layer, pos),
 	}
 
 func _build(pos: Vector2i, tool: Globals.Tool):
@@ -76,3 +67,23 @@ func try_destroy_at_mouse() -> bool:
 		return false
 	_destroy(pos)
 	return true
+
+func update_tool_overlay(mode: Globals.Mode, tool: Globals.Tool) -> void:
+	clear_layer(Globals.TileMapLayers.TOOL_OVERLAY)
+	if mode != Globals.Mode.CONSTRUCTION:
+		return
+	for cell in get_used_cells_by_id(Globals.get_tool_whitelist_layer(tool)):
+		var atlas_coords = Vector2i(1, 3)
+		if can_build_on_cell(cell, tool):
+			match (get_tool_template_data(cell, tool).data as TileData).get_custom_data('direction'):
+				Globals.Direction.DOWN:
+					atlas_coords = Vector2i(2, 2)
+				Globals.Direction.RIGHT:
+					atlas_coords = Vector2i(2, 3)
+				Globals.Direction.LEFT:
+					atlas_coords = Vector2i(3, 2)
+				Globals.Direction.UP:
+					atlas_coords = Vector2i(3, 3)
+				_:
+					atlas_coords = Vector2i(0, 3)
+		set_cell(Globals.TileMapLayers.TOOL_OVERLAY, cell, Globals.TileSetSources.TOOL, atlas_coords)

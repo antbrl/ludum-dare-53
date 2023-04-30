@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdgiihryuooli"]
+
+[ext_resource type="Texture2D" uid="uid://bksawtlkcjlpl" path="res://assets/ui/hover_hint.png" id="1_ayoii"]
+[ext_resource type="Script" path="res://assets/ui/HoverHint.gd" id="2_goly8"]
+
+[node name="HoverHint" type="NinePatchRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -568.0
+offset_bottom = -316.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ayoii")
+region_rect = Rect2(9, 0, 9, 9)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+script = ExtResource("2_goly8")
