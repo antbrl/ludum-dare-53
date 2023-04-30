@@ -13,10 +13,10 @@ func _process(delta):
 func _input(event):
 	if event.is_action_pressed("build"):
 		if mode == Globals.Mode.CONSTRUCTION:
-			tile_map.tryBuildAtMouse(Globals.Tool.PORTAL)
+			tile_map.try_build_at_mouse(Globals.Tool.PORTAL)
 	elif event.is_action_pressed("destroy"):
 		if mode == Globals.Mode.CONSTRUCTION:
-			tile_map.tryDestroyAtMouse()
+			tile_map.try_destroy_at_mouse()
 
 func switch_mode(_mode: Globals.Mode):
 	mode = _mode
