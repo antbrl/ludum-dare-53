@@ -1,5 +1,8 @@
 extends TileMap
 
+signal build_tool(tool: Globals.Tool, pos: Vector2i, metadata: Dictionary)
+signal destroy_tool(tool: Globals.Tool, pos: Vector2i)
+
 @onready var middle_offset = tile_set.tile_size * 0.5
 
 func get_mouse_cell() -> Vector2i:
@@ -46,9 +49,16 @@ func get_tool_template_data(pos: Vector2i, tool: Globals.Tool):
 func _build(pos: Vector2i, tool: Globals.Tool):
 	var tool_template_data = get_tool_template_data(pos, tool)
 	set_cell(Globals.TileMapLayers.TOOL, pos, Globals.TileSetSources.TOOL, tool_template_data.atlas_coords)
+	var tile_data: TileData = tool_template_data.data
+	var metadata = {
+		direction = tile_data.get_custom_data('direction')
+	}
+	build_tool.emit(tool, pos, metadata)
 
 func _destroy(pos: Vector2i):
+	var tool_cell = get_cell_tile_data(Globals.TileMapLayers.TOOL, pos)
 	set_cell(Globals.TileMapLayers.TOOL, pos, -1, Vector2i(-1, -1))
+	destroy_tool.emit(tool_cell.get_custom_data('tool'), pos)
 
 func try_build_at_mouse(tool: Globals.Tool) -> bool:
 	var pos = get_mouse_cell()
