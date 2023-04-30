@@ -17,7 +17,6 @@ var last_crate_pos = null
 var anchor = null
 
 func init(new_crate):
-	print(new_crate)
 	crate = new_crate
 	crate_in_area = launch_area.overlaps_body(crate)
 	crate.connect("input_event", _on_crate_input_event)
