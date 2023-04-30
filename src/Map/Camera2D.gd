@@ -5,7 +5,7 @@ var default_position = null
 
 const transition_duration = 1.0
 const default_zoom = Vector2(1, 1)
-const follow_zoom = Vector2(2, 2)
+const follow_zoom = Vector2(2.5, 2.5)
 
 var transition_status = null
 var transition_from = null
@@ -29,9 +29,9 @@ func _process(delta):
 		var transition_to = default_position
 		if (followed != null):
 			transition_to = followed.global_position
-			zoom = Tween.interpolate_value(default_zoom, follow_zoom - default_zoom, transition_status, transition_duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			zoom = Tween.interpolate_value(default_zoom, follow_zoom - default_zoom, transition_status, transition_duration, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 		else:
-			zoom = Tween.interpolate_value(follow_zoom, default_zoom - follow_zoom, transition_status, transition_duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			zoom = Tween.interpolate_value(follow_zoom, default_zoom - follow_zoom, transition_status, transition_duration, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 		global_position = Tween.interpolate_value(transition_from, transition_to - transition_from, transition_status, transition_duration, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 		if (transition_status > transition_duration):
 			transition_status = null
