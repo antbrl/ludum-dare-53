@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://y1xmuecnyvvv"]
+[gd_scene load_steps=5 format=3 uid="uid://y1xmuecnyvvv"]
 
 [ext_resource type="Script" path="res://src/Game/Game.gd" id="1_s3wfw"]
 [ext_resource type="PackedScene" uid="uid://dwiu4cm7rlq0p" path="res://src/HUD/HUD.tscn" id="3_jigyd"]
+[ext_resource type="PackedScene" uid="uid://cgli84ox8kla0" path="res://src/HUD/popup.tscn" id="4_03u2c"]
 [ext_resource type="PackedScene" uid="uid://byfrygi5um7b1" path="res://src/HUD/action_ui.tscn" id="4_7vkgy"]
 
 [node name="Game" type="Node"]
@@ -14,5 +15,8 @@ script = ExtResource("1_s3wfw")
 [node name="HUD" parent="UI" instance=ExtResource("3_jigyd")]
 
 [node name="ActionUI" parent="UI" instance=ExtResource("4_7vkgy")]
+
+[node name="Popup" parent="UI" instance=ExtResource("4_03u2c")]
+mouse_filter = 2
 
 [connection signal="mode_change" from="UI/ActionUI" to="." method="_on_action_ui_mode_change"]

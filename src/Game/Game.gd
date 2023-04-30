@@ -12,6 +12,7 @@ var challenge_score = 0
 
 @onready var hud = $UI/HUD
 @onready var action_ui = $UI/ActionUI
+@onready var popup = $UI/Popup
 
 @onready var map = $Map
 
@@ -44,6 +45,7 @@ func crate_lost():
 			emit_signal("end_of_level")
 
 func go_to_challenge_phase():
+	popup.pop_message('Now, 5 packages in a row', 3.0)
 	phase = Globals.Phase.CHALLENGE
 	action_ui.go_to_challenge_phase()
 
