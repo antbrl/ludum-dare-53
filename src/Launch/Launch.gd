@@ -62,7 +62,7 @@ func _physics_process(delta):
 					selected_crate = c
 		if best != null:
 			capture(selected_crate)
-	elif (selected_crate != null && mouse_in_area && selected_crate.in_launch_area):
+	elif (selected_crate != null && mouse_in_area && selected_crate.in_launch_area && !disabled):
 		var cursor_pos = get_global_mouse_position()
 		var crate_pos  = selected_crate.to_global(selected_crate_anchor)
 		var pos_diff   = cursor_pos - crate_pos
@@ -90,6 +90,9 @@ func _input(event):
 		click_pressed = event.is_pressed()
 		if selected_crate != null:
 			just_released = true
+	elif disabled && event.is_action_pressed("interrupt"):
+		cam.back_to_default()
+		disabled = false
 
 func _on_launch_area_body_entered(body):
 	if (body.get_parent() == crates):
