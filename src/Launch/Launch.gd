@@ -101,6 +101,9 @@ func _on_launch_area_body_entered(body):
 func _on_launch_area_body_exited(body):
 	if (body.get_parent() == crates):
 		body.set_launch_area(false)
+		if (body == selected_crate):
+			just_released = true
+			click_pressed = false
 
 func kill_crate(crate):
 	crate.queue_free()

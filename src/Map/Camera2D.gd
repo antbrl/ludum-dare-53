@@ -46,7 +46,6 @@ func _physics_process(delta):
 			else:
 				global_position = followed.global_position
 			if (transition_status > total_transition_duration - transition_zoom_duration):
-				print("jaja")
 				var zoom_transition_status = transition_status - (total_transition_duration - transition_zoom_duration)
 				zoom = Tween.interpolate_value(zoom_from, follow_zoom - zoom_from, zoom_transition_status, transition_zoom_duration, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 			if (transition_status > total_transition_duration):
