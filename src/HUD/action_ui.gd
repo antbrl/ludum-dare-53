@@ -2,6 +2,7 @@ extends Control
 
 @onready var tool_list = $ToolList
 @onready var tool_ui_scene = preload("res://src/HUD/tool_ui.tscn")
+@onready var level = $"../.."
 @onready var map = $"../../Map"
 
 # Called when the node enters the scene tree for the first time.
@@ -27,6 +28,7 @@ func init(templates):
 
 func add_tool(tool_template):
 	var tool_instance = tool_ui_scene.instantiate()
+	tool_instance.connect("tool_selected", level._on_tool_selected)
 	tool_list.add_child(tool_instance)
 	tool_instance.init(tool_template)
 

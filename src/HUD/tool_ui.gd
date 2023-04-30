@@ -1,6 +1,6 @@
 extends Button
 
-signal tool_selected
+signal tool_selected(tool_template)
 
 var tool_template
 @onready var tool_texture = $ToolTexture
@@ -16,3 +16,7 @@ func update():
 	self.tooltip_text = tool_template.get_tool_name()
 	self.quantity.set_text(str(tool_template.get_quantity()))
 	visible = tool_template.available
+
+
+func _on_pressed():
+	emit_signal("tool_selected", tool_template)

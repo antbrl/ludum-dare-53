@@ -53,7 +53,8 @@ func set_scene(new_scene):
 
 
 var tools_availibility = {
-	Globals.Tool.TRAMPOLINE: 1,	
+	Globals.Tool.TRAMPOLINE: 1,
+	Globals.Tool.PORTAL: 2
 }
 
 func _load_level():
