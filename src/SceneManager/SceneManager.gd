@@ -8,7 +8,7 @@ var current_scene : set = set_scene
 @onready var music_players = $Musics.get_children() as Array[AudioStreamPlayer]
 
 @onready var main_menu = preload("res://src/MainMenu/MainMenu.tscn")
-@onready var level = preload("res://src/Level/Level.tscn")
+@onready var game = preload("res://src/Game/Game.tscn")
 @onready var change_level = preload("res://src/EndLevel/EndLevel.tscn")
 @onready var credits = preload("res://src/Credits/Credits.tscn")
 @onready var game_over = preload("res://src/GameOver/GameOver.tscn")
@@ -58,7 +58,7 @@ var tools_availibility = {
 }
 
 func _load_level():
-	var scene = level.instantiate()
+	var scene = game.instantiate()
 	
 	scene.init(current_level_number, tools_availibility)
 
