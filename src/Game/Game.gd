@@ -18,6 +18,8 @@ var challenge_score = 0
 
 var map_scene
 
+var hit_crates = []
+
 func _ready():
 	self.map = self.map.create_instance(true, map_scene)
 	var target = map.get_node("Target")
@@ -37,7 +39,11 @@ func init(level_number, map: PackedScene):
 	self.map_scene = map
 	self.level_number = level_number
 
-func crate_dropped():
+func crate_dropped(crate):
+	if hit_crates.find(crate) != -1:
+		return
+
+	hit_crates.push_back(crate)
 	if phase == Globals.Phase.TRIAL:
 		go_to_challenge_phase()
 	else:
