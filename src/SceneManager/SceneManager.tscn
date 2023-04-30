@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckntwca1o1jbq"]
+[gd_scene load_steps=6 format=3 uid="uid://ckntwca1o1jbq"]
 
 [ext_resource type="Script" path="res://src/SceneManager/SceneManager.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://drx5t4vpsrr2v" path="res://src/Map/Maps/map_1.tscn" id="2_16use"]
 [ext_resource type="AudioStream" uid="uid://bd5yxqos5acse" path="res://assets/musics/BaladeInADisplacedTime.ogg" id="2_ptv8s"]
 [ext_resource type="AudioStream" uid="uid://ludl0q5y1jil" path="res://assets/musics/AdvancedTechnologicalAdvantage.ogg" id="3_6i1ea"]
+[ext_resource type="PackedScene" uid="uid://bfl3g6bp2fbet" path="res://src/Map/Maps/map_2.tscn" id="3_o066p"]
 
 [node name="SceneManager" type="Control"]
 layout_mode = 3
@@ -14,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1")
-maps = Array[PackedScene]([ExtResource("2_16use")])
+maps = Array[PackedScene]([ExtResource("2_16use"), ExtResource("3_o066p")])
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 0
