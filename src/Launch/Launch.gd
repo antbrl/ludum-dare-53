@@ -98,3 +98,4 @@ func kill_crate(crate):
 	var new_crate = crate_scene.instantiate()
 	new_crate.global_position = launch_area.to_global(Vector2(-250, 0))
 	crates.add_child(new_crate)
+	register_crate(new_crate)

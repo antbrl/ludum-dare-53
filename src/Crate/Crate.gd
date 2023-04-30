@@ -7,6 +7,8 @@ signal clicked(id)
 var prev_pos = null
 var prev_rot = null
 var launched = false
+const epsilon = 2
+const rot_epsilon = 1
 
 var in_launch_area = false
 
@@ -28,7 +30,7 @@ func _process(delta):
 func _physics_process(delta):
 	var singularity: PhysicsTool = get_parent().get_parent().get_node("Singularity")
 	singularity.add_physics_modifier(self)
-	if (!in_launch_area && prev_pos != null && prev_rot != null && ((prev_pos - position).length() > .01 || prev_rot - rotation > .01)):
+	if (!in_launch_area && prev_pos != null && prev_rot != null && ((prev_pos - position).length() > epsilon || prev_rot - rotation > rot_epsilon)):
 		$Timer.start(depop_delay)
 	if (global_position.length() > 5000):
 		print("OOB kill")
