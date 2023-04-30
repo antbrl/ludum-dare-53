@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/Launch/Launch.gd" id="1_3ki5j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr38w"]
-size = Vector2(1017, 801)
+size = Vector2(4185, 2572)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_htq20"]
 a = Vector2(14, -37)
@@ -15,8 +15,9 @@ script = ExtResource("1_3ki5j")
 [node name="LaunchArea" type="Area2D" parent="."]
 
 [node name="LaunchCollisionShape" type="CollisionShape2D" parent="LaunchArea"]
-position = Vector2(-525.5, -327.5)
+position = Vector2(1058.5, -162)
 shape = SubResource("RectangleShape2D_xr38w")
+debug_color = Color(0.584314, 0.552941, 0, 0)
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(-42, 698)
