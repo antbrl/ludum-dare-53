@@ -41,3 +41,6 @@ layer_1/tile_data = PackedInt32Array(-589811, 65537, 3, -655347, 65537, 3, -7208
 position = Vector2(365, -402)
 
 [node name="Launch" parent="." instance=ExtResource("8_6t0vn")]
+
+[connection signal="build_tool" from="TileMap" to="." method="_on_tile_map_build_tool"]
+[connection signal="destroy_tool" from="TileMap" to="." method="_on_tile_map_destroy_tool"]

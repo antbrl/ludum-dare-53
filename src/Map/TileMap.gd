@@ -37,12 +37,11 @@ func get_tool_template_data(pos: Vector2i, tool: Globals.Tool):
 			layer = Globals.TileMapLayers.TOOL_WHITELIST_TRAMPOLINE
 		_:
 			return null
-
-	if get_cell_tile_data(layer, pos) == null:
+	var data = get_cell_tile_data(layer, pos)
+	if data == null:
 		return null
-
 	return {
-		data = get_cell_tile_data(layer, pos),
+		data = data,
 		atlas_coords = get_cell_atlas_coords(layer, pos)
 	}
 
