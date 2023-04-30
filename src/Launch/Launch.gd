@@ -16,6 +16,8 @@ var selected_crate          = null
 var selected_crate_last_pos = null
 var selected_crate_anchor   = null
 
+var crate_scene = preload("res://src/Crate/Crate.tscn")
+
 func register_crate(new_crate):
 	new_crate.connect("clicked", handle_click)
 	new_crate.connect("killme", kill_crate) # TODO move to map
@@ -91,8 +93,8 @@ func _on_launch_area_body_exited(body):
 	if (body.get_parent() == crates):
 		body.set_launch_area(false)
 
-func _on_timer_timeout():
-	pass
-
 func kill_crate(crate):
 	crate.queue_free()
+	var new_crate = crate_scene.instantiate()
+	new_crate.global_position = launch_area.to_global(Vector2(-250, 0))
+	crates.add_child(new_crate)
