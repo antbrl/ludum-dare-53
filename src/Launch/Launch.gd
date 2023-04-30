@@ -49,6 +49,7 @@ func release(delta):
 	disabled = true
 
 func _physics_process(delta):
+	click_pressed = Input.is_action_pressed("click")
 	if (just_released):
 		release(delta)
 	elif (selected_crate == null && click_pressed && !disabled): # Snapping
@@ -87,7 +88,6 @@ func handle_click(crate):
 
 func _input(event):
 	if !disabled && event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
-		click_pressed = event.is_pressed()
 		if selected_crate != null:
 			just_released = true
 	elif disabled && event.is_action_pressed("interrupt"):
@@ -102,8 +102,8 @@ func _on_launch_area_body_exited(body):
 	if (body.get_parent() == crates):
 		body.set_launch_area(false)
 		if (body == selected_crate):
+			print("IN")
 			just_released = true
-			click_pressed = false
 
 func kill_crate(crate):
 	crate.queue_free()
