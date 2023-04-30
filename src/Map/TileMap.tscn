@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://b64ya7wbmnxjq"]
+
+[ext_resource type="TileSet" uid="uid://c2n6f7ubm0lti" path="res://assets/tileset/tileset.tres" id="1_8phbr"]
+[ext_resource type="Script" path="res://src/Map/TileMap.gd" id="2_jsknf"]
+
+[node name="TileMap" type="TileMap"]
+tile_set = ExtResource("1_8phbr")
+format = 2
+layer_0/name = "background"
+layer_0/modulate = Color(0.662745, 0.662745, 0.662745, 1)
+layer_1/name = "structure"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "ground"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "details"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 0
+layer_3/tile_data = PackedInt32Array()
+layer_4/name = "tool"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = 0
+layer_4/tile_data = PackedInt32Array()
+layer_5/name = "tool_whitelist_portal"
+layer_5/enabled = true
+layer_5/modulate = Color(1, 1, 1, 0.392157)
+layer_5/y_sort_enabled = false
+layer_5/y_sort_origin = 0
+layer_5/z_index = 0
+layer_5/tile_data = PackedInt32Array()
+layer_6/name = "tool_whitelist_trampoline"
+layer_6/enabled = true
+layer_6/modulate = Color(1, 1, 1, 0.392157)
+layer_6/y_sort_enabled = false
+layer_6/y_sort_origin = 0
+layer_6/z_index = 0
+layer_6/tile_data = PackedInt32Array()
+script = ExtResource("2_jsknf")
