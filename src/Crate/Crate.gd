@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+class_name Crate
+
 @export var depop_delay = 1.5
 signal killme(id)
 signal clicked(id)
@@ -13,6 +15,7 @@ const epsilon = 2
 const rot_epsilon = 1
 
 var in_launch_area = false
+var in_range_physic_tools: Array[PhysicsTool] = []
 
 func set_launch_area(v):
 	in_launch_area = v
@@ -40,10 +43,21 @@ func _physics_process(delta):
 	prev_rot = rotation
 
 func _on_timer_timeout():
-	print("inactivity kill")
+	print("inactivity timeout kill")
+	suicide()
+	
+func suicide():
 	emit_signal("killme", self)
 
 func _on_input_event(viewport, event, shape_idx):
 	if !launched && in_launch_area && event is InputEventMouseButton:
 		if event.is_pressed():
 			emit_signal("clicked", self)
+
+
+func _on_detection_area_entered(area):
+	in_range_physic_tools.append(area)
+
+
+func _on_detection_area_exited(area):
+	in_range_physic_tools.erase(area)

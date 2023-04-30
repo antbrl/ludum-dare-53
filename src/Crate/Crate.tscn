@@ -15,12 +15,19 @@ script = ExtResource("1_qunqm")
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_lck3x")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cm2xa")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
 
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Detection"]
+shape = SubResource("RectangleShape2D_cm2xa")
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
+[connection signal="area_exited" from="Detection" to="." method="_on_detection_area_exited"]

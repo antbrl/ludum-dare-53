@@ -4,12 +4,12 @@
 [ext_resource type="Shader" path="res://src/Singularity/Singularity.gdshader" id="2_ejo7w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qgfqi"]
-radius = 96.13
+radius = 186.269
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dxoqy"]
 shader = ExtResource("2_ejo7w")
 
-[node name="Singularity" type="StaticBody2D"]
+[node name="Singularity" type="Area2D"]
 collision_layer = 4
 script = ExtResource("1_bsmcq")
 
