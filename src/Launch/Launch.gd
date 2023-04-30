@@ -56,7 +56,7 @@ func _physics_process(delta):
 		var best = null
 		for c in crates.get_children():
 			var c_dist = (get_global_mouse_position() - c.global_position).length()
-			if (c.in_launch_area && c_dist <= snap_dist):
+			if (!c.launched && c.in_launch_area && c_dist <= snap_dist):
 				if (best == null || best > c_dist):
 					best = c_dist
 					selected_crate = c
