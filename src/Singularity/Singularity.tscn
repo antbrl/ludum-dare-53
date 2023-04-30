@@ -13,7 +13,7 @@ shader = ExtResource("2_ejo7w")
 collision_layer = 4
 script = ExtResource("1_bsmcq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="InfluenceArea" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qgfqi")
 metadata/_edit_lock_ = true
 

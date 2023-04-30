@@ -4,8 +4,19 @@ class_name Singularity
 
 const FAILURE_DISTANCE_SQ_THRESHOLD = 300
 
+
+
 const modif = 5e5
 const MAX_FORCE = Vector2(2e3, 2e3);
+const MINIMUM_NEGLIGEABLE_FORCE = 10;
+
+func update_influence_radius():
+	var infuence_area: CircleShape2D = self.get_node("InfluenceArea").get_shape()
+	infuence_area.set_radius(sqrt(modif/MINIMUM_NEGLIGEABLE_FORCE))
+	
+
+func _ready():
+	update_influence_radius()
 
 
 func add_physics_modifier(crate: Crate):
