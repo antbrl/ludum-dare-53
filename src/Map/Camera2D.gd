@@ -10,6 +10,7 @@ const default_zoom = Vector2(1, 1)
 const follow_zoom = Vector2(2, 2)
 
 const control_speed = 1000
+const zoom_speed = 2
 
 var transition_status = null
 var transition_from = null
@@ -56,8 +57,14 @@ func _physics_process(delta):
 			buffer += Vector2(1, 0)
 		if (Input.is_action_pressed("ui_left")):
 			buffer += Vector2(-1, 0)
-		if (Input.is_action_pressed("ui_up")):
+		if (Input.is_action_pressed("ui_up") && !Input.is_action_pressed("zoom-in")):
 			buffer += Vector2(0, -1)
-		if (Input.is_action_pressed("ui_down")):
+		if (Input.is_action_pressed("ui_down") && !Input.is_action_pressed("zoom-out")):
 			buffer += Vector2(0, 1)
 		global_position += delta*control_speed*buffer.normalized()
+		var zoom_diff = 0.0
+		if (Input.is_action_pressed("zoom-in")):
+			zoom_diff += 1
+		if (Input.is_action_pressed("zoom-out")):
+			zoom_diff -= 1
+		zoom += Vector2(1, 1)*delta*zoom_diff*zoom_speed
