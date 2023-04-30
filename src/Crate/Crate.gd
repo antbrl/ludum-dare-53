@@ -11,5 +11,5 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
-	var singularity: PhysicsTool = get_parent().get_parent().get_child(4)
+	var singularity: PhysicsTool = get_parent().get_parent().get_node("Singularity")
 	singularity.add_physics_modifier(self)

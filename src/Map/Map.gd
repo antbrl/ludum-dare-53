@@ -3,13 +3,15 @@ extends Node2D
 signal tool_built(tool: Globals.Tool)
 signal tool_destroyed(tool: Globals.Tool)
 
-@onready var tool_ghost = $Navigation2D/ToolGhost
-@onready var tile_map = $Navigation2D/TileMap
+@onready var tool_ghost = $ToolGhost
+@onready var tile_map = $TileMap
+@onready var launch_area = $Launch
+
 var mode = Globals.DEFAULT_MODE
 var current_tool = Globals.DEFAULT_TOOL
 
 func _ready():
-	pass # Replace with function body.
+	launch_area.init($Crates/Crate)
 
 func _process(delta):
 	pass

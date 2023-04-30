@@ -1,10 +1,10 @@
 extends Node2D
 
-@onready var launch_area = get_node("LaunchArea")
-@onready var test_box = get_node("TestBox")
+@onready var launch_area = $LaunchArea
+@onready var test_box = $TestBox
 
 const snap_dist = 300.0
-const max_speed = 1000.0
+const max_speed = 1200.0
 
 var box_selected = false
 var box_in_area = true
@@ -15,6 +15,13 @@ var just_released = false
 var last_box_pos = null
 
 var anchor = null
+
+func init(box):
+	test_box = box
+
+#func _ready():
+#	assert(test_box != null, "call init first")
+#	init($TestBox)
 
 func capture():
 	test_box.linear_velocity = Vector2(0, 0)
