@@ -50,14 +50,16 @@ func _build(pos: Vector2i, tool: Globals.Tool):
 func _destroy(pos: Vector2i):
 	set_cell(Globals.TileMapLayers.TOOL, pos, -1, Vector2i(-1, -1))
 
-func try_build_at_mouse(tool: Globals.Tool):
+func try_build_at_mouse(tool: Globals.Tool) -> bool:
 	var pos = get_mouse_cell()
 	if not can_build_on_cell(pos, tool):
-		return
+		return false
 	_build(pos, tool)
+	return true
 
-func try_destroy_at_mouse():
+func try_destroy_at_mouse() -> bool:
 	var pos = get_mouse_cell()
 	if not can_destroy_on_cell(pos):
-		return
+		return false
 	_destroy(pos)
+	return true

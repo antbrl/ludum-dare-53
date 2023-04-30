@@ -8,12 +8,12 @@ func _ready():
 	visible = Globals.DEFAULT_MODE == Globals.Mode.CONSTRUCTION
 
 func _process(delta):
-	update_ghost()
-
-func update_ghost():
 	var new_mouse_cell = tile_map.get_mouse_cell()
-	if mouse_cell == new_mouse_cell:
-		return
+	if mouse_cell != new_mouse_cell:
+		update()
+
+func update():
+	var new_mouse_cell = tile_map.get_mouse_cell()
 
 	# Mouse on new cell
 	var tween = create_tween()

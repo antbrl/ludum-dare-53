@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsyeo6hp2ok5q"]
+[gd_scene load_steps=8 format=3 uid="uid://dsyeo6hp2ok5q"]
 
 [ext_resource type="Script" path="res://src/Map/Map.gd" id="1_lb1fb"]
 [ext_resource type="PackedScene" uid="uid://bqdyskkc8us6p" path="res://src/Crate/Crate.tscn" id="2_qey5k"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b64ya7wbmnxjq" path="res://assets/levels/medieval.tscn" id="5_2n0ea"]
 [ext_resource type="PackedScene" uid="uid://c30ynk6qk8e7t" path="res://src/Singularity/Singularity.tscn" id="6_dtas2"]
 [ext_resource type="PackedScene" uid="uid://c35yk86ipmq4o" path="res://src/Map/tool_ghost.tscn" id="6_x85yr"]
-[ext_resource type="PackedScene" uid="uid://dvdkb5aco084l" path="res://src/Level/Launch/launch.tscn" id="8_6t0vn"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_lb1fb")
@@ -41,5 +40,3 @@ scale = Vector2(30, 30)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(497, -73)
-
-[node name="Launch" parent="." instance=ExtResource("8_6t0vn")]
