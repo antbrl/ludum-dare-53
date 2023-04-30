@@ -15,7 +15,8 @@ colors = PackedColorArray(1, 1, 1, 1, 0.310617, 0.310617, 0.310617, 1, 0.059144,
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tc736"]
 gradient = SubResource("Gradient_m7epf")
 
-[node name="Portal" type="Area2D"]
+[node name="Portal" type="Area2D" groups=["portals"]]
+collision_layer = 4
 script = ExtResource("1_6g6il")
 
 [node name="Portal" type="Sprite2D" parent="."]
@@ -44,3 +45,7 @@ position = Vector2(16, 0)
 color = Color(0.811765, 0.541176, 0.796078, 1)
 energy = 2.0
 texture = SubResource("GradientTexture2D_tc736")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(5, 1)
+polygon = PackedVector2Array(-23, -33, -23, 31, -19, 31, -19, -33)
