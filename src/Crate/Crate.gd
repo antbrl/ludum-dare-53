@@ -16,7 +16,7 @@ const epsilon = 2
 const rot_epsilon = 1
 
 var in_launch_area = false
-var in_range_physic_tools: Array[PhysicsTool] = []
+var in_range_physic_tools: Array[PhysicsTool]
 
 func set_launch_area(v):
 	in_launch_area = v
@@ -29,6 +29,7 @@ func thrown():
 	get_node("Sprite2D").modulate = Color(0.5, 0.5, 0.5, 1.0)
 
 func _ready():
+	in_range_physic_tools = []
 	prev_pos = position
 	self.connect("clicked", launcher.handle_click)
 	self.connect("killme", launcher.kill_crate)

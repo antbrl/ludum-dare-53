@@ -1,14 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bary4m4n2w5tt"]
+[gd_scene load_steps=3 format=3 uid="uid://deaw2w5qljnam"]
 
-[ext_resource type="Script" path="res://src/Tool/Trampoline/trampoline.gd" id="1_r8rr0"]
+[ext_resource type="Script" path="res://src/Tool/Trampoline/Trampoline.gd" id="1_qiml6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4k7og"]
-size = Vector2(400, 40)
+size = Vector2(400, 31.75)
 
-[node name="Trampoline" type="Area2D"]
-script = ExtResource("1_r8rr0")
+[node name="Trampoline" type="StaticBody2D"]
+collision_layer = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6.875)
 shape = SubResource("RectangleShape2D_4k7og")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="PhysicsTool" type="Area2D" parent="."]
+collision_layer = 5
+script = ExtResource("1_qiml6")
+
+[node name="Shape" type="CollisionShape2D" parent="PhysicsTool"]
+position = Vector2(0, -2.75)
+shape = SubResource("RectangleShape2D_4k7og")
