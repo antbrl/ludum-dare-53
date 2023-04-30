@@ -15,10 +15,12 @@ var FAILURE_DISTANCE_SQ_THRESHOLD = 10
 var FAILURE_VELOCITY_SQ_THRESHOLD = 4
 
 var modif = 2e5
+var MAX_VELOCITY = Vector2(500, 500);
 func add_physics_modifier(crate: RigidBody2D):
 	var dir = self.position - crate.position
 	var distance_sq = dir.length_squared()
 	var force = modif * dir.normalized() / distance_sq
+	force = force.clamp(-MAX_VELOCITY, MAX_VELOCITY)
 	crate.apply_central_impulse(force)
 	
 	if distance_sq < FAILURE_DISTANCE_SQ_THRESHOLD && crate.linear_velocity.length_squared() < FAILURE_VELOCITY_SQ_THRESHOLD:
