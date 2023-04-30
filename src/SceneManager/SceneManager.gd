@@ -64,7 +64,7 @@ func _load_level():
 
 
 func _on_end_of_level():
-	if current_level_number + 1 >= 2:
+	if current_level_number + 1 >= len(maps):
 		# Win
 		_run_credits(false)
 	else:
@@ -94,7 +94,7 @@ func _on_restart_select_level():
 
 func _load_end_level():
 	var scene = change_level.instantiate()
-	scene.init(current_level_number)
+	scene.init(current_level_number, maps[current_level_number])
 
 	scene.connect("next_level", Callable(self, "_on_next_level"))
 
