@@ -14,6 +14,7 @@ colors = PackedColorArray(1, 1, 1, 1, 0.310617, 0.310617, 0.310617, 1, 0.059144,
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tc736"]
 gradient = SubResource("Gradient_m7epf")
+height = 96
 
 [node name="Portal" type="Area2D" groups=["portals"]]
 collision_layer = 4
@@ -23,7 +24,7 @@ script = ExtResource("1_6g6il")
 position = Vector2(-16, 0)
 texture = ExtResource("2_y1po2")
 
-[node name="GPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(-14, 0)
 amount = 15
 lifetime = 1.5
@@ -32,7 +33,7 @@ fixed_fps = 30
 local_coords = true
 draw_order = 1
 emission_shape = 3
-emission_rect_extents = Vector2(1, 32)
+emission_rect_extents = Vector2(1, 56)
 spread = 70.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 5.0
@@ -48,4 +49,4 @@ texture = SubResource("GradientTexture2D_tc736")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(5, 1)
-polygon = PackedVector2Array(-23, -33, -23, 31, -19, 31, -19, -33)
+polygon = PackedVector2Array(-23, -49, -23, 47, -19, 47, -19, -49)
