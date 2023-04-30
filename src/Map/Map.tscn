@@ -1,15 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://cerdlyf71wibk"]
+[gd_scene load_steps=13 format=3 uid="uid://cerdlyf71wibk"]
 
 [ext_resource type="Script" path="res://src/Map/Map.gd" id="1_lb1fb"]
 [ext_resource type="PackedScene" uid="uid://bqdyskkc8us6p" path="res://src/Crate/Crate.tscn" id="2_qey5k"]
 [ext_resource type="PackedScene" uid="uid://cu86mnbuy308e" path="res://src/Target/Target.tscn" id="4_8ry0r"]
-[ext_resource type="PackedScene" uid="uid://b64ya7wbmnxjq" path="res://src/Map/TileMap.tscn" id="4_q05xe"]
+[ext_resource type="PackedScene" path="res://src/Map/TileMap.tscn" id="4_q05xe"]
 [ext_resource type="PackedScene" uid="uid://c35yk86ipmq4o" path="res://src/Map/tool_ghost.tscn" id="6_x85yr"]
 [ext_resource type="Script" path="res://src/Map/Camera2D.gd" id="7_7mhk7"]
 [ext_resource type="PackedScene" uid="uid://cqtltj48l5ode" path="res://src/Launch/Launch.tscn" id="8_6t0vn"]
+[ext_resource type="Texture2D" uid="uid://cp1kvhyexh1wq" path="res://assets/sprites/mountain_0.png" id="9_if7pu"]
 [ext_resource type="Texture2D" uid="uid://b3bno5pklmd57" path="res://assets/sprites/sky_0.png" id="10_01wmy"]
+[ext_resource type="Texture2D" uid="uid://bw4aksfp746oe" path="res://assets/sprites/mountain_1.png" id="10_ejniv"]
+[ext_resource type="Texture2D" uid="uid://b5ymlxoi3khqc" path="res://assets/sprites/mountain_2.png" id="11_o1ia3"]
+[ext_resource type="Texture2D" uid="uid://c5augmwq8w31e" path="res://assets/sprites/mountain_3.png" id="12_cfib4"]
 
 [node name="Map" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_lb1fb")
 inventory = null
 
@@ -38,17 +43,65 @@ can_sleep = false
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.125, 0.125)
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.125, 0)
 motion_mirroring = Vector2(512, 256)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sky"]
 texture_filter = 1
 texture_repeat = 2
 texture = ExtResource("10_01wmy")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 2048, 1024)
+region_rect = Rect2(0, 0, 4096, 2048)
+
+[node name="Mountains_0" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0.08)
+motion_offset = Vector2(0, 300)
+motion_mirroring = Vector2(1024, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Mountains_0"]
+texture_repeat = 2
+texture = ExtResource("9_if7pu")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 4096, 256)
+
+[node name="Mountains_1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.55, 0.11)
+motion_offset = Vector2(0, 300)
+motion_mirroring = Vector2(1024, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Mountains_1"]
+texture_repeat = 2
+texture = ExtResource("10_ejniv")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 4096, 256)
+
+[node name="Mountains_2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.7, 0.14)
+motion_offset = Vector2(0, 300)
+motion_mirroring = Vector2(1024, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Mountains_2"]
+texture_repeat = 2
+texture = ExtResource("11_o1ia3")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 4096, 256)
+
+[node name="Mountains_3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.9, 0.18)
+motion_offset = Vector2(0, 300)
+motion_mirroring = Vector2(1024, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Mountains_3"]
+texture_repeat = 2
+texture = ExtResource("12_cfib4")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 4096, 256)
 
 [connection signal="build_tool" from="TileMap" to="." method="_on_tile_map_build_tool"]
 [connection signal="destroy_tool" from="TileMap" to="." method="_on_tile_map_destroy_tool"]
