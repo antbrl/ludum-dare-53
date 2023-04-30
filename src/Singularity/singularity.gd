@@ -24,5 +24,6 @@ func add_physics_modifier(crate: RigidBody2D):
 	crate.apply_central_impulse(force)
 	
 	if distance_sq < FAILURE_DISTANCE_SQ_THRESHOLD && crate.linear_velocity.length_squared() < FAILURE_VELOCITY_SQ_THRESHOLD:
-		print('Perdu') # TODO ?
+		crate.emit_signal("killme", crate)
+		print("singularity kill")
 
