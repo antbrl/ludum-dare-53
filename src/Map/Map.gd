@@ -41,12 +41,14 @@ func _process(delta):
 	pass
 
 func _input(event):
-	if event.is_action_pressed("build"):
+	if event.is_action_pressed("build") && !get_node("../UI/ActionUI/SwitchModeButton").is_hovered():
+		for c in get_node("../UI/ActionUI/ToolList").get_children():
+			if c.is_hovered():
+				return
 		for slot in inventory:
 			if slot.tool_id == current_tool:
 				if slot.quantity <= 0:
 					return
-
 		if mode == Globals.Mode.CONSTRUCTION:
 			tile_map.try_build_at_mouse(current_tool)
 	elif event.is_action_pressed("destroy"):

@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c5augmwq8w31e" path="res://assets/sprites/mountain_3.png" id="12_cfib4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jgt8q"]
-size = Vector2(6800, 6432)
+size = Vector2(2652, 666)
 
 [node name="Map" type="Node2D"]
 texture_filter = 1
