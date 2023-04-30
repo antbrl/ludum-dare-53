@@ -17,6 +17,7 @@ func _ready():
 
 func init(level_number, nb_coins):
 	self.level_number = level_number
+	
 
 func end_level():
 	emit_signal("end_of_level")

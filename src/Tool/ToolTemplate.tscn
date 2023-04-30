@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4puk3nu7xkk4"]
+
+[ext_resource type="Script" path="res://src/Tool/ToolTemplate.gd" id="1_2pa5b"]
+
+[node name="ToolTemplate" type="Node"]
+script = ExtResource("1_2pa5b")
+tool_name = null
+quantity = null

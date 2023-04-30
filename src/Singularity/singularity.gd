@@ -1,6 +1,5 @@
 extends PhysicsTool
 
-
 class_name Singularity
 
 # Called when the node enters the scene tree for the first time.
