@@ -20,7 +20,6 @@ func init(map):
 	for slot in self.map.inventory:
 		var tool_template = Globals.get_tool_template(slot.tool_id)
 		if tool_template != null:
-			print(tool_template)
 			add_tool(tool_template, slot.quantity)
 
 func _tool_built(slot, _pos, _metadata):
