@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqdyskkc8us6p"]
+[gd_scene load_steps=5 format=3 uid="uid://bqdyskkc8us6p"]
 
 [ext_resource type="Texture2D" uid="uid://bprdj2krbpywu" path="res://assets/sprites/player.png" id="1_lck3x"]
 [ext_resource type="Script" path="res://src/Crate/Crate.gd" id="1_qunqm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5epos"]
+friction = 0.8
+bounce = 0.4
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cm2xa"]
 size = Vector2(37, 38)
@@ -9,6 +13,7 @@ size = Vector2(37, 38)
 [node name="Crate" type="RigidBody2D"]
 collision_layer = 3
 input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_5epos")
 script = ExtResource("1_qunqm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
