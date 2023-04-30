@@ -2,6 +2,7 @@ extends Node
 
 class_name ToolTemplate
 
+@export var tool_id: int
 @export var texture : Texture2D
 @export var tool_name : String
 @export var tool: Resource # Tool instance scene tempolate

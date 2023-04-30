@@ -21,4 +21,6 @@ script = ExtResource("1")
 texture = ExtResource("6_bwvw0")
 tool_name = "Trampoline"
 
+[connection signal="tool_built" from="Map" to="." method="_on_map_tool_built"]
+[connection signal="tool_destroyed" from="Map" to="." method="_on_map_tool_destroyed"]
 [connection signal="mode_change" from="UI/HUD" to="." method="_on_hud_mode_change"]
