@@ -16,6 +16,7 @@ func update_influence_radius():
 	
 
 func _ready():
+	print("Singularity appears...")
 	update_influence_radius()
 
 
