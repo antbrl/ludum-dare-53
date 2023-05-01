@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cgli84ox8kla0" path="res://src/HUD/popup.tscn" id="4_03u2c"]
 [ext_resource type="PackedScene" uid="uid://byfrygi5um7b1" path="res://src/HUD/action_ui.tscn" id="4_7vkgy"]
 [ext_resource type="PackedScene" uid="uid://1jb28yihlqxm" path="res://src/Audio/audio_player.tscn" id="5_1xpta"]
-[ext_resource type="PackedScene" uid="uid://bo08pd4eyn8sm" path="res://src/HUD/text_box.tscn" id="5_pmujx"]
+[ext_resource type="PackedScene" path="res://src/HUD/text_box.tscn" id="5_pmujx"]
 [ext_resource type="AudioStream" uid="uid://iokydc4pb2ve" path="res://assets/sounds/results/hit0.wav" id="6_4a04i"]
 [ext_resource type="AudioStream" uid="uid://56tssejv5cdb" path="res://assets/sounds/results/hit1.wav" id="7_f6aml"]
 [ext_resource type="AudioStream" uid="uid://bdijbr6lwph1n" path="res://assets/sounds/results/hit2.wav" id="8_i73ee"]

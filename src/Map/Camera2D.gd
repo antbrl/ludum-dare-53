@@ -55,6 +55,11 @@ var mouse_controls_disabled = false
 @onready var top    = get_node("../Bounds/Top")
 @onready var bottom = get_node("../Bounds/Bottom")
 
+@onready var gui_left   = get_node("../CanvasLayer/GUIBounds/Left")
+@onready var gui_right  = get_node("../CanvasLayer/GUIBounds/Right")
+@onready var gui_top    = get_node("../CanvasLayer/GUIBounds/Top")
+@onready var gui_bottom = get_node("../CanvasLayer/GUIBounds/Bottom")
+
 @onready var left_c   = null
 @onready var right_c  = null
 @onready var top_c    = null
@@ -91,6 +96,18 @@ func _ready():
 	latest_free_pos = global_position
 	latest_free_zoom = zoom
 
+func gui_to_red():
+	gui_left.color   = Color(.72, .27, .33, 0.)
+	gui_right.color  = Color(.72, .27, .33, 0.)
+	gui_top.color    = Color(.72, .27, .33, 0.)
+	gui_bottom.color = Color(.72, .27, .33, 0.)
+
+func gui_to_yellow(): #unused for nown intended for cinematic mode
+	gui_left.color   = Color(.51, .41, .15, 1.)
+	gui_right.color  = Color(.51, .41, .15, 1.)
+	gui_top.color    = Color(.51, .41, .15, 1.)
+	gui_bottom.color = Color(.51, .41, .15, 1.)
+
 func cinematic_view_to(object):
 	mouse_controls_disabled = true
 	follow(object)
@@ -101,6 +118,7 @@ func cinematic_view_to(object):
 
 func back_to_default():
 	mouse_controls_disabled = true
+	gui_to_red()
 	self.go_back_to_start_on_followed_reached = false
 	transition_move_duration = CINEMATIC_TRANSITION_MOVE_DURATION
 	transition_zoom_duration = CINEMATIC_TRANSITION_ZOOM_DURATION
@@ -112,6 +130,7 @@ func back_to_default():
 
 func follow(object):
 	mouse_controls_disabled = true
+	gui_to_red()
 	self.go_back_to_start_on_followed_reached = false
 	transition_move_duration = DEFAULT_TRANSITION_MOVE_DURATION
 	transition_zoom_duration = DEFAULT_TRANSITION_ZOOM_DURATION
@@ -214,18 +233,28 @@ func _physics_process(delta):
 		var margin_prop = .1
 		var x_ratio = get_viewport().get_mouse_position().x/get_viewport_rect().size.x
 		var y_ratio = get_viewport().get_mouse_position().y/get_viewport_rect().size.y
+		var x1 = min(x_ratio, margin_prop) - margin_prop
+		var x2 = max(x_ratio, 1.0 - margin_prop) - (1.0 - margin_prop)
+		var y1 = min(y_ratio, margin_prop) - margin_prop
+		var y2 = max(y_ratio, 1.0 - margin_prop) - (1.0 - margin_prop)
+		gui_left.color.a   = -x1/margin_prop
+		gui_right.color.a  =  x2/margin_prop
+		gui_top.color.a    = -y1/margin_prop
+		gui_bottom.color.a =  y2/margin_prop
 		if !mouse_controls_disabled:
 			var speed = 100
-			position.x += speed*(min(x_ratio, margin_prop) - margin_prop)
-			position.x += speed*(max(x_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
-			position.y += speed*(min(y_ratio, margin_prop) - margin_prop)
-			position.y += speed*(max(y_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
+			position += speed*Vector2(x1 + x2, y1 + y2)
 			position = Vector2(clamp(position.x,limit_left+get_viewport_rect().size.x/(2*zoom.x),limit_right-get_viewport_rect().size.x/(2*zoom.x)),clamp(position.y,limit_top+get_viewport_rect().size.y/(2*zoom.y),limit_bottom-get_viewport_rect().size.y/(2*zoom.y)))
 		else:
-			var x_border_dst = (min(x_ratio, margin_prop) - margin_prop) + (max(x_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
-			var y_border_dst = (min(y_ratio, margin_prop) - margin_prop) + (max(y_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
+			var x_border_dst = x1 + x2
+			var y_border_dst = y1 + y2
 			if (x_border_dst == 0 && y_border_dst == 0):
+				print("reenabled")
 				mouse_controls_disabled = false
+				gui_left.color   = Color(.28, .62, .33, 0.)
+				gui_right.color  = Color(.28, .62, .33, 0.)
+				gui_top.color    = Color(.28, .62, .33, 0.)
+				gui_bottom.color = Color(.28, .62, .33, 0.)
 		var zoom_diff = 0.0
 		if (Input.is_action_pressed("zoom-in")):
 			zoom_diff += 1

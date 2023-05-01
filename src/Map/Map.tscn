@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/Map/Map.gd" id="1_lb1fb"]
 [ext_resource type="PackedScene" uid="uid://bqdyskkc8us6p" path="res://src/Crate/Crate.tscn" id="2_qey5k"]
 [ext_resource type="PackedScene" uid="uid://cu86mnbuy308e" path="res://src/Target/Target.tscn" id="4_8ry0r"]
-[ext_resource type="PackedScene" uid="uid://dlpvuna0o368n" path="res://src/Map/TileMap.tscn" id="4_q05xe"]
+[ext_resource type="PackedScene" uid="uid://b64ya7wbmnxjq" path="res://src/Map/TileMap.tscn" id="4_q05xe"]
 [ext_resource type="PackedScene" uid="uid://c35yk86ipmq4o" path="res://src/Map/tool_ghost.tscn" id="6_x85yr"]
 [ext_resource type="Script" path="res://src/Map/Camera2D.gd" id="7_7mhk7"]
 [ext_resource type="PackedScene" uid="uid://qo703o3t2moa" path="res://src/Truck/Truck.tscn" id="7_epx8x"]
@@ -125,6 +125,59 @@ scale = Vector2(1.575, 38.1)
 [node name="Right" type="VisibleOnScreenNotifier2D" parent="Bounds"]
 position = Vector2(1924, -26)
 scale = Vector2(1.525, 39.65)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUIBounds" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Bottom" type="ColorRect" parent="CanvasLayer/GUIBounds"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.282353, 0.623529, 0.329412, 1)
+
+[node name="Top" type="ColorRect" parent="CanvasLayer/GUIBounds"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0.282353, 0.623529, 0.329412, 1)
+
+[node name="Left" type="ColorRect" parent="CanvasLayer/GUIBounds"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.282353, 0.623529, 0.329412, 1)
+
+[node name="Right" type="ColorRect" parent="CanvasLayer/GUIBounds"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.505882, 0.447059, 0.14902, 1)
 
 [connection signal="build_tool" from="TileMap" to="." method="_on_tile_map_build_tool"]
 [connection signal="destroy_tool" from="TileMap" to="." method="_on_tile_map_destroy_tool"]
