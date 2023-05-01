@@ -43,6 +43,5 @@ scale = Vector2(1.05, 140.825)
 metadata/_edit_lock_ = true
 
 [node name="Right" parent="Bounds" index="3"]
-position = Vector2(846, -1341)
+position = Vector2(1110, -1177)
 scale = Vector2(1.62502, 143.875)
-metadata/_edit_lock_ = true
