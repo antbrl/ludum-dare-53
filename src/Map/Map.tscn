@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cerdlyf71wibk"]
+[gd_scene load_steps=13 format=3 uid="uid://cerdlyf71wibk"]
 
 [ext_resource type="Script" path="res://src/Map/Map.gd" id="1_lb1fb"]
 [ext_resource type="PackedScene" uid="uid://bqdyskkc8us6p" path="res://src/Crate/Crate.tscn" id="2_qey5k"]
@@ -12,9 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://bw4aksfp746oe" path="res://assets/sprites/mountain_1.png" id="10_ejniv"]
 [ext_resource type="Texture2D" uid="uid://b5ymlxoi3khqc" path="res://assets/sprites/mountain_2.png" id="11_o1ia3"]
 [ext_resource type="Texture2D" uid="uid://c5augmwq8w31e" path="res://assets/sprites/mountain_3.png" id="12_cfib4"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgt8q"]
-size = Vector2(2652, 666)
 
 [node name="Map" type="Node2D"]
 texture_filter = 1
@@ -107,10 +104,7 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 4096, 256)
 
-[node name="Bounds" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds"]
-shape = SubResource("RectangleShape2D_jgt8q")
+[node name="Bounds" type="Node2D" parent="."]
 
 [node name="Top" type="VisibleOnScreenNotifier2D" parent="Bounds"]
 position = Vector2(940.875, -368)
