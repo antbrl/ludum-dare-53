@@ -128,8 +128,9 @@ func _on_launch_area_body_exited(body):
 func kill_crate(crate):
 	emit_signal("crate_killed", crate)
 	crate.queue_free()
-	var new_crate = crate_scene.instantiate()
-	new_crate.global_position = launch_area.to_global(Vector2(-200, -500))
-	crates.add_child(new_crate)
+	if game.phase == Globals.Phase.TRIAL || game.challenge_crates_left >= 0:
+		var new_crate = crate_scene.instantiate()
+		new_crate.global_position = launch_area.to_global(Vector2(-200, -500))
+		crates.add_child(new_crate)
 	cam.back_to_default()
 	set_disabled_throw(false)
