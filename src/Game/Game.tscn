@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://y1xmuecnyvvv"]
+[gd_scene load_steps=9 format=3 uid="uid://y1xmuecnyvvv"]
 
 [ext_resource type="Script" path="res://src/Game/Game.gd" id="1_s3wfw"]
 [ext_resource type="PackedScene" uid="uid://dwiu4cm7rlq0p" path="res://src/HUD/HUD.tscn" id="3_jigyd"]
@@ -7,9 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://1jb28yihlqxm" path="res://src/Audio/audio_player.tscn" id="5_1xpta"]
 [ext_resource type="PackedScene" uid="uid://bo08pd4eyn8sm" path="res://src/HUD/text_box.tscn" id="5_pmujx"]
 [ext_resource type="AudioStream" uid="uid://iokydc4pb2ve" path="res://assets/sounds/results/hit0.wav" id="6_4a04i"]
-[ext_resource type="AudioStream" uid="uid://56tssejv5cdb" path="res://assets/sounds/results/hit1.wav" id="7_f6aml"]
-[ext_resource type="AudioStream" uid="uid://bdijbr6lwph1n" path="res://assets/sounds/results/hit2.wav" id="8_i73ee"]
-[ext_resource type="AudioStream" uid="uid://d1ico2lyl4nit" path="res://assets/sounds/results/hit3.wav" id="9_wq5lk"]
 [ext_resource type="AudioStream" uid="uid://btdg1w7mu0yb1" path="res://assets/sounds/tick/miss.wav" id="11_y5xgq"]
 
 [node name="Game" type="Node"]
@@ -29,7 +26,7 @@ mouse_filter = 2
 [node name="TextBox" parent="UI" instance=ExtResource("5_pmujx")]
 
 [node name="Hit" parent="." instance=ExtResource("5_1xpta")]
-sounds = Array[AudioStream]([ExtResource("6_4a04i"), ExtResource("7_f6aml"), ExtResource("8_i73ee"), ExtResource("9_wq5lk")])
+sounds = Array[AudioStream]([ExtResource("6_4a04i")])
 
 [node name="Miss" parent="." instance=ExtResource("5_1xpta")]
 sounds = Array[AudioStream]([ExtResource("11_y5xgq")])
