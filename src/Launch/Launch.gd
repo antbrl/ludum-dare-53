@@ -9,6 +9,7 @@ signal crate_followed_by_cam(crate)
 @onready var cam = $"../Camera2D"
 @onready var game = $"../.."
 @onready var reapparition_point = $"CrateReapparitionPoint"
+@onready var shader_zone = $Shader
 
 const snap_dist = 150.0
 const max_speed = 1400.0
@@ -35,6 +36,7 @@ var crate_scene = preload("res://src/Crate/Crate.tscn")
 
 func set_disabled_mode(v):
 	disabled_due_to_mode = v
+	shader_zone.visible = not v
 	disabled = disabled_due_to_mode || disabled_in_throw
 
 func set_disabled_throw(v):

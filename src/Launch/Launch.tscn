@@ -35,7 +35,7 @@ shape = SubResource("SegmentShape2D_htq20")
 [node name="CrateReapparitionPoint" type="Marker2D" parent="."]
 position = Vector2(-273, -130)
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="Shader" type="Polygon2D" parent="."]
 z_index = 20
 z_as_relative = false
 material = SubResource("ShaderMaterial_6gwqe")
