@@ -8,9 +8,8 @@ var nb_coins
 var total_crates
 var hit_crates
 
-@onready var level_label = $CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/LevelNumber
-@onready var coin_label = $CenterContainer/VBoxContainer/CenterContainer2/HBoxContainer2/CoinsNumber
-@onready var result = $CenterContainer/VBoxContainer/CenterContainer2/Result
+@onready var level_label = $CenterContainer/VBoxContainer/HBoxContainer/LevelNumber
+@onready var result = $CenterContainer/VBoxContainer/Result
 @onready var score_label = $CenterContainer/VBoxContainer/Score
 @onready var comment_label = $CenterContainer/VBoxContainer/Comment
 @onready var crate_icon = preload("res://src/HUD/crate_icon.tscn")
@@ -22,9 +21,9 @@ func _ready():
 	)
 	level_label.text = str(level_number + 1)
 	
-	result.visible = false
-	score_label.visible = false
-	comment_label.visible = false
+	result.modulate.a = 0
+	score_label.modulate.a = 0
+	comment_label.modulate.a = 0
 	
 	for i in range(total_crates):
 		var crate_icon_instance = crate_icon.instantiate()
@@ -49,7 +48,7 @@ func _ready():
 		
 	var tween = create_tween()
 	tween.tween_interval(0.8)
-	tween.tween_callback(func(): result.visible = true; score_label.visible = true)
+	tween.tween_callback(func(): result.modulate.a = 1; score_label.modulate.a = 1)
 	for i in range(total_crates):
 		var crate = result.get_child(i)
 		tween.tween_interval(0.5)
@@ -57,8 +56,8 @@ func _ready():
 		tween.tween_callback(func(): crate.get_node(node_name).visible = true)
 		if i < hit_crates:
 			tween.tween_callback(func(): score_label.text = str(i + 1) + '/' + str(total_crates))
-	tween.tween_interval(0.5)
-	tween.tween_callback(func(): comment_label.visible = true)
+	tween.tween_interval(0.9)
+	tween.tween_callback(func(): comment_label.modulate.a = 1)
 
 func init(level_number, total_crates, hit_crates):
 	self.level_number = level_number
