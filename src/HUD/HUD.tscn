@@ -38,9 +38,13 @@ text = "TRIAL PHASE"
 label_settings = SubResource("LabelSettings_rf84r")
 horizontal_alignment = 1
 
-[node name="PackageCounter" type="HBoxContainer" parent="VBoxContainer"]
+[node name="PackagePanel" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PackageCounter" type="HBoxContainer" parent="VBoxContainer/PackagePanel"]
 layout_mode = 2
 alignment = 1
 
-[node name="Icons" type="HBoxContainer" parent="VBoxContainer/PackageCounter"]
+[node name="Icons" type="HBoxContainer" parent="VBoxContainer/PackagePanel/PackageCounter"]
 layout_mode = 2

@@ -1,7 +1,7 @@
 extends Control
 
-@onready var package_counter = $VBoxContainer/PackageCounter
-@onready var icon_list = $VBoxContainer/PackageCounter/Icons
+@onready var package_panel = $VBoxContainer/PackagePanel
+@onready var icon_list = $VBoxContainer/PackagePanel/PackageCounter/Icons
 @onready var phase_panel = $VBoxContainer/PhasePanel
 @onready var phase_label = $VBoxContainer/PhasePanel/Phase
 @onready var crate_icon = preload("res://src/HUD/crate_icon.tscn")
@@ -15,7 +15,7 @@ var mouse_in_top    = false
 var mouse_in_bottom = false
 
 func _ready():
-	self.package_counter.modulate.a = 0
+	self.package_panel.modulate.a = 0
 	phase_panel.modulate.a = 0
 
 	var tween = create_tween()
@@ -43,4 +43,4 @@ func go_to_challenge_phase():
 	tween.tween_property(phase_panel, "modulate:a", 0, 0.5)
 	tween.tween_callback(func(): phase_label.text = "CHALLENGE PHASE")
 	tween.parallel().tween_property(phase_panel, "modulate:a", 1.0, 2.0)
-	tween.parallel().tween_property(package_counter, "modulate:a", 1.0, 2.0)
+	tween.parallel().tween_property(package_panel, "modulate:a", 1.0, 2.0)
