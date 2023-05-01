@@ -105,28 +105,35 @@ shape = SubResource("RectangleShape2D_cm2xa")
 [node name="Shock" type="Node" parent="Sounds"]
 
 [node name="Wood" parent="Sounds/Shock" instance=ExtResource("3_bqtxm")]
+volume_db = -3.0
 sounds = Array[AudioStream]([ExtResource("4_tfpdg"), ExtResource("5_u0ty2"), ExtResource("6_gpsxs"), ExtResource("7_rwvv0"), ExtResource("8_m347h"), ExtResource("9_ie07k"), ExtResource("10_xcfa1"), ExtResource("11_pre0o"), ExtResource("12_887ne"), ExtResource("13_3nklw"), ExtResource("14_otjq5"), ExtResource("15_5exj7"), ExtResource("16_bmij7"), ExtResource("17_7ufw1"), ExtResource("18_1uses"), ExtResource("19_blue2"), ExtResource("20_mh6w3"), ExtResource("21_ssng7")])
 
 [node name="Composite" type="Node" parent="Sounds/Shock"]
 
 [node name="Glass" parent="Sounds/Shock/Composite" instance=ExtResource("3_bqtxm")]
+volume_db = -6.5
 sounds = Array[AudioStream]([ExtResource("22_wv8qb"), ExtResource("23_vke5q"), ExtResource("24_kn5np"), ExtResource("25_jo7ec"), ExtResource("26_sclpp"), ExtResource("27_bafei"), ExtResource("28_mwuw2"), ExtResource("29_bpy1a")])
+skip_frequency = 0.35
 
 [node name="Human" parent="Sounds/Shock/Composite" instance=ExtResource("3_bqtxm")]
+volume_db = -4.0
 sounds = Array[AudioStream]([ExtResource("4_n0pde"), ExtResource("5_sq8bl"), ExtResource("6_5tnv6"), ExtResource("7_crnqa"), ExtResource("8_c62im"), ExtResource("9_mx0fy"), ExtResource("10_q0g4r"), ExtResource("11_d1d4o"), ExtResource("12_ryrcg")])
-skip_frequency = 0.65
+skip_frequency = 0.75
 
 [node name="Pan" parent="Sounds/Shock/Composite" instance=ExtResource("3_bqtxm")]
+volume_db = -9.0
 sounds = Array[AudioStream]([ExtResource("31_50xty"), ExtResource("32_jjq6d"), ExtResource("33_be2x8"), ExtResource("34_8qvl2"), ExtResource("35_ktyww"), ExtResource("36_uj53c"), ExtResource("37_iak7y")])
+skip_frequency = 0.45
 
 [node name="Pq" parent="Sounds/Shock/Composite" instance=ExtResource("3_bqtxm")]
+volume_db = -1.5
 sounds = Array[AudioStream]([ExtResource("46_qtd2r"), ExtResource("47_kbp3m"), ExtResource("48_y5knm")])
+skip_frequency = 0.2
 
 [node name="Destroy" parent="Sounds" instance=ExtResource("3_bqtxm")]
 sounds = Array[AudioStream]([ExtResource("46_l6q5q"), ExtResource("47_gibvx"), ExtResource("48_5vyg0")])
 
 [node name="Throw" parent="Sounds" instance=ExtResource("3_bqtxm")]
-volume_db = 10.0
 sounds = Array[AudioStream]([ExtResource("49_v60cd"), ExtResource("50_uwxsg"), ExtResource("51_37hwy")])
 
 [node name="ShockSoundCooldown" type="Timer" parent="."]
