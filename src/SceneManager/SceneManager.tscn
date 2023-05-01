@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkvhumh4y3msu"]
+[gd_scene load_steps=12 format=3 uid="uid://dkvhumh4y3msu"]
 
 [ext_resource type="Script" path="res://src/SceneManager/SceneManager.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://drx5t4vpsrr2v" path="res://src/Map/Maps/map_tuto_1.tscn" id="2_16use"]
@@ -7,7 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://dvqnqc87u23eq" path="res://src/Map/Maps/map_2.tscn" id="3_o066p"]
 [ext_resource type="PackedScene" uid="uid://bfrui63x1oi4g" path="res://src/Map/Maps/map_tuto_2.tscn" id="3_ys3cn"]
 [ext_resource type="PackedScene" uid="uid://b614d6042i4pn" path="res://src/Map/Maps/map_3.tscn" id="4_52hqx"]
+[ext_resource type="PackedScene" uid="uid://c0rfsrxlf8ann" path="res://src/Map/Maps/map_tuto_3.tscn" id="4_e8rgy"]
 [ext_resource type="Script" path="res://src/SceneManager/DJ.gd" id="4_jvxbv"]
+[ext_resource type="PackedScene" uid="uid://bdtxrlil3w66w" path="res://src/Map/Maps/map_tuto_4.tscn" id="5_gj7gw"]
+[ext_resource type="PackedScene" uid="uid://dc8sng837u5yk" path="res://src/Map/Maps/map_tuto_5.tscn" id="6_xfcuc"]
 
 [node name="SceneManager" type="Control"]
 layout_mode = 3
@@ -18,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1")
-maps = Array[PackedScene]([ExtResource("2_16use"), ExtResource("3_ys3cn"), ExtResource("4_52hqx"), ExtResource("3_o066p")])
+maps = Array[PackedScene]([ExtResource("2_16use"), ExtResource("3_ys3cn"), ExtResource("4_e8rgy"), ExtResource("5_gj7gw"), ExtResource("6_xfcuc"), ExtResource("4_52hqx"), ExtResource("3_o066p")])
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 0
