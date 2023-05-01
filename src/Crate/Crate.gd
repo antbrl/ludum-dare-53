@@ -32,8 +32,10 @@ func set_launch_area(v):
 	if !in_launch_area:
 		timer.start(depop_delay)
 
+func play_throw_sound():
+	$Sounds/Throw.play_random_sound()	
+
 func thrown():
-	$Sounds/Throw.play_random_sound()
 	timer.start(depop_delay)
 	launched = true
 #	nine_patch_rect.modulate = Color(0.5, 0.5, 0.5, 1.0)
@@ -82,7 +84,6 @@ func _ready():
 	
 	var picked_skin = randi() % len(CrateSkin)
 	crate_main_sound = SkinMainSound[picked_skin]
-	print(picked_skin)
 	
 	$Sprite.texture.region = SkinAtlasRegion[picked_skin]
 	

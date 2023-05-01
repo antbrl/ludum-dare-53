@@ -55,6 +55,7 @@ func release(delta):
 		selected_crate.linear_velocity = current_velocity
 	else:
 		selected_crate.linear_velocity = Vector2(0, 0)
+	selected_crate.play_throw_sound()
 	just_released = false
 	selected_crate = null
 
