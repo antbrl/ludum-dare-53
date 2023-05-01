@@ -39,6 +39,9 @@ func _ready():
 	action_ui.init(map)
 	hud.init(map.n_challenge_crates)
 	popup.pop_message('Level ' + str(level_number + 1) + ':\n' + map.level_name, 3.0)
+	
+	if level_number == 0:
+		show_textbox('Welcome', 'Your job is to deliver crates to the customer.\nYou are now in TRIAL PHASE, meaning you can build tools to help you reach the customer.\nOnce you will reach the customer once, you will enter to CHALLENGE PHASE')
 
 func init(level_number, map: PackedScene):
 	self.map_scene = map
@@ -86,6 +89,8 @@ func _end_level():
 	emit_signal("end_of_level", map.n_challenge_crates, challenge_score)
 
 func go_to_challenge_phase():
+	if level_number == 0:
+		show_textbox('Congratulations !', 'By delivering a dummy crate to the customer, you know enter CHALLENGE PHASE. You will now have to throw 5 crates in a row.\nThe more you can deliver, the higher your score ! Good luck')
 	popup.pop_message('Entering challenge mode', 3.0)
 	phase = Globals.Phase.CHALLENGE
 	action_ui.go_to_challenge_phase()
