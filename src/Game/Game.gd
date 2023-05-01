@@ -23,6 +23,9 @@ var hit_crates = []
 
 func _ready():
 	self.map = self.map.create_instance(true, map_scene)
+	self.challenge_crates_left = map.n_challenge_crates
+	if map.level_name == '':
+		assert(false, 'Level name not defined in map')
 	var target = map.get_node("Target")
 	var launcher = map.get_node("Launch")
 
@@ -32,10 +35,9 @@ func _ready():
 	launcher.connect("crate_killed", crate_killed)
 	launcher.connect("crate_followed_by_cam", crate_followed_by_cam)
 	
-	self.challenge_crates_left = map.n_challenge_crates
 	
 	action_ui.init(map)
-	hud.init(map.level_name, self.challenge_crates_left)
+	hud.init(map.n_challenge_crates)
 	popup.pop_message('Level ' + str(level_number + 1) + ':\n' + map.level_name, 3.0)
 
 func init(level_number, map: PackedScene):
