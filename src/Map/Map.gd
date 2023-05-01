@@ -43,11 +43,19 @@ func _ready():
 func _process(delta):
 	pass
 
+func is_mouse_on_ui():
+	for c in get_node("../UI/ActionUI/ButtonBar").get_children():
+		if c is Button && c.is_hovered():
+			return true
+	for c in get_node("../UI/ActionUI/ToolList").get_children():
+		if c.is_hovered():
+			return true
+	return false
+
 func _input(event):
-	if event.is_action_pressed("build") && !get_node("../UI/ActionUI/SwitchModeButton").is_hovered():
-		for c in get_node("../UI/ActionUI/ToolList").get_children():
-			if c.is_hovered():
-				return
+	if event.is_action_pressed("build"):
+		if is_mouse_on_ui():
+			return
 		for slot in inventory:
 			if slot.tool_id == current_tool:
 				if slot.quantity <= 0:

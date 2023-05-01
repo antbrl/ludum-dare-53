@@ -1,11 +1,15 @@
 extends Control
 
 signal mode_change(mode: Globals.Mode)
+signal reset_crate
+signal reset_tools
 
 @onready var tool_list = $ToolList
 @onready var tool_ui_scene = preload("res://src/HUD/tool_ui.tscn")
 @onready var game = $"../.."
-@onready var switch_mode_button = $SwitchModeButton
+@onready var switch_mode_button = $ButtonBar/SwitchModeButton
+@onready var reset_crates_button = $ButtonBar/ResetCrateButton
+@onready var reset_tools_button = $ButtonBar/ResetToolsButtons
 
 var map
 
@@ -22,6 +26,7 @@ func init(map):
 		var tool_template = Globals.get_tool_template(slot.tool_id)
 		if tool_template != null:
 			add_tool(tool_template, slot.quantity)
+	switch_mode(mode)
 
 func _tool_built(slot, _pos, _metadata):
 	_update_child(slot)
@@ -50,14 +55,26 @@ func _on_switch_mode_button_pressed():
 
 func switch_mode(mode: Globals.Mode):
 	self.mode = mode
-	tool_list.visible = mode == Globals.Mode.CONSTRUCTION
+	match(mode):
+		Globals.Mode.THROW:
+			switch_button('Switch to construction mode', false)
+			reset_crates_button.visible = true
+			reset_tools_button.visible = false
+			tool_list.visible = false
+		Globals.Mode.CONSTRUCTION:
+			switch_button('Switch to throw mode', false)
+			switch_mode_button.text = 'Switch to throw mode'
+			reset_crates_button.visible = false
+			reset_tools_button.visible = true
+			tool_list.visible = true
+		Globals.Mode.CINEMATIC:
+			switch_button('Switch to throw mode', true)
+			reset_crates_button.visible = false
+			reset_tools_button.visible = false
+			tool_list.visible = false
+		_:
+			assert(false, "Unknown mode " + str(mode))
 
-	if mode == Globals.Mode.THROW:
-		switch_button('Construction mode', false)
-	elif mode == Globals.Mode.CONSTRUCTION:
-		switch_button('Throw mode', false)
-	elif mode == Globals.Mode.CINEMATIC:
-		switch_button('Construction mode', true)
 	emit_signal("mode_change", mode)
 	
 func switch_button(text, disabled):
@@ -66,8 +83,13 @@ func switch_button(text, disabled):
 
 func go_to_challenge_phase():
 	switch_mode(Globals.Mode.THROW)
-	switch_button('Construction mode', true)
+	switch_mode_button.disabled = true
 	
 func _on_mode_to_construction():
 	switch_mode(Globals.Mode.CONSTRUCTION)
 	
+func _on_reset_crate_button_pressed():
+	emit_signal("reset_crates")
+
+func _on_reset_tools_buttons_pressed():
+	emit_signal("reset_tools")
