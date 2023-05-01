@@ -1,7 +1,7 @@
 extends PhysicsTool
 
 const PUSH_FORCE = 500
-@onready var animation_player = $"../AnimationPlayer"
+@onready var animation_player = $AnimationPlayer
 
 @export var direction: Globals.Direction = Globals.Direction.NONE:
 	get:
