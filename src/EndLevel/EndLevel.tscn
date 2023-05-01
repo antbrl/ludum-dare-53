@@ -79,6 +79,10 @@ horizontal_alignment = 1
 layout_mode = 2
 horizontal_alignment = 1
 
+[node name="TimeLabel" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
 [node name="Comment" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 horizontal_alignment = 1

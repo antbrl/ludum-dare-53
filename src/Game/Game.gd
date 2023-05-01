@@ -9,6 +9,8 @@ var phase = Globals.Phase.TRIAL
 
 var challenge_crates_left
 var challenge_score = 0
+var challenge_start_time = null
+var challenge_duration = null
 
 @onready var hud = $UI/HUD
 @onready var action_ui = $UI/ActionUI
@@ -67,6 +69,8 @@ func crate_killed(crate):
 	if phase == Globals.Phase.CHALLENGE:
 		challenge_crates_left -= 1
 		if challenge_crates_left == -1:
+			challenge_duration = Time.get_ticks_msec() - challenge_start_time
+			challenge_start_time = null 
 			trigger_end_level_cutscene()
 		
 		if not crate.hit:
@@ -84,7 +88,7 @@ func trigger_end_level_cutscene():
 
 func _end_level():
 	viewport.modulate.a = 1
-	emit_signal("end_of_level", map.n_challenge_crates, challenge_score, map.count_remaining_tools())
+	emit_signal("end_of_level", map.n_challenge_crates, challenge_score, map.count_remaining_tools(), challenge_duration)
 
 func go_to_challenge_phase():
 	if level_number == 0:
@@ -93,6 +97,7 @@ func go_to_challenge_phase():
 	phase = Globals.Phase.CHALLENGE
 	action_ui.go_to_challenge_phase()
 	hud.go_to_challenge_phase()
+	challenge_start_time = Time.get_ticks_msec()
 
 func _on_tool_selected(tool_template):
 	map.update_tool(tool_template)

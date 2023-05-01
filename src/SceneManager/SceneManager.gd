@@ -64,8 +64,8 @@ func _load_level():
 	self.current_scene = scene
 
 
-func _on_end_of_level(total_crates, hit_crates, remaining_tools):
-	_load_end_level(total_crates, hit_crates, remaining_tools)
+func _on_end_of_level(total_crates, hit_crates, remaining_tools, challenge_time):
+	_load_end_level(total_crates, hit_crates, remaining_tools, challenge_time)
 
 
 func first_level():
@@ -86,12 +86,12 @@ func _on_restart_level():
 
 
 func _on_restart_select_level():
-	_load_end_level(0, 0, 0)
+	_load_end_level(0, 0, 0, 0)
 
 
-func _load_end_level(total_crates, hit_crates, remaining_tools):
+func _load_end_level(total_crates, hit_crates, remaining_tools, challenge_time):
 	var scene = change_level.instantiate()
-	scene.init(current_level_number, total_crates, hit_crates, remaining_tools)
+	scene.init(current_level_number, total_crates, hit_crates, remaining_tools, challenge_time)
 	scene.connect("next_level", Callable(self, "_on_next_level"))
 	self.current_scene = scene
 
