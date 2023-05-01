@@ -44,7 +44,7 @@ scale = Vector2(5, 5)
 position = Vector2(-238, -534)
 
 [node name="Top" parent="Bounds" index="0"]
-position = Vector2(777, -2158)
+position = Vector2(754, -1478)
 scale = Vector2(121.7, 1)
 
 [node name="Bottom" parent="Bounds" index="1"]
