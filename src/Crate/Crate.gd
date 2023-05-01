@@ -68,3 +68,9 @@ func _on_detection_area_entered(area):
 func _on_detection_area_exited(area):
 	in_range_physic_tools.erase(area)
 	print('Object Left')
+
+
+func _on_body_entered(body):
+	if $"Sounds/Shock/ShockTimer".is_stopped():
+		$"Sounds/Shock/ShockTimer".start()
+		$Sounds/Shock/Wood.play_random_sound()
