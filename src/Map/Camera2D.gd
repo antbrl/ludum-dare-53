@@ -42,7 +42,7 @@ var go_back_to_start_on_followed_reached = false
 const high_speed = 500
 const low_speed = 0
 const zoom_factor = 1
-const zoom_snap = .2
+const zoom_snap = .01
 const min_zoom_speed = 1
 
 @onready var bounds = get_node("../Bounds")
