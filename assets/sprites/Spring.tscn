@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwe3kab6f72w5"]
+
+[ext_resource type="Script" path="res://assets/sprites/Spring.gd" id="1_05xyr"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q0j04"]
+load_path = "res://.godot/imported/spring.png-e41caa64d692b3be6f843ff8b076fe2b.ctex"
+
+[node name="HoverHint" type="NinePatchRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -326.0
+offset_right = -546.0
+offset_bottom = -266.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_q0j04")
+region_rect = Rect2(0, 0, 32, 28)
+patch_margin_left = 15
+patch_margin_top = 6
+patch_margin_right = 15
+patch_margin_bottom = 6
+axis_stretch_vertical = 1
+script = ExtResource("1_05xyr")
