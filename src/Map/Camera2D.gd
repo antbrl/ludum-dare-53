@@ -11,7 +11,7 @@ const CINEMATIC_TRANSITION_ZOOM_DURATION = 1
 
 const DEFAULT_ZOOM_SPEED = 2
 
-const DEFAULT_FOLLOW_ZOOM = Vector2(4, 4)
+const DEFAULT_FOLLOW_ZOOM = Vector2(3, 3)
 const CINEMATIC_FOLLOW_ZOOM = Vector2(1, 1)
 
 var transition_move_duration = DEFAULT_TRANSITION_MOVE_DURATION
@@ -22,7 +22,7 @@ const transition_move_duration_back = 0.5
 const transition_zoom_duration_back= 0.5
 const total_transition_duration_back = 0.5
 
-const default_zoom = Vector2(2, 2)
+const default_zoom = Vector2(1.5, 1.5)
 var follow_zoom = DEFAULT_FOLLOW_ZOOM
 const min_zoom = Vector2(1, 1)
 const max_zoom = Vector2(6, 6)

@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://bd5yxqos5acse" path="res://assets/musics/BaladeInADisplacedTime.ogg" id="2_ptv8s"]
 [ext_resource type="AudioStream" uid="uid://ludl0q5y1jil" path="res://assets/musics/AdvancedTechnologicalAdvantage.ogg" id="3_6i1ea"]
 [ext_resource type="PackedScene" uid="uid://dvqnqc87u23eq" path="res://src/Map/Maps/map_2.tscn" id="3_o066p"]
-[ext_resource type="PackedScene" uid="uid://b614d6042i4pn" path="res://src/Map/Maps/map_3.tscn" id="4_52hqx"]
+[ext_resource type="PackedScene" path="res://src/Map/Maps/map_3.tscn" id="4_52hqx"]
 [ext_resource type="Script" path="res://src/SceneManager/DJ.gd" id="4_jvxbv"]
 
 [node name="SceneManager" type="Control"]
