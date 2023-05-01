@@ -51,6 +51,8 @@ var go_back_to_start_on_followed_reached = false
 @onready var top_c    = null
 @onready var bottom_c = null
 
+var in_level_start_cinematic = true
+
 var ghost_left   = null
 var ghost_right  = null
 var ghost_top    = null
@@ -136,8 +138,10 @@ func _physics_process(delta):
 			if (transition_status > total_transition_duration_back):
 				zoom = latest_free_zoom
 				transition_status = null
-	elif followed != null:
+	elif followed != null && !in_level_start_cinematic:
 		global_position = followed.global_position
+	elif followed != null:
+		pass
 	else:
 		var buffer = Vector2(0, 0)
 		if (Input.is_action_pressed("ui_right")):
@@ -152,7 +156,7 @@ func _physics_process(delta):
 		global_position += delta*control_speed*buffer.normalized()
 		
 		var margin_prop = .1
-		var speed = 200
+		var speed = 100
 		var x_ratio = get_viewport().get_mouse_position().x/get_viewport_rect().size.x
 		var y_ratio = get_viewport().get_mouse_position().y/get_viewport_rect().size.y
 		position.x += speed*(min(x_ratio, margin_prop) - margin_prop)
@@ -175,5 +179,6 @@ func followed_object_reached():
 		backToDefault.start()
 
 func _on_timer_timeout():
+	in_level_start_cinematic = false
 	back_to_default()
 	backToDefault.stop()
