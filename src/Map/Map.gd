@@ -42,6 +42,10 @@ func update_tool(tool_template: ToolTemplate):
 
 func _ready():
 	assert(n_challenge_crates > 0, "negative n_challenge_crates")
+	
+	var default_tool_id = inventory[0].tool_id
+	var default_tool_template = Globals.get_tool_template(default_tool_id)
+	update_tool(default_tool_template)
 
 func _process(delta):
 	pass
