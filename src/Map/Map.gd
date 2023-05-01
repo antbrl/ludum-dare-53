@@ -24,6 +24,8 @@ signal mode_to_construction()
 @export var n_challenge_crates: int
 @export var level_name: String
 
+@onready var initial_tools_count = 0
+
 var mode = Globals.DEFAULT_MODE:
 	set(value):
 		mode = value
@@ -40,12 +42,19 @@ func update_tool(tool_template: ToolTemplate):
 	current_tool = tool_template.tool_id
 	tool_ghost.tool_changed(tool_template.texture)
 
+func count_remaining_tools() -> int:
+	var total: int = 0
+	for i in inventory:
+		total += i.quantity
+	return total
+
 func _ready():
 	assert(n_challenge_crates > 0, "negative n_challenge_crates")
 	
 	var default_tool_id = inventory[0].tool_id
 	var default_tool_template = Globals.get_tool_template(default_tool_id)
 	update_tool(default_tool_template)
+	initial_tools_count = count_remaining_tools() 
 
 func _process(delta):
 	pass

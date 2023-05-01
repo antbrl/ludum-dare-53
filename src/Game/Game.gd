@@ -1,6 +1,6 @@
 extends Node
 
-signal end_of_level(total_crates: int, hit_crates: int)
+signal end_of_level(total_crates: int, hit_crates: int, remaining_tools: int)
 signal game_over
 
 var level_number
@@ -84,7 +84,7 @@ func trigger_end_level_cutscene():
 
 func _end_level():
 	viewport.modulate.a = 1
-	emit_signal("end_of_level", map.n_challenge_crates, challenge_score)
+	emit_signal("end_of_level", map.n_challenge_crates, challenge_score, map.count_remaining_tools())
 
 func go_to_challenge_phase():
 	if level_number == 0:
