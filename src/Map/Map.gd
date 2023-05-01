@@ -126,4 +126,3 @@ func _on_back_to_default_timeout():
 
 func reset_crates():
 	launch_area.interrupt()
-

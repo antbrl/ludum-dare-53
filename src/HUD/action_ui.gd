@@ -15,6 +15,9 @@ var map
 
 var mode = Globals.DEFAULT_MODE
 
+func _ready():
+	set_reset_crates_disabled(true)
+
 func init(map):
 	self.map = map
 	map.connect("tool_built", _tool_built)
@@ -88,6 +91,9 @@ func go_to_challenge_phase():
 func _on_mode_to_construction():
 	switch_mode(Globals.Mode.CONSTRUCTION)
 	
+func set_reset_crates_disabled(value):
+	reset_crates_button.disabled = value
+
 func _on_reset_crate_button_pressed():
 	emit_signal("reset_crates")
 

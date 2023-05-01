@@ -30,6 +30,7 @@ func _ready():
 
 	target.connect("crate_dropped", crate_dropped)
 	launcher.connect("crate_killed", crate_killed)
+	launcher.connect("crate_followed_by_cam", crate_followed_by_cam)
 	
 	self.challenge_crates_left = map.n_challenge_crates
 	
@@ -52,6 +53,7 @@ func crate_dropped(crate):
 		challenge_score += 1
 
 func crate_killed(crate):
+	action_ui.set_reset_crates_disabled(true)
 	if phase == Globals.Phase.CHALLENGE:
 		challenge_crates_left -= 1
 		if challenge_crates_left == -1:
@@ -59,6 +61,9 @@ func crate_killed(crate):
 		
 		if not crate.hit:
 			hud.miss()
+
+func crate_followed_by_cam(crate):
+	action_ui.set_reset_crates_disabled(false)
 
 func trigger_end_level_cutscene():
 	var tween = create_tween()

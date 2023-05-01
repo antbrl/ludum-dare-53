@@ -1,6 +1,7 @@
 extends Node2D
 
-signal crate_killed
+signal crate_killed(crate)
+signal crate_followed_by_cam(crate)
 
 @onready var launch_area = $LaunchArea
 @onready var crates = $"../Crates"
@@ -22,6 +23,8 @@ var selected_crate_anchor   = null
 
 var disabled = false
 
+var followed_crate
+
 var crate_scene = preload("res://src/Crate/Crate.tscn")
 
 func capture(id):
@@ -40,6 +43,8 @@ func release(delta):
 	just_released = false
 	selected_crate.thrown()
 	cam.follow(selected_crate)
+	followed_crate = selected_crate
+	emit_signal("crate_followed_by_cam", followed_crate)
 	selected_crate = null
 	disabled = true
 
@@ -91,7 +96,7 @@ func _input(event):
 func interrupt():
 	if disabled:
 		cam.back_to_default()
-		disabled = false
+		kill_crate(followed_crate)
 
 func _on_launch_area_body_entered(body):
 	if (body.get_parent() == crates):
