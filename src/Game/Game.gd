@@ -16,6 +16,8 @@ var challenge_duration = null
 @onready var action_ui = $UI/ActionUI
 @onready var popup = $UI/Popup
 @onready var viewport = $"../../"
+@onready var time_panel = $UI/HUD/TimePanel
+@onready var time_label = $UI/HUD/TimePanel/Label
 
 @onready var map = $Map
 
@@ -44,6 +46,15 @@ func _ready():
 	
 	if level_number == 0:
 		show_textbox('Welcome', 'Your job is to deliver crates to the customer.\nYou are now in TRIAL PHASE, meaning you can build tools to help you reach the customer.\nOnce you will reach the customer once, you will enter to CHALLENGE PHASE')
+
+
+func _process(delta):
+	if (challenge_start_time != null):
+		var challenge_time = Time.get_ticks_msec() - challenge_start_time
+		var ms = str(challenge_time%1000)
+		while ms.length() < 3:
+			ms = ms + '0'
+		time_label.text = str(floor(challenge_time/1000)) + '\'' + ms
 
 func init(level_number, map: PackedScene):
 	self.map_scene = map
@@ -94,6 +105,7 @@ func go_to_challenge_phase():
 	if level_number == 0:
 		show_textbox('Congratulations !', 'By delivering a dummy crate to the customer, you know enter CHALLENGE PHASE. You will now have to throw 5 crates in a row.\nThe more you can deliver, the higher your score ! Good luck')
 	popup.pop_message('Entering challenge mode', 3.0)
+	time_panel.visible = true
 	phase = Globals.Phase.CHALLENGE
 	action_ui.go_to_challenge_phase()
 	hud.go_to_challenge_phase()
