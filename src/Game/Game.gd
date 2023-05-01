@@ -36,6 +36,7 @@ func _ready():
 	
 	action_ui.init(map)
 	hud.init(map.level_name, self.challenge_crates_left)
+	popup.pop_message('Level ' + str(level_number + 1) + ':\n' + map.level_name, 3.0)
 
 func init(level_number, map: PackedScene):
 	self.map_scene = map
