@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6e5c0iscdww1"]
+[gd_scene load_steps=10 format=3 uid="uid://b6e5c0iscdww1"]
 
 [ext_resource type="Script" path="res://src/Tool/Portal/Portal.gd" id="1_6g6il"]
 [ext_resource type="AudioStream" uid="uid://d0m8rg5cpgdbq" path="res://assets/sounds/teleport.wav" id="2_0fne1"]
@@ -17,6 +17,32 @@ colors = PackedColorArray(1, 1, 1, 1, 0.310617, 0.310617, 0.310617, 1, 0.059144,
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tc736"]
 gradient = SubResource("Gradient_m7epf")
 height = 96
+
+[sub_resource type="Shader" id="Shader_bqvvt"]
+code = "shader_type canvas_item;
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
+void fragment() {
+	vec2 vec = vec2(-15.0, 0) - UV;
+	vec.y *= 15.0 / 96.0;
+	float x = length(vec / 15.0);
+
+	vec3 start = vec3(1.0);
+	vec3 mid = vec3(0.0, 1.0, 1.0);
+	vec3 color = mix(start, mid, x*1.3);
+	float alpha = min(1.0, 2.0 * (1.0 - x * 2.0));
+
+    COLOR = vec4(color, alpha);
+}
+
+void vertex() {
+	UV = VERTEX;
+}
+
+void light() {
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0yxcn"]
+shader = SubResource("Shader_bqvvt")
 
 [node name="Portal" type="Area2D" groups=["portals"]]
 collision_layer = 4
@@ -50,9 +76,14 @@ energy = 2.0
 texture = SubResource("GradientTexture2D_tc736")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 position = Vector2(68.5249, 1)
 scale = Vector2(3.62499, 1)
 polygon = PackedVector2Array(-23, -49, -23, 47, -19, 47, -19, -49)
 
 [node name="AudioPlayer" parent="." instance=ExtResource("4_ewi5c")]
 sounds = Array[AudioStream]([ExtResource("2_0fne1")])
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_0yxcn")
+polygon = PackedVector2Array(-15, -48, 0, -48, 0, 48, -15, 48)
