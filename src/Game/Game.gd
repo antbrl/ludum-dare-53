@@ -44,14 +44,19 @@ func init(level_number, map: PackedScene):
 	self.map_scene = map
 	self.level_number = level_number
 
+var serie = 0
+
 func crate_dropped(crate):
 	if hit_crates.find(crate) != -1:
 		return
 
 	hit_crates.push_back(crate)
 	if phase == Globals.Phase.TRIAL:
+		$Hit.play_sound(0)
 		go_to_challenge_phase()
 	else:
+		$Hit.play_sound(serie)
+		serie = min(serie + 1, len($Hit.sounds) - 1)
 		hud.hit()
 		challenge_score += 1
 
@@ -63,6 +68,7 @@ func crate_killed(crate):
 			trigger_end_level_cutscene()
 		
 		if not crate.hit:
+			serie = 0
 			hud.miss()
 
 func crate_followed_by_cam(crate):
