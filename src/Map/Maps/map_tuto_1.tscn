@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://drx5t4vpsrr2v"]
+[gd_scene load_steps=4 format=3 uid="uid://drx5t4vpsrr2v"]
 
 [ext_resource type="PackedScene" uid="uid://cerdlyf71wibk" path="res://src/Map/Map.tscn" id="1_3c3jv"]
 [ext_resource type="Script" path="res://src/Game/inventory_slot.gd" id="2_u3obq"]
@@ -8,18 +8,8 @@ script = ExtResource("2_u3obq")
 tool_id = 2
 quantity = 5
 
-[sub_resource type="Resource" id="Resource_c4kb5"]
-script = ExtResource("2_u3obq")
-tool_id = 1
-quantity = 2
-
-[sub_resource type="Resource" id="Resource_vc47j"]
-script = ExtResource("2_u3obq")
-tool_id = 3
-quantity = 3
-
 [node name="Map1" instance=ExtResource("1_3c3jv")]
-inventory = Array[ExtResource("2_u3obq")]([SubResource("Resource_rjju2"), SubResource("Resource_c4kb5"), SubResource("Resource_vc47j")])
+inventory = Array[ExtResource("2_u3obq")]([SubResource("Resource_rjju2")])
 n_challenge_crates = 5
 level_name = "Time travelers"
 

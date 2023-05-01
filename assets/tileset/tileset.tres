@@ -126,6 +126,7 @@ texture_region_size = Vector2i(32, 32)
 1:0/1/custom_data_0 = 2
 1:0/1/custom_data_1 = 4
 1:0/2 = 2
+1:0/2/flip_h = true
 1:0/2/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/2/physics_layer_0/angular_velocity = 0.0
 1:0/2/custom_data_0 = 3
