@@ -256,9 +256,9 @@ func _physics_process(delta):
 				gui_top.color    = Color(.28, .62, .33, 0.)
 				gui_bottom.color = Color(.28, .62, .33, 0.)
 		var zoom_diff = 0.0
-		if (Input.is_action_pressed("zoom-in")):
+		if (Input.is_action_pressed("zoom-in") || Input.is_action_just_released("zoom-in")):
 			zoom_diff += 1
-		if (Input.is_action_pressed("zoom-out")):
+		if (Input.is_action_pressed("zoom-out") || Input.is_action_just_released("zoom-out")):
 			zoom_diff -= 1
 		zoom += zoom * Vector2(1, 1)*delta*zoom_diff*zoom_speed
 		zoom = clamp(zoom, min_zoom, max_zoom)
