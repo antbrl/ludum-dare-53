@@ -114,7 +114,7 @@ sounds = Array[AudioStream]([ExtResource("22_wv8qb"), ExtResource("23_vke5q"), E
 
 [node name="Human" parent="Sounds/Shock/Composite" instance=ExtResource("3_bqtxm")]
 sounds = Array[AudioStream]([ExtResource("4_n0pde"), ExtResource("5_sq8bl"), ExtResource("6_5tnv6"), ExtResource("7_crnqa"), ExtResource("8_c62im"), ExtResource("9_mx0fy"), ExtResource("10_q0g4r"), ExtResource("11_d1d4o"), ExtResource("12_ryrcg")])
-skip_frequency = 0.25
+skip_frequency = 0.65
 
 [node name="Pan" parent="Sounds/Shock/Composite" instance=ExtResource("3_bqtxm")]
 sounds = Array[AudioStream]([ExtResource("31_50xty"), ExtResource("32_jjq6d"), ExtResource("33_be2x8"), ExtResource("34_8qvl2"), ExtResource("35_ktyww"), ExtResource("36_uj53c"), ExtResource("37_iak7y")])

@@ -4,7 +4,7 @@ extends AudioStreamPlayer
 @export var skip_frequency: float = 0.0
 
 func play_random_sound():
-	if skip_frequency < randf():
+	if randf() >= skip_frequency:
 		var index = randi() % len(sounds)
 		play_sound(index)
 
