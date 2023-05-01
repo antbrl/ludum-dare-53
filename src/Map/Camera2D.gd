@@ -45,6 +45,8 @@ const zoom_factor = 1
 const zoom_snap = .01
 const min_zoom_speed = 1
 
+var mouse_controls_disabled = false
+
 @onready var bounds = get_node("../Bounds")
 @onready var backToDefault = $BackToDefault
 
@@ -90,6 +92,7 @@ func _ready():
 	latest_free_zoom = zoom
 
 func cinematic_view_to(object):
+	mouse_controls_disabled = true
 	follow(object)
 	transition_move_duration = CINEMATIC_TRANSITION_MOVE_DURATION
 	transition_zoom_duration = CINEMATIC_TRANSITION_ZOOM_DURATION
@@ -97,6 +100,7 @@ func cinematic_view_to(object):
 	self.go_back_to_start_on_followed_reached = true
 
 func back_to_default():
+	mouse_controls_disabled = true
 	self.go_back_to_start_on_followed_reached = false
 	transition_move_duration = CINEMATIC_TRANSITION_MOVE_DURATION
 	transition_zoom_duration = CINEMATIC_TRANSITION_ZOOM_DURATION
@@ -107,6 +111,7 @@ func back_to_default():
 	zoom_from = zoom
 
 func follow(object):
+	mouse_controls_disabled = true
 	self.go_back_to_start_on_followed_reached = false
 	transition_move_duration = DEFAULT_TRANSITION_MOVE_DURATION
 	transition_zoom_duration = DEFAULT_TRANSITION_ZOOM_DURATION
@@ -207,15 +212,20 @@ func _physics_process(delta):
 		global_position += delta*control_speed*buffer.normalized()
 		
 		var margin_prop = .1
-		var speed = 100
 		var x_ratio = get_viewport().get_mouse_position().x/get_viewport_rect().size.x
 		var y_ratio = get_viewport().get_mouse_position().y/get_viewport_rect().size.y
-		position.x += speed*(min(x_ratio, margin_prop) - margin_prop)
-		position.x += speed*(max(x_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
-		position.y += speed*(min(y_ratio, margin_prop) - margin_prop)
-		position.y += speed*(max(y_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
-		
-		position = Vector2(clamp(position.x,limit_left+get_viewport_rect().size.x/(2*zoom.x),limit_right-get_viewport_rect().size.x/(2*zoom.x)),clamp(position.y,limit_top+get_viewport_rect().size.y/(2*zoom.y),limit_bottom-get_viewport_rect().size.y/(2*zoom.y)))
+		if !mouse_controls_disabled:
+			var speed = 100
+			position.x += speed*(min(x_ratio, margin_prop) - margin_prop)
+			position.x += speed*(max(x_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
+			position.y += speed*(min(y_ratio, margin_prop) - margin_prop)
+			position.y += speed*(max(y_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
+			position = Vector2(clamp(position.x,limit_left+get_viewport_rect().size.x/(2*zoom.x),limit_right-get_viewport_rect().size.x/(2*zoom.x)),clamp(position.y,limit_top+get_viewport_rect().size.y/(2*zoom.y),limit_bottom-get_viewport_rect().size.y/(2*zoom.y)))
+		else:
+			var x_border_dst = (min(x_ratio, margin_prop) - margin_prop) + (max(x_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
+			var y_border_dst = (min(y_ratio, margin_prop) - margin_prop) + (max(y_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
+			if (x_border_dst == 0 && y_border_dst == 0):
+				mouse_controls_disabled = false
 		var zoom_diff = 0.0
 		if (Input.is_action_pressed("zoom-in")):
 			zoom_diff += 1
