@@ -38,6 +38,13 @@ var transition_from = null
 var zoom_from = null
 var go_back_to_start_on_followed_reached = false
 
+# Camera dynamic zoom
+const high_speed = 500
+const low_speed = 0
+const zoom_factor = 1
+const zoom_snap = .2
+const min_zoom_speed = 1
+
 @onready var bounds = get_node("../Bounds")
 @onready var backToDefault = $BackToDefault
 
@@ -123,9 +130,39 @@ func _physics_process(delta):
 				global_position = followed.global_position
 			if (transition_status > total_transition_duration - transition_zoom_duration):
 				var zoom_transition_status = transition_status - (total_transition_duration - transition_zoom_duration)
-				zoom = Tween.interpolate_value(zoom_from, follow_zoom - zoom_from, zoom_transition_status, transition_zoom_duration, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+				if followed is Crate:
+					var current_speed = followed.linear_velocity.length()
+					var proportion = clamp((current_speed - low_speed)/(high_speed - low_speed), 0, 1)
+					var adjusted_proportion = 1.0 - proportion
+					var wanted_zoom = min_zoom + (max_zoom - min_zoom)*adjusted_proportion
+					var diff = clamp(wanted_zoom - zoom, -zoom_factor*zoom, zoom_factor*zoom)
+					if (diff.length() < min_zoom_speed):
+						diff = diff.normalized()*min_zoom_speed
+					zoom += diff*delta
+					zoom = clamp(zoom, min_zoom, max_zoom)
+					if ((zoom - min_zoom).length() < zoom_snap):
+						zoom = min_zoom
+					elif ((zoom - max_zoom).length() < zoom_snap):
+						zoom = max_zoom
+				else:
+					zoom = Tween.interpolate_value(zoom_from, follow_zoom - zoom_from, zoom_transition_status, transition_zoom_duration, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 			if (transition_status > total_transition_duration):
-				zoom = follow_zoom
+				if followed is Crate:
+					var current_speed = followed.linear_velocity.length()
+					var proportion = clamp((current_speed - low_speed)/(high_speed - low_speed), 0, 1)
+					var adjusted_proportion = 1.0 - proportion
+					var wanted_zoom = min_zoom + (max_zoom - min_zoom)*adjusted_proportion
+					var diff = clamp(wanted_zoom - zoom, -zoom_factor*zoom, zoom_factor*zoom)
+					if (diff.length() < min_zoom_speed):
+						diff = diff.normalized()*min_zoom_speed
+					zoom += diff*delta
+					zoom = clamp(zoom, min_zoom, max_zoom)
+					if ((zoom - min_zoom).length() < zoom_snap):
+						zoom = min_zoom
+					elif ((zoom - max_zoom).length() < zoom_snap):
+						zoom = max_zoom
+				else:
+					zoom = follow_zoom
 				transition_status = null
 				followed_object_reached()
 		else:
@@ -140,6 +177,20 @@ func _physics_process(delta):
 				transition_status = null
 	elif followed != null && !in_level_start_cinematic:
 		global_position = followed.global_position
+		if followed is Crate:
+			var current_speed = followed.linear_velocity.length()
+			var proportion = clamp((current_speed - low_speed)/(high_speed - low_speed), 0, 1)
+			var adjusted_proportion = 1.0 - proportion
+			var wanted_zoom = min_zoom + (max_zoom - min_zoom)*adjusted_proportion
+			var diff = clamp(wanted_zoom - zoom, -zoom_factor*zoom, zoom_factor*zoom)
+			if (diff.length() < min_zoom_speed):
+				diff = diff.normalized()*min_zoom_speed
+			zoom += diff*delta
+			zoom = clamp(zoom, min_zoom, max_zoom)
+			if ((zoom - min_zoom).length() < zoom_snap):
+				zoom = min_zoom
+			elif ((zoom - max_zoom).length() < zoom_snap):
+				zoom = max_zoom
 	elif followed != null:
 		pass
 	else:
