@@ -12,7 +12,6 @@ signal clicked(id)
 
 @onready var shock_wood_sound = $Sounds/Shock/Wood
 @onready var shock_sound_cooldown = $ShockSoundCooldown
-@onready var shock_composite = $Sounds/Shock/Composite
 
 var prev_pos = null
 var prev_rot = null
@@ -25,6 +24,7 @@ var in_range_physic_tools: Array[PhysicsTool]
 
 var hit = false
 
+var crate_main_sound: AudioStreamPlayer
 var crate_composite_sound: AudioStreamPlayer
 
 func set_launch_area(v):
@@ -38,15 +38,56 @@ func thrown():
 	launched = true
 #	nine_patch_rect.modulate = Color(0.5, 0.5, 0.5, 1.0)
 
+enum CrateSkin {
+	WOOD = 0,
+	FRAGILE = 1,
+	HUMAN = 2,
+	PQ = 3,
+	HOLED = 4,
+	PACKAGE = 5
+}
+
+var SkinAtlasRegion = {
+	CrateSkin.WOOD: Rect2(0, 0, 32, 32),
+	CrateSkin.FRAGILE: Rect2(32, 0, 32, 32),
+	CrateSkin.HUMAN: Rect2(64, 0, 32, 32),
+	CrateSkin.PQ: Rect2(0, 32, 32, 32),
+	CrateSkin.HOLED: Rect2(32, 32, 32, 32),
+	CrateSkin.PACKAGE: Rect2(64, 32, 32, 32),
+}
+
+@onready var SkinMainSound = {
+	CrateSkin.WOOD: shock_wood_sound,
+	CrateSkin.FRAGILE: shock_wood_sound,
+	CrateSkin.HUMAN: shock_wood_sound,
+	CrateSkin.PQ: $Sounds/Shock/Pq,
+	CrateSkin.HOLED: shock_wood_sound,
+	CrateSkin.PACKAGE: shock_wood_sound
+}
+
+@onready var SkinCompositeSound = {
+	CrateSkin.WOOD: [null],
+	CrateSkin.FRAGILE: [$Sounds/Shock/Glass],
+	CrateSkin.HUMAN: [$Sounds/Shock/Human],
+	CrateSkin.PQ: [null],
+	CrateSkin.HOLED: [null, $Sounds/Shock/Pan],
+	CrateSkin.PACKAGE: [null, $Sounds/Shock/Glass, $Sounds/Shock/Pan]
+}
+
 func _ready():
 	in_range_physic_tools = []
 	prev_pos = position
 	self.connect("clicked", launcher.handle_click)
 	self.connect("killme", launcher.kill_crate)
 	
-	if randi() % 2 == 0:
-		var audio_player_i = randi() % shock_composite.get_child_count()
-		crate_composite_sound = shock_composite.get_child(audio_player_i)
+	var picked_skin = randi() % len(CrateSkin)
+	crate_main_sound = SkinMainSound[picked_skin]
+	print(picked_skin)
+	
+	$Sprite.texture.region = SkinAtlasRegion[picked_skin]
+	
+	var composites = SkinCompositeSound[picked_skin]
+	crate_composite_sound = composites[randi() % len(composites)]
 
 func _process(delta):
 	if !is_dying:
@@ -87,7 +128,7 @@ func _on_detection_area_exited(area):
 func _on_body_entered(body):
 	if shock_sound_cooldown.is_stopped():
 		shock_sound_cooldown.start()
-		shock_wood_sound.play_random_sound()
+		crate_main_sound.play_random_sound()
 		if crate_composite_sound != null:
 			crate_composite_sound.play_random_sound()
 

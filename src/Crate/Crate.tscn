@@ -1,7 +1,7 @@
 [gd_scene load_steps=58 format=3 uid="uid://bqdyskkc8us6p"]
 
 [ext_resource type="Script" path="res://src/Crate/Crate.gd" id="1_qunqm"]
-[ext_resource type="Texture2D" uid="uid://beithv6gedupv" path="res://assets/sprites/crate.png" id="3_0xeyi"]
+[ext_resource type="Texture2D" uid="uid://b47tt0rxxbhvj" path="res://assets/sprites/crates.png" id="2_bd3qt"]
 [ext_resource type="PackedScene" uid="uid://1jb28yihlqxm" path="res://src/Audio/audio_player.tscn" id="3_bqtxm"]
 [ext_resource type="AudioStream" uid="uid://cb7jh20u2ppb1" path="res://assets/sounds/Crate/Shock/People/aie0.wav" id="4_n0pde"]
 [ext_resource type="AudioStream" uid="uid://c6m0cjb0yfmm" path="res://assets/sounds/Crate/Shock/Wood/wood0.wav" id="4_tfpdg"]
@@ -60,7 +60,7 @@ friction = 0.8
 bounce = 0.4
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_54pbd"]
-atlas = ExtResource("3_0xeyi")
+atlas = ExtResource("2_bd3qt")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cm2xa"]
@@ -74,18 +74,10 @@ max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_qunqm")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
-offset_left = -19.0
-offset_top = -19.0
-offset_right = 19.0
-offset_bottom = 19.0
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, 9.53674e-07)
+scale = Vector2(1.1875, 1.1875)
 texture = SubResource("AtlasTexture_54pbd")
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cm2xa")
@@ -108,27 +100,24 @@ shape = SubResource("RectangleShape2D_cm2xa")
 volume_db = -3.0
 sounds = Array[AudioStream]([ExtResource("4_tfpdg"), ExtResource("5_u0ty2"), ExtResource("6_gpsxs"), ExtResource("7_rwvv0"), ExtResource("8_m347h"), ExtResource("9_ie07k"), ExtResource("10_xcfa1"), ExtResource("11_pre0o"), ExtResource("12_887ne"), ExtResource("13_3nklw"), ExtResource("14_otjq5"), ExtResource("15_5exj7"), ExtResource("16_bmij7"), ExtResource("17_7ufw1"), ExtResource("18_1uses"), ExtResource("19_blue2"), ExtResource("20_mh6w3"), ExtResource("21_ssng7")])
 
-[node name="Composite" type="Node" parent="Sounds/Shock"]
-
-[node name="Glass" parent="Sounds/Shock/Composite" instance=ExtResource("3_bqtxm")]
-volume_db = -6.5
-sounds = Array[AudioStream]([ExtResource("22_wv8qb"), ExtResource("23_vke5q"), ExtResource("24_kn5np"), ExtResource("25_jo7ec"), ExtResource("26_sclpp"), ExtResource("27_bafei"), ExtResource("28_mwuw2"), ExtResource("29_bpy1a")])
-skip_frequency = 0.35
-
-[node name="Human" parent="Sounds/Shock/Composite" instance=ExtResource("3_bqtxm")]
+[node name="Human" parent="Sounds/Shock" instance=ExtResource("3_bqtxm")]
 volume_db = -4.0
 sounds = Array[AudioStream]([ExtResource("4_n0pde"), ExtResource("5_sq8bl"), ExtResource("6_5tnv6"), ExtResource("7_crnqa"), ExtResource("8_c62im"), ExtResource("9_mx0fy"), ExtResource("10_q0g4r"), ExtResource("11_d1d4o"), ExtResource("12_ryrcg")])
 skip_frequency = 0.75
 
-[node name="Pan" parent="Sounds/Shock/Composite" instance=ExtResource("3_bqtxm")]
+[node name="Glass" parent="Sounds/Shock" instance=ExtResource("3_bqtxm")]
+volume_db = -6.5
+sounds = Array[AudioStream]([ExtResource("22_wv8qb"), ExtResource("23_vke5q"), ExtResource("24_kn5np"), ExtResource("25_jo7ec"), ExtResource("26_sclpp"), ExtResource("27_bafei"), ExtResource("28_mwuw2"), ExtResource("29_bpy1a")])
+skip_frequency = 0.35
+
+[node name="Pan" parent="Sounds/Shock" instance=ExtResource("3_bqtxm")]
 volume_db = -9.0
 sounds = Array[AudioStream]([ExtResource("31_50xty"), ExtResource("32_jjq6d"), ExtResource("33_be2x8"), ExtResource("34_8qvl2"), ExtResource("35_ktyww"), ExtResource("36_uj53c"), ExtResource("37_iak7y")])
 skip_frequency = 0.45
 
-[node name="Pq" parent="Sounds/Shock/Composite" instance=ExtResource("3_bqtxm")]
+[node name="Pq" parent="Sounds/Shock" instance=ExtResource("3_bqtxm")]
 volume_db = -1.5
 sounds = Array[AudioStream]([ExtResource("46_qtd2r"), ExtResource("47_kbp3m"), ExtResource("48_y5knm")])
-skip_frequency = 0.2
 
 [node name="Destroy" parent="Sounds" instance=ExtResource("3_bqtxm")]
 sounds = Array[AudioStream]([ExtResource("46_l6q5q"), ExtResource("47_gibvx"), ExtResource("48_5vyg0")])
