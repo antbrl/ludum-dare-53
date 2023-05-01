@@ -103,7 +103,7 @@ func kill_crate(crate):
 	emit_signal("crate_killed", crate)
 	crate.queue_free()
 	var new_crate = crate_scene.instantiate()
-	new_crate.global_position = launch_area.to_global(Vector2(-250, 0))
+	new_crate.global_position = launch_area.to_global(Vector2(-200, -500))
 	crates.add_child(new_crate)
 	cam.back_to_default()
 	disabled = false

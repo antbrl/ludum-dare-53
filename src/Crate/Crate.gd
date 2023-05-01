@@ -42,7 +42,7 @@ func _physics_process(delta):
 	# Keep alive if moving
 	if (launched && prev_pos != null && prev_rot != null && ((prev_pos - position).length() > epsilon || prev_rot - rotation > rot_epsilon)):
 		timer.start(depop_delay)
-	if (global_position.length() > 5000):
+	if (global_position.y > 50):
 		print("OOB kill")
 		emit_signal("killme", self)
 	prev_pos = position

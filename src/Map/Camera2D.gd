@@ -11,8 +11,10 @@ const transition_move_duration_back = 0.5
 const transition_zoom_duration_back= 0.5
 const total_transition_duration_back = 0.5
 
-const default_zoom = Vector2(1, 1)
-const follow_zoom = Vector2(2, 2)
+const default_zoom = Vector2(2, 2)
+const follow_zoom = Vector2(4, 4)
+const min_zoom = Vector2(1, 1)
+const max_zoom = Vector2(6, 6)
 
 const control_speed = 1000
 const zoom_speed = 2
@@ -23,8 +25,34 @@ var zoom_from = null
 
 @onready var bounds = get_node("../Bounds")
 
+@onready var left   = get_node("../Bounds/Left")
+@onready var right  = get_node("../Bounds/Right")
+@onready var top    = get_node("../Bounds/Top")
+@onready var bottom = get_node("../Bounds/Bottom")
+
+@onready var left_c   = null
+@onready var right_c  = null
+@onready var top_c    = null
+@onready var bottom_c = null
+
 func _ready():
+	left_c       = left.global_position.x + left.get_rect().end.x
+	right_c      = right.global_position.x + right.get_rect().position.x
+	top_c        = top.global_position.y + top.get_rect().end.y
+	bottom_c     = bottom.global_position.y + bottom.get_rect().position.y
+	limit_left   = left_c
+	limit_right  = right_c
+	limit_top    = top_c
+	limit_bottom = bottom_c
+	print(left_c)
+	print(right_c)
+	print(top_c)
+	print(bottom_c)
+	print(global_position)
+	global_position = Vector2(0, -200)
+	print(global_position)
 	default_position = global_position
+	zoom = default_zoom
 
 func back_to_default():
 	followed = null
@@ -75,12 +103,11 @@ func _physics_process(delta):
 			buffer += Vector2(0, -1)
 		if (Input.is_action_pressed("ui_down") && !Input.is_action_pressed("zoom-out")):
 			buffer += Vector2(0, 1)
-		var predicted_pos = global_position + delta*control_speed*buffer.normalized()
-		if (bounds.get_node("CollisionShape2D").shape.get_rect().has_point(predicted_pos)):
-			global_position = predicted_pos
+		global_position += delta*control_speed*buffer.normalized()
 		var zoom_diff = 0.0
 		if (Input.is_action_pressed("zoom-in")):
 			zoom_diff += 1
 		if (Input.is_action_pressed("zoom-out")):
 			zoom_diff -= 1
-		zoom += Vector2(1, 1)*delta*zoom_diff*zoom_speed
+		zoom += zoom * Vector2(1, 1)*delta*zoom_diff*zoom_speed
+		zoom = clamp(zoom, min_zoom, max_zoom)

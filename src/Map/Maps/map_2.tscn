@@ -45,3 +45,19 @@ position = Vector2(-238, -534)
 
 [node name="CollisionShape2D" parent="Bounds" index="0"]
 position = Vector2(468, -347.5)
+
+[node name="Top" parent="Bounds" index="1"]
+position = Vector2(777, -2158)
+scale = Vector2(121.7, 1)
+
+[node name="Bottom" parent="Bounds" index="2"]
+position = Vector2(756.844, 9)
+scale = Vector2(121.884, 1)
+
+[node name="Left" parent="Bounds" index="3"]
+position = Vector2(-432, -1070.75)
+scale = Vector2(1.575, 110.325)
+
+[node name="Right" parent="Bounds" index="4"]
+position = Vector2(1965, -1086)
+scale = Vector2(1.525, 108.4)

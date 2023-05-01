@@ -27,7 +27,6 @@ script = ExtResource("1_lb1fb")
 [node name="ToolGhost" parent="." instance=ExtResource("6_x85yr")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(497, -73)
 script = ExtResource("7_7mhk7")
 
 [node name="Launch" parent="." instance=ExtResource("8_6t0vn")]
@@ -39,7 +38,7 @@ scale = Vector2(30, 30)
 [node name="Crates" type="Node2D" parent="."]
 
 [node name="Crate" parent="Crates" instance=ExtResource("2_qey5k")]
-position = Vector2(-239, -534)
+position = Vector2(-200, -500)
 can_sleep = false
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -109,6 +108,22 @@ region_rect = Rect2(0, 0, 4096, 256)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds"]
 shape = SubResource("RectangleShape2D_jgt8q")
+
+[node name="Top" type="VisibleOnScreenNotifier2D" parent="Bounds"]
+position = Vector2(940.875, -368)
+scale = Vector2(99.1125, 1)
+
+[node name="Bottom" type="VisibleOnScreenNotifier2D" parent="Bounds"]
+position = Vector2(945.625, 362)
+scale = Vector2(100.037, 1)
+
+[node name="Left" type="VisibleOnScreenNotifier2D" parent="Bounds"]
+position = Vector2(-46, -1.99998)
+scale = Vector2(1.575, 38.1)
+
+[node name="Right" type="VisibleOnScreenNotifier2D" parent="Bounds"]
+position = Vector2(1924, -26)
+scale = Vector2(1.525, 39.65)
 
 [connection signal="build_tool" from="TileMap" to="." method="_on_tile_map_build_tool"]
 [connection signal="destroy_tool" from="TileMap" to="." method="_on_tile_map_destroy_tool"]
