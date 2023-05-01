@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c670vsla6rvsu"]
+[gd_scene load_steps=14 format=3 uid="uid://c670vsla6rvsu"]
 
 [ext_resource type="Script" path="res://src/SceneManager/SceneManager.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://drx5t4vpsrr2v" path="res://src/Map/Maps/map_tuto_trampo.tscn" id="2_16use"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cggfkvyariqlo" path="res://src/Map/Maps/map_tuto_portal.tscn" id="4_vgcl2"]
 [ext_resource type="PackedScene" uid="uid://bskg83pn4w32d" path="res://src/Map/Maps/map_tuto_aspi.tscn" id="5_1xu6x"]
 [ext_resource type="PackedScene" uid="uid://dscnvjyl2ucw8" path="res://src/Map/Maps/map_tuto_sing.tscn" id="6_6qpxn"]
+[ext_resource type="PackedScene" uid="uid://dhbhtpxn1wh3g" path="res://src/Map/Maps/map_dungeon_revenge.tscn" id="10_qgwqt"]
 
 [node name="SceneManager" type="Control"]
 layout_mode = 3
@@ -22,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1")
-maps = Array[PackedScene]([ExtResource("2_16use"), ExtResource("3_2tq3h"), ExtResource("6_6qpxn"), ExtResource("4_vgcl2"), ExtResource("5_1xu6x"), ExtResource("4_52hqx"), ExtResource("3_o066p"), ExtResource("2_r5s32")])
+maps = Array[PackedScene]([ExtResource("2_16use"), ExtResource("3_2tq3h"), ExtResource("6_6qpxn"), ExtResource("4_vgcl2"), ExtResource("5_1xu6x"), ExtResource("4_52hqx"), ExtResource("3_o066p"), ExtResource("2_r5s32"), ExtResource("10_qgwqt")])
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 0
