@@ -19,7 +19,6 @@ height = 96
 [node name="Portal" type="Area2D" groups=["portals"]]
 collision_layer = 4
 script = ExtResource("1_6g6il")
-OUTPUT_VELOCITY = 500
 
 [node name="Portal" type="Sprite2D" parent="."]
 position = Vector2(-16, 0)

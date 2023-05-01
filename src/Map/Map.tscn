@@ -29,6 +29,9 @@ script = ExtResource("1_lb1fb")
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("7_7mhk7")
 
+[node name="BackToDefault" type="Timer" parent="Camera2D"]
+wait_time = 2.0
+
 [node name="Launch" parent="." instance=ExtResource("8_6t0vn")]
 
 [node name="Target" parent="." instance=ExtResource("4_8ry0r")]
@@ -127,3 +130,5 @@ scale = Vector2(1.525, 39.65)
 
 [connection signal="build_tool" from="TileMap" to="." method="_on_tile_map_build_tool"]
 [connection signal="destroy_tool" from="TileMap" to="." method="_on_tile_map_destroy_tool"]
+[connection signal="timeout" from="Camera2D/BackToDefault" to="." method="_on_back_to_default_timeout"]
+[connection signal="timeout" from="Camera2D/BackToDefault" to="Camera2D" method="_on_timer_timeout"]

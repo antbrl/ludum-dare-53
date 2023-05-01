@@ -13,9 +13,10 @@ var mode = Globals.DEFAULT_MODE
 
 func init(map):
 	self.map = map
-	tool_list.visible = mode == Globals.Mode.CONSTRUCTION
 	map.connect("tool_built", _tool_built)
 	map.connect("tool_destroyed", _tool_destroyed)
+	map.connect("mode_to_construction", _on_mode_to_construction)
+	switch_mode(Globals.Mode.CINEMATIC)
 	
 	for slot in self.map.inventory:
 		var tool_template = Globals.get_tool_template(slot.tool_id)
@@ -52,12 +53,21 @@ func switch_mode(mode: Globals.Mode):
 	tool_list.visible = mode == Globals.Mode.CONSTRUCTION
 
 	if mode == Globals.Mode.THROW:
-		switch_mode_button.text = 'Construction mode'
-	else:
-		switch_mode_button.text = 'Throw mode'
+		switch_button('Construction mode', false)
+	elif mode == Globals.Mode.CONSTRUCTION:
+		switch_button('Throw mode', false)
+	elif mode == Globals.Mode.CINEMATIC:
+		switch_button('Construction mode', true)
 	emit_signal("mode_change", mode)
+	
+func switch_button(text, disabled):
+	switch_mode_button.text = text
+	switch_mode_button.disabled = disabled
 
 func go_to_challenge_phase():
 	switch_mode(Globals.Mode.THROW)
-	switch_mode_button.disabled = true
+	switch_button('Construction mode', true)
+	
+func _on_mode_to_construction():
+	switch_mode(Globals.Mode.CONSTRUCTION)
 	

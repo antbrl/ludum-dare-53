@@ -4,12 +4,15 @@ class_name Map
 
 signal tool_built(tool_slot: InventorySlot, pos: Vector2i, metadata: Dictionary, quantity: int)
 signal tool_destroyed(tool_slot: InventorySlot, pos: Vector2i, quantity: int)
+signal mode_to_construction()
 
 @onready var tool_ghost = $ToolGhost
 @onready var tile_map = $TileMap
 @onready var launch_area = $Launch
 @onready var tools = $Tools
 @onready var level = $".."
+@onready var target = $Target
+@onready var camera = $Camera2D
 
 @onready var Trampoline = preload("res://src/Tool/Trampoline/trampoline.tscn")
 @onready var Portal = preload("res://src/Tool/Portal/Portal.tscn")
@@ -59,9 +62,14 @@ func switch_mode(_mode: Globals.Mode):
 	mode = _mode
 	if (_mode == Globals.Mode.CONSTRUCTION):
 		launch_area.disabled = true
+		tool_ghost.visible = true
+	elif (_mode == Globals.Mode.CINEMATIC):
+		launch_area.disabled = true
+		tool_ghost.visible = false
+		camera.cinematic_view_to($Target)
 	else:
 		launch_area.disabled = false
-	tool_ghost.visible = mode == Globals.Mode.CONSTRUCTION
+		tool_ghost.visible = false
 
 func _on_tile_map_build_tool(tool, pos, metadata):
 	var tool_instance: Node2D = null
@@ -103,3 +111,7 @@ func _on_tile_map_destroy_tool(tool, pos):
 			if slot.tool_id == tool:
 				slot.quantity += 1
 				emit_signal("tool_destroyed", slot, pos)
+
+
+func _on_back_to_default_timeout():
+	emit_signal("mode_to_construction")

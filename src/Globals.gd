@@ -26,7 +26,8 @@ enum Phase {
 
 enum Mode {
 	THROW = 0,
-	CONSTRUCTION = 1
+	CONSTRUCTION = 1,
+	CINEMATIC = 2
 }
 
 const DEFAULT_MODE = Mode.THROW

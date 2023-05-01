@@ -22,8 +22,10 @@ const zoom_speed = 2
 var transition_status = null
 var transition_from = null
 var zoom_from = null
+var go_back_to_start_on_followed_reached = false
 
 @onready var bounds = get_node("../Bounds")
+@onready var backToDefault = $BackToDefault
 
 @onready var left   = get_node("../Bounds/Left")
 @onready var right  = get_node("../Bounds/Right")
@@ -54,13 +56,20 @@ func _ready():
 	default_position = global_position
 	zoom = default_zoom
 
+	
+func cinematic_view_to(object):
+	follow(object)
+	self.go_back_to_start_on_followed_reached = true
+
 func back_to_default():
+	self.go_back_to_start_on_followed_reached = false
 	followed = null
 	transition_from = global_position
 	transition_status = 0.0
 	zoom_from = zoom
 
 func follow(object):
+	self.go_back_to_start_on_followed_reached = false
 	followed = object
 	transition_from = global_position
 	transition_status = 0.0
@@ -81,6 +90,7 @@ func _physics_process(delta):
 			if (transition_status > total_transition_duration):
 				zoom = follow_zoom
 				transition_status = null
+				followed_object_reached()
 		else:
 			if transition_status < transition_zoom_duration_back:
 				zoom = Tween.interpolate_value(zoom_from, default_zoom - zoom_from, transition_status, transition_zoom_duration_back, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
@@ -111,3 +121,14 @@ func _physics_process(delta):
 			zoom_diff -= 1
 		zoom += zoom * Vector2(1, 1)*delta*zoom_diff*zoom_speed
 		zoom = clamp(zoom, min_zoom, max_zoom)
+		
+func followed_object_reached():
+	if go_back_to_start_on_followed_reached:
+		self.go_back_to_start_on_followed_reached = false
+		backToDefault.start()
+		
+
+func _on_timer_timeout():
+	back_to_default()
+	backToDefault.stop()
+
