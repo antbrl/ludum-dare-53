@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cltddgvew1a21" path="res://src/Map/Maps/map_tuto_belt.tscn" id="3_2tq3h"]
 [ext_resource type="AudioStream" uid="uid://ludl0q5y1jil" path="res://assets/musics/AdvancedTechnologicalAdvantage.ogg" id="3_6i1ea"]
 [ext_resource type="PackedScene" uid="uid://dvqnqc87u23eq" path="res://src/Map/Maps/map_2.tscn" id="3_o066p"]
-[ext_resource type="PackedScene" path="res://src/Map/Maps/map_3.tscn" id="4_52hqx"]
+[ext_resource type="PackedScene" uid="uid://b614d6042i4pn" path="res://src/Map/Maps/map_3.tscn" id="4_52hqx"]
 [ext_resource type="Script" path="res://src/SceneManager/DJ.gd" id="4_jvxbv"]
 [ext_resource type="PackedScene" uid="uid://cggfkvyariqlo" path="res://src/Map/Maps/map_tuto_portal.tscn" id="4_vgcl2"]
 [ext_resource type="PackedScene" uid="uid://bskg83pn4w32d" path="res://src/Map/Maps/map_tuto_aspi.tscn" id="5_1xu6x"]
@@ -21,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1")
-maps = Array[PackedScene]([ExtResource("2_16use"), ExtResource("3_2tq3h"), ExtResource("4_vgcl2"), ExtResource("5_1xu6x"), ExtResource("6_6qpxn"), ExtResource("4_52hqx"), ExtResource("3_o066p")])
+maps = Array[PackedScene]([ExtResource("2_16use"), ExtResource("3_2tq3h"), ExtResource("6_6qpxn"), ExtResource("4_vgcl2"), ExtResource("5_1xu6x"), ExtResource("4_52hqx"), ExtResource("3_o066p")])
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 0
