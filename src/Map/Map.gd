@@ -70,14 +70,14 @@ func _input(event):
 func switch_mode(_mode: Globals.Mode):
 	mode = _mode
 	if (_mode == Globals.Mode.CONSTRUCTION):
-		launch_area.disabled = true
+		launch_area.set_disabled_mode(true)
 		tool_ghost.visible = true
 	elif (_mode == Globals.Mode.CINEMATIC):
-		launch_area.disabled = true
+		launch_area.set_disabled_mode(true)
 		tool_ghost.visible = false
 		camera.cinematic_view_to($Target)
 	else:
-		launch_area.disabled = false
+		launch_area.set_disabled_mode(false)
 		tool_ghost.visible = false
 
 func _on_tile_map_build_tool(tool, pos, metadata):

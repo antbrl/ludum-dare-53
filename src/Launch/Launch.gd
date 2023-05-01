@@ -21,11 +21,21 @@ var selected_crate          = null
 var selected_crate_last_pos = null
 var selected_crate_anchor   = null
 
-var disabled = false
+var disabled_in_throw = false
+var disabled_due_to_mode = (Globals.DEFAULT_MODE == Globals.Mode.THROW)
+var disabled = disabled_in_throw || disabled_due_to_mode
 
 var followed_crate
 
 var crate_scene = preload("res://src/Crate/Crate.tscn")
+
+func set_disabled_mode(v):
+	disabled_due_to_mode = v
+	disabled = disabled_due_to_mode || disabled_in_throw
+
+func set_disabled_throw(v):
+	disabled_in_throw = v
+	disabled = disabled_due_to_mode || disabled_in_throw
 
 func capture(id):
 	selected_crate = id
@@ -46,7 +56,7 @@ func release(delta):
 	followed_crate = selected_crate
 	emit_signal("crate_followed_by_cam", followed_crate)
 	selected_crate = null
-	disabled = true
+	set_disabled_throw(true)
 
 func _physics_process(delta):
 	click_pressed = Input.is_action_pressed("click")
@@ -115,4 +125,4 @@ func kill_crate(crate):
 	new_crate.global_position = launch_area.to_global(Vector2(-200, -500))
 	crates.add_child(new_crate)
 	cam.back_to_default()
-	disabled = false
+	set_disabled_throw(false)
