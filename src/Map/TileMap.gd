@@ -80,10 +80,14 @@ func update_tool_overlay(mode: Globals.Mode, tool: Globals.Tool) -> void:
 	clear_layer(Globals.TileMapLayers.TOOL_OVERLAY)
 	if mode != Globals.Mode.CONSTRUCTION:
 		return
+	for cell in get_used_cells_by_id(Globals.TileMapLayers.TOOL):
+		set_cell(Globals.TileMapLayers.TOOL_OVERLAY, cell, Globals.TileSetSources.TOOL, Vector2i(1, 3))
 	for cell in get_used_cells_by_id(Globals.get_tool_whitelist_layer(tool)):
+		var tool_template = Globals.get_tool_template(tool)
+		var tool_template_data: TileData = get_tool_template_data(cell, tool).data
 		var atlas_coords = Vector2i(1, 3)
 		if can_build_on_cell(cell, tool):
-			match (get_tool_template_data(cell, tool).data as TileData).get_custom_data('direction'):
+			match tool_template_data.get_custom_data('direction'):
 				Globals.Direction.DOWN:
 					atlas_coords = Vector2i(2, 2)
 				Globals.Direction.RIGHT:
@@ -92,8 +96,21 @@ func update_tool_overlay(mode: Globals.Mode, tool: Globals.Tool) -> void:
 					atlas_coords = Vector2i(3, 2)
 				Globals.Direction.UP:
 					atlas_coords = Vector2i(3, 3)
+				Globals.Direction.DOWN_LEFT:
+					atlas_coords = Vector2i(0, 4)
+				Globals.Direction.UP_LEFT:
+					atlas_coords = Vector2i(1, 4)
+				Globals.Direction.UP_RIGHT:
+					atlas_coords = Vector2i(3, 4)
+				Globals.Direction.DOWN_RIGHT:
+					atlas_coords = Vector2i(2, 4)
 				_:
 					atlas_coords = Vector2i(0, 3)
+		elif  tool_template.directions.size() > 1:
+			if tool_template.directions.size() == 2:
+				atlas_coords = Vector2i(2, 1)
+			else:
+				atlas_coords = Vector2i(3, 1)
 		set_cell(Globals.TileMapLayers.TOOL_OVERLAY, cell, Globals.TileSetSources.TOOL, atlas_coords)
 
 func destroy_all_tools():
