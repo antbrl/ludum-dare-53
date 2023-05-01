@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqtltj48l5ode"]
+[gd_scene load_steps=7 format=3 uid="uid://cqtltj48l5ode"]
 
 [ext_resource type="Script" path="res://src/Launch/Launch.gd" id="1_3ki5j"]
+[ext_resource type="Shader" path="res://src/Launch/Launch.gdshader" id="2_ejqu4"]
+[ext_resource type="Texture2D" uid="uid://covjmihwc8mu1" path="res://assets/sprites/empty.png" id="3_jopq3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr38w"]
-size = Vector2(484, 708)
+size = Vector2(600, 600)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_htq20"]
 a = Vector2(14, -37)
 b = Vector2(-1011, -40)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6gwqe"]
+shader = ExtResource("2_ejqu4")
 
 [node name="Launch" type="Node2D"]
 script = ExtResource("1_3ki5j")
@@ -15,7 +20,7 @@ script = ExtResource("1_3ki5j")
 [node name="LaunchArea" type="Area2D" parent="."]
 
 [node name="LaunchCollisionShape" type="CollisionShape2D" parent="LaunchArea"]
-position = Vector2(-259, -374)
+position = Vector2(-324, -324)
 shape = SubResource("RectangleShape2D_xr38w")
 
 [node name="Ground" type="StaticBody2D" parent="."]
@@ -29,6 +34,15 @@ shape = SubResource("SegmentShape2D_htq20")
 
 [node name="CrateReapparitionPoint" type="Marker2D" parent="."]
 position = Vector2(-273, -130)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+z_index = 20
+z_as_relative = false
+material = SubResource("ShaderMaterial_6gwqe")
+position = Vector2(-24, -24)
+texture = ExtResource("3_jopq3")
+polygon = PackedVector2Array(-600, -600, 0, -600, 0, 0, -600, 0)
+uv = PackedVector2Array(0, 0, 1, 0, 1, 1, 0, 1)
 
 [connection signal="body_entered" from="LaunchArea" to="." method="_on_launch_area_body_entered"]
 [connection signal="body_exited" from="LaunchArea" to="." method="_on_launch_area_body_exited"]
