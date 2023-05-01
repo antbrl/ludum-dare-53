@@ -48,7 +48,7 @@ func _ready():
 		var audio_player_i = randi() % shock_composite.get_child_count()
 		crate_composite_sound = shock_composite.get_child(audio_player_i)
 
-func _physics_process(delta):
+func _process(delta):
 	if !is_dying:
 		for influence in in_range_physic_tools:
 			influence.add_physics_modifier(self)
