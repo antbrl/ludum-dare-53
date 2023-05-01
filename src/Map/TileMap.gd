@@ -71,6 +71,9 @@ func _destroy(pos: Vector2i):
 	destroy_tool.emit(tool, pos)
 
 func _rotate(pos: Vector2i, tool: Globals.Tool) -> bool:
+	var tool_template = Globals.get_tool_template(tool)
+	if tool_template.directions.size() <= 1:
+		return false
 	var tool_cell: TileData = get_cell_tile_data(Globals.TileMapLayers.TOOL, pos)
 	if tool_cell == null:
 		return false
@@ -88,9 +91,9 @@ func _rotate(pos: Vector2i, tool: Globals.Tool) -> bool:
 	update_tool.emit(tool, pos, metadata)
 	return true
 
-func try_build_at_mouse(tool: Globals.Tool) -> bool:
+func try_build_at_mouse(tool: Globals.Tool, quantity: int) -> bool:
 	var pos = get_mouse_cell()
-	if can_build_on_cell(pos, tool):
+	if quantity > 0 and can_build_on_cell(pos, tool):
 		_build(pos, tool)
 		return true
 	if _rotate(pos, tool):

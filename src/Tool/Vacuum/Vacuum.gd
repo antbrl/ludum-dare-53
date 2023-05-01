@@ -21,10 +21,10 @@ const DETECTION_RADIUS = 20
 func _update_placement():
 	match direction:
 		Globals.Direction.RIGHT:
-			rotation_degrees = 180
-		Globals.Direction.UP:
 			rotation_degrees = 90
 		Globals.Direction.DOWN:
+			rotation_degrees = 180
+		Globals.Direction.LEFT:
 			rotation_degrees = 270
 		_:
 			rotation_degrees = 0

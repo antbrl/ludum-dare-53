@@ -60,11 +60,8 @@ func _input(event):
 		if is_mouse_on_ui():
 			return
 		for slot in inventory:
-			if slot.tool_id == current_tool:
-				if slot.quantity <= 0:
-					return
-		if mode == Globals.Mode.CONSTRUCTION:
-			tile_map.try_build_at_mouse(current_tool)
+			if mode == Globals.Mode.CONSTRUCTION and slot.tool_id == current_tool:
+				tile_map.try_build_at_mouse(current_tool, slot.quantity)
 	elif event.is_action_pressed("destroy"):
 		if mode == Globals.Mode.CONSTRUCTION:
 			tile_map.try_destroy_at_mouse()
