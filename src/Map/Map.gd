@@ -20,6 +20,7 @@ signal mode_to_construction()
 
 @export var inventory: Array[InventorySlot]
 @export var n_challenge_crates: int
+@export var level_name: String
 
 var mode = Globals.DEFAULT_MODE:
 	set(value):

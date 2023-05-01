@@ -1,8 +1,8 @@
 extends Control
 
-@onready var level_label = $VBoxContainer/VBoxContainer/LevelNumber/LevelNumberValue
-@onready var package_counter = $VBoxContainer/VBoxContainer/PackageCounter
-@onready var icon_list = $VBoxContainer/VBoxContainer/PackageCounter/Icons
+@onready var level_label = $VBoxContainer/LevelName
+@onready var package_counter = $VBoxContainer/PackageCounter
+@onready var icon_list = $VBoxContainer/PackageCounter/Icons
 @onready var crate_icon = preload("res://src/HUD/crate_icon.tscn")
 
 var package_number
@@ -11,8 +11,10 @@ var current_package = 0
 func _ready():
 	self.package_counter.modulate.a = 0
 
-func init(level_number, package_number):
-	level_label.text = str(level_number + 1)
+func init(level_name, package_number):
+	if level_name == '':
+		assert(false, 'Level name not defined in map')
+	level_label.text = level_name
 	self.package_number = package_number
 	for i in range(package_number):
 		var crate_icon_instance = crate_icon.instantiate()

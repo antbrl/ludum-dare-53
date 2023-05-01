@@ -22,6 +22,7 @@ quantity = 3
 [node name="Map1" instance=ExtResource("1_dknvj")]
 inventory = Array[ExtResource("2_veed3")]([SubResource("Resource_rjju2"), SubResource("Resource_c4kb5"), SubResource("Resource_vc47j")])
 n_challenge_crates = 5
+level_name = "Le niveau 2"
 
 [node name="TileMap" parent="." index="0"]
 position = Vector2(1, 0)

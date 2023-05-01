@@ -1,25 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwiu4cm7rlq0p"]
+[gd_scene load_steps=2 format=3 uid="uid://dwiu4cm7rlq0p"]
 
-[ext_resource type="FontFile" uid="uid://yno87q5jq4mk" path="res://assets/fonts/Jokerman.ttf" id="1"]
 [ext_resource type="Script" path="res://src/HUD/HUD.gd" id="2"]
-
-[sub_resource type="FontFile" id="1"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-fallbacks = Array[Font]([ExtResource("1")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="Theme" id="2"]
-default_font = SubResource("1")
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -35,36 +16,21 @@ script = ExtResource("2")
 layout_mode = 0
 anchor_right = 1.0
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+[node name="LevelName" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "LVL_NAME"
+horizontal_alignment = 1
+
+[node name="Phase" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "TRIAL PHASE"
+
+[node name="PackageCounter" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/CenterContainer"]
-layout_mode = 2
-theme = SubResource("2")
-text = "Ludum Dare - Base"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="LevelNumber" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/LevelNumber"]
-layout_mode = 2
-mouse_filter = 1
-text = "Level: "
-
-[node name="LevelNumberValue" type="Label" parent="VBoxContainer/VBoxContainer/LevelNumber"]
-layout_mode = 2
-mouse_filter = 1
-text = "/"
-
-[node name="PackageCounter" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/PackageCounter"]
+[node name="Label" type="Label" parent="VBoxContainer/PackageCounter"]
 layout_mode = 2
 text = "Packages: "
 
-[node name="Icons" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/PackageCounter"]
+[node name="Icons" type="HBoxContainer" parent="VBoxContainer/PackageCounter"]
 layout_mode = 2

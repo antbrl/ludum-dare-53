@@ -35,7 +35,7 @@ func _ready():
 	self.challenge_crates_left = map.n_challenge_crates
 	
 	action_ui.init(map)
-	hud.init(self.level_number, self.challenge_crates_left)
+	hud.init(map.level_name, self.challenge_crates_left)
 
 func init(level_number, map: PackedScene):
 	self.map_scene = map
