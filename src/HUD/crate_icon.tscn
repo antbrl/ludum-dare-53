@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c461mm0ucshda"]
 
-[ext_resource type="Texture2D" uid="uid://btbxodldcx7dj" path="res://assets/sprites/crate_icon.png" id="1_te2vg"]
+[ext_resource type="Texture2D" uid="uid://beithv6gedupv" path="res://assets/sprites/crate.png" id="1_i8klc"]
 [ext_resource type="Texture2D" uid="uid://buvyi28gxiney" path="res://assets/sprites/check.png" id="2_aa4hg"]
 [ext_resource type="Texture2D" uid="uid://dct3jeb3bpov5" path="res://assets/sprites/cross.png" id="3_gikss"]
 
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_te2vg")
+texture = ExtResource("1_i8klc")
 
 [node name="Hit" type="TextureRect" parent="."]
 visible = false
