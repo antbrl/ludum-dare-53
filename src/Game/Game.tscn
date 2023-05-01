@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://y1xmuecnyvvv"]
+[gd_scene load_steps=12 format=3 uid="uid://y1xmuecnyvvv"]
 
 [ext_resource type="Script" path="res://src/Game/Game.gd" id="1_s3wfw"]
 [ext_resource type="PackedScene" uid="uid://dwiu4cm7rlq0p" path="res://src/HUD/HUD.tscn" id="3_jigyd"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://56tssejv5cdb" path="res://assets/sounds/results/hit1.wav" id="7_f6aml"]
 [ext_resource type="AudioStream" uid="uid://bdijbr6lwph1n" path="res://assets/sounds/results/hit2.wav" id="8_i73ee"]
 [ext_resource type="AudioStream" uid="uid://d1ico2lyl4nit" path="res://assets/sounds/results/hit3.wav" id="9_wq5lk"]
+[ext_resource type="AudioStream" uid="uid://btdg1w7mu0yb1" path="res://assets/sounds/tick/miss.wav" id="11_y5xgq"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_s3wfw")
@@ -29,6 +30,9 @@ mouse_filter = 2
 
 [node name="Hit" parent="." instance=ExtResource("5_1xpta")]
 sounds = Array[AudioStream]([ExtResource("6_4a04i"), ExtResource("7_f6aml"), ExtResource("8_i73ee"), ExtResource("9_wq5lk")])
+
+[node name="Miss" parent="." instance=ExtResource("5_1xpta")]
+sounds = Array[AudioStream]([ExtResource("11_y5xgq")])
 
 [connection signal="mode_change" from="UI/ActionUI" to="." method="_on_action_ui_mode_change"]
 [connection signal="reset_crates" from="UI/ActionUI" to="." method="_on_action_ui_reset_crates"]

@@ -73,6 +73,7 @@ func crate_killed(crate):
 		if not crate.hit:
 			serie = 0
 			hud.miss()
+			$Miss.play_sound(0)
 
 func crate_followed_by_cam(crate):
 	action_ui.set_reset_crates_disabled(false)
