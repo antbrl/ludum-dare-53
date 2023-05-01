@@ -33,6 +33,7 @@ func set_launch_area(v):
 		timer.start(depop_delay)
 
 func thrown():
+	$Sounds/Throw.play_random_sound()
 	timer.start(depop_delay)
 	launched = true
 #	nine_patch_rect.modulate = Color(0.5, 0.5, 0.5, 1.0)

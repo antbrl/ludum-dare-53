@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bqdyskkc8us6p"]
+[gd_scene load_steps=55 format=3 uid="uid://bqdyskkc8us6p"]
 
 [ext_resource type="Script" path="res://src/Crate/Crate.gd" id="1_qunqm"]
 [ext_resource type="Texture2D" uid="uid://beithv6gedupv" path="res://assets/sprites/crate.png" id="3_0xeyi"]
@@ -48,6 +48,9 @@
 [ext_resource type="AudioStream" uid="uid://dcfesr1eshc20" path="res://assets/sounds/Crate/Destroy/destroy0.wav" id="46_l6q5q"]
 [ext_resource type="AudioStream" uid="uid://d3utn7648ugys" path="res://assets/sounds/Crate/Destroy/destroy1.wav" id="47_gibvx"]
 [ext_resource type="AudioStream" uid="uid://cwvdjcy8moien" path="res://assets/sounds/Crate/Destroy/destroy2.wav" id="48_5vyg0"]
+[ext_resource type="AudioStream" uid="uid://0omngmpxui8x" path="res://assets/sounds/Crate/Throw/throw0.wav" id="49_v60cd"]
+[ext_resource type="AudioStream" uid="uid://b2pl3h6hibbii" path="res://assets/sounds/Crate/Throw/throw1.wav" id="50_uwxsg"]
+[ext_resource type="AudioStream" uid="uid://bfggwshtj82hs" path="res://assets/sounds/Crate/Throw/throw2.wav" id="51_37hwy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5epos"]
 friction = 0.8
@@ -115,6 +118,10 @@ sounds = Array[AudioStream]([ExtResource("31_50xty"), ExtResource("32_jjq6d"), E
 
 [node name="Destroy" parent="Sounds" instance=ExtResource("3_bqtxm")]
 sounds = Array[AudioStream]([ExtResource("46_l6q5q"), ExtResource("47_gibvx"), ExtResource("48_5vyg0")])
+
+[node name="Throw" parent="Sounds" instance=ExtResource("3_bqtxm")]
+volume_db = 10.0
+sounds = Array[AudioStream]([ExtResource("49_v60cd"), ExtResource("50_uwxsg"), ExtResource("51_37hwy")])
 
 [node name="ShockSoundCooldown" type="Timer" parent="."]
 wait_time = 0.2

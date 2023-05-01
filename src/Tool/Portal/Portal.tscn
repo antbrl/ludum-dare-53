@@ -50,9 +50,8 @@ energy = 2.0
 texture = SubResource("GradientTexture2D_tc736")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(126, 1)
-scale = Vector2(6.40155, 1)
-polygon = PackedVector2Array(-23, -49, -23, 47, -19, 47, -19, 0.039505, -19, -49)
+position = Vector2(5, 1)
+polygon = PackedVector2Array(-23, -49, -23, 47, -19, 47, -19, -49)
 
 [node name="AudioPlayer" parent="." instance=ExtResource("4_ewi5c")]
 sounds = Array[AudioStream]([ExtResource("2_0fne1")])
