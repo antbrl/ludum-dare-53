@@ -24,7 +24,7 @@ layer_7/tile_data = PackedInt32Array(-786412, 0, 2, -786413, 0, 2, -786414, 0, 2
 position = Vector2(621, -141)
 scale = Vector2(5, 5)
 
-[node name="Bounds" parent="." index="8"]
+[node name="Bounds" parent="." index="9"]
 metadata/_edit_lock_ = true
 
 [node name="Top" parent="Bounds" index="0"]

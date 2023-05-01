@@ -8,6 +8,7 @@ signal crate_followed_by_cam(crate)
 @onready var crates = $"../Crates"
 @onready var cam = $"../Camera2D"
 @onready var game = $"../.."
+@onready var reapparition_point = $"CrateReapparitionPoint"
 
 const snap_dist = 150.0
 const max_speed = 1400.0
@@ -130,7 +131,7 @@ func kill_crate(crate):
 	crate.destroy()
 	if game.phase == Globals.Phase.TRIAL || game.challenge_crates_left >= 0:
 		var new_crate = crate_scene.instantiate()
-		new_crate.global_position = launch_area.to_global(Vector2(-200, -500))
+		new_crate.global_position = launch_area.to_global(reapparition_point.get_global_position())
 		crates.add_child(new_crate)
 	cam.back_to_default()
 	set_disabled_throw(false)

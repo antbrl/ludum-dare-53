@@ -27,6 +27,9 @@ shape = SubResource("SegmentShape2D_htq20")
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="CrateReapparitionPoint" type="Marker2D" parent="."]
+position = Vector2(-273, -130)
+
 [connection signal="body_entered" from="LaunchArea" to="." method="_on_launch_area_body_entered"]
 [connection signal="body_exited" from="LaunchArea" to="." method="_on_launch_area_body_exited"]
 [connection signal="mouse_entered" from="LaunchArea" to="." method="_on_launch_area_mouse_entered"]
