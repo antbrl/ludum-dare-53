@@ -13,30 +13,35 @@ script = ExtResource("2_vdkyx")
 texture = ExtResource("3_swvch")
 tool_name = "Portal"
 tool_id = 1
+directions = Array[int]([])
 
 [sub_resource type="Resource" id="Resource_c63kg"]
 script = ExtResource("2_vdkyx")
 texture = ExtResource("4_5l6u7")
 tool_name = "Trampoline"
 tool_id = 2
+directions = Array[int]([1, 6, 2, 7, 3, 8, 4, 5])
 
 [sub_resource type="Resource" id="Resource_h255h"]
 script = ExtResource("2_vdkyx")
 texture = ExtResource("5_pricg")
 tool_name = "Singularity"
 tool_id = 3
+directions = Array[int]([])
 
 [sub_resource type="Resource" id="Resource_k6wnl"]
 script = ExtResource("2_vdkyx")
 texture = ExtResource("6_emlpb")
 tool_name = "Vacuum"
 tool_id = 4
+directions = Array[int]([1, 2, 3, 4])
 
 [sub_resource type="Resource" id="Resource_xrom7"]
 script = ExtResource("2_vdkyx")
 texture = ExtResource("7_01wtf")
 tool_name = "Belt"
 tool_id = 5
+directions = Array[int]([1, 3])
 
 [resource]
 script = ExtResource("1_6baoe")

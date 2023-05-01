@@ -5,6 +5,7 @@ class_name ToolTemplate
 @export var texture : Texture2D
 @export var tool_name : String
 @export var tool_id: Globals.Tool
+@export var directions: Array[Globals.Direction] = []
 
 func get_texture():
 	return texture 
