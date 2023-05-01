@@ -10,7 +10,7 @@ quantity = 1
 
 [sub_resource type="Resource" id="Resource_taiek"]
 script = ExtResource("2_bp3ik")
-tool_id = 5
+tool_id = 2
 quantity = 1
 
 [node name="Map1" instance=ExtResource("1_whjhc")]
@@ -29,7 +29,7 @@ layer_6/tile_data = PackedInt32Array(-196594, 65536, 1, -262132, 65536, 131072)
 position = Vector2(621, -141)
 scale = Vector2(5, 5)
 
-[node name="Bounds" parent="." index="8"]
+[node name="Bounds" parent="." index="9"]
 metadata/_edit_lock_ = true
 
 [node name="Top" parent="Bounds" index="0"]
