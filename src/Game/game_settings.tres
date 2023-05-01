@@ -1,10 +1,12 @@
-[gd_resource type="Resource" load_steps=9 format=3 uid="uid://jmja37wug37s"]
+[gd_resource type="Resource" load_steps=13 format=3 uid="uid://jmja37wug37s"]
 
 [ext_resource type="Script" path="res://src/Game/game_settings.gd" id="1_6baoe"]
 [ext_resource type="Script" path="res://src/Tool/ToolTemplate.gd" id="2_vdkyx"]
 [ext_resource type="Texture2D" uid="uid://kas0ttlw63ja" path="res://assets/sprites/portal_icon.png" id="3_swvch"]
 [ext_resource type="Texture2D" uid="uid://ba2hoigmj5w8y" path="res://assets/sprites/trampoline.png" id="4_5l6u7"]
 [ext_resource type="Texture2D" uid="uid://cylrkdskpn2rj" path="res://assets/sprites/hole.png" id="5_pricg"]
+[ext_resource type="Texture2D" uid="uid://mj66aw0saq5" path="res://assets/sprites/vacuum.png" id="6_emlpb"]
+[ext_resource type="Texture2D" uid="uid://bsc3e0b13i0yw" path="res://assets/sprites/belt_static1.png" id="7_01wtf"]
 
 [sub_resource type="Resource" id="Resource_mw5a7"]
 script = ExtResource("2_vdkyx")
@@ -24,6 +26,18 @@ texture = ExtResource("5_pricg")
 tool_name = "Singularity"
 tool_id = 3
 
+[sub_resource type="Resource" id="Resource_k6wnl"]
+script = ExtResource("2_vdkyx")
+texture = ExtResource("6_emlpb")
+tool_name = "Vacuum"
+tool_id = 4
+
+[sub_resource type="Resource" id="Resource_xrom7"]
+script = ExtResource("2_vdkyx")
+texture = ExtResource("7_01wtf")
+tool_name = "Belt"
+tool_id = 5
+
 [resource]
 script = ExtResource("1_6baoe")
-tool_templates = Array[ExtResource("2_vdkyx")]([SubResource("Resource_mw5a7"), SubResource("Resource_c63kg"), SubResource("Resource_h255h")])
+tool_templates = Array[ExtResource("2_vdkyx")]([SubResource("Resource_mw5a7"), SubResource("Resource_c63kg"), SubResource("Resource_h255h"), SubResource("Resource_k6wnl"), SubResource("Resource_xrom7")])

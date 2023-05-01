@@ -90,8 +90,15 @@ func _on_tile_map_build_tool(tool, pos, metadata):
 			tool_instance.direction = metadata.direction
 		Globals.Tool.TRAMPOLINE:
 			tool_instance = Trampoline.instantiate()
+			tool_instance.direction = metadata.direction
 		Globals.Tool.SINGULARITY:
 			tool_instance = singularity.instantiate()
+		Globals.Tool.BELT:
+			tool_instance = Belt.instantiate()
+			tool_instance.direction = metadata.direction
+		Globals.Tool.VACUUM:
+			tool_instance = Vacuum.instantiate()
+			tool_instance.direction = metadata.direction
 		_:
 			assert(false, 'Missing tool')
 	if tool_instance == null:
