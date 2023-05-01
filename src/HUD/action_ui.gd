@@ -60,12 +60,12 @@ func switch_mode(mode: Globals.Mode):
 	self.mode = mode
 	match(mode):
 		Globals.Mode.THROW:
-			switch_button('Throw mode', false, true)
+			switch_button('Build mode', false, true)
 			reset_crates_button.visible = true
 			reset_tools_button.visible = false
 			tool_list.visible = false
 		Globals.Mode.CONSTRUCTION:
-			switch_button('Build mode', false, true)
+			switch_button('Throw mode', false, true)
 			reset_crates_button.visible = false
 			reset_tools_button.visible = true
 			tool_list.visible = true
