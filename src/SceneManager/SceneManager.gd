@@ -61,12 +61,12 @@ func _load_level():
 	self.current_scene = scene
 
 
-func _on_end_of_level():
+func _on_end_of_level(total_crates, hit_crates):
 	if current_level_number + 1 >= len(maps):
 		# Win
 		_run_credits(false)
 	else:
-		_load_end_level()
+		_load_end_level(total_crates, hit_crates)
 
 
 func first_level():
@@ -87,12 +87,12 @@ func _on_restart_level():
 
 
 func _on_restart_select_level():
-	_load_end_level()
+	_load_end_level(0, 0)
 
 
-func _load_end_level():
+func _load_end_level(total_crates, hit_crates):
 	var scene = change_level.instantiate()
-	scene.init(current_level_number, maps[current_level_number])
+	scene.init(current_level_number, total_crates, hit_crates)
 
 	scene.connect("next_level", Callable(self, "_on_next_level"))
 
