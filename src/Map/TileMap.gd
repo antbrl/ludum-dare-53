@@ -5,6 +5,11 @@ signal destroy_tool(tool: Globals.Tool, pos: Vector2i)
 
 @onready var middle_offset = tile_set.tile_size * 0.5
 
+func _ready():
+	set_layer_enabled(Globals.TileMapLayers.TOOL_WHITELIST_PORTAL, false)
+	set_layer_enabled(Globals.TileMapLayers.TOOL_WHITELIST_SINGULARITY, false)
+	set_layer_enabled(Globals.TileMapLayers.TOOL_WHITELIST_TRAMPOLINE, false)
+
 func get_mouse_cell() -> Vector2i:
 	return local_to_map(get_local_mouse_position())
 
