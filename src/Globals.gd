@@ -73,4 +73,8 @@ enum Direction {
 	UP = 2,
 	RIGHT = 3,
 	DOWN = 4,
+	DOWN_LEFT = 5,
+	UP_LEFT = 6,
+	UP_RIGHT = 7,
+	DOWN_RIGHT = 8,
 }
