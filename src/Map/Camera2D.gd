@@ -3,8 +3,19 @@ extends Camera2D
 var followed = null
 var default_position = null
 
-const transition_move_duration = 0.8
-const transition_zoom_duration = 0.5
+const DEFAULT_TRANSITION_MOVE_DURATION = 0.8
+const CINEMATIC_TRANSITION_MOVE_DURATION = 2.0
+
+const DEFAULT_TRANSITION_ZOOM_DURATION = 0.5
+const CINEMATIC_TRANSITION_ZOOM_DURATION = 1
+
+const DEFAULT_ZOOM_SPEED = 2
+
+const DEFAULT_FOLLOW_ZOOM = Vector2(4, 4)
+const CINEMATIC_FOLLOW_ZOOM = Vector2(1, 1)
+
+var transition_move_duration = DEFAULT_TRANSITION_MOVE_DURATION
+var transition_zoom_duration = DEFAULT_TRANSITION_ZOOM_DURATION
 const total_transition_duration = 1.0
 
 const transition_move_duration_back = 0.5
@@ -12,12 +23,12 @@ const transition_zoom_duration_back= 0.5
 const total_transition_duration_back = 0.5
 
 const default_zoom = Vector2(2, 2)
-const follow_zoom = Vector2(4, 4)
+var follow_zoom = DEFAULT_FOLLOW_ZOOM
 const min_zoom = Vector2(1, 1)
 const max_zoom = Vector2(6, 6)
 
 const control_speed = 1000
-const zoom_speed = 2
+var zoom_speed = DEFAULT_ZOOM_SPEED
 
 var transition_status = null
 var transition_from = null
@@ -60,23 +71,23 @@ func _ready():
 	limit_right  = right_c
 	limit_top    = top_c
 	limit_bottom = bottom_c
-	print(left_c)
-	print(right_c)
-	print(top_c)
-	print(bottom_c)
-	print(global_position)
 	global_position = Vector2(0, -200)
-	print(global_position)
 	default_position = global_position
 	zoom = default_zoom
 
 	
 func cinematic_view_to(object):
 	follow(object)
+	transition_move_duration = CINEMATIC_TRANSITION_MOVE_DURATION
+	transition_zoom_duration = CINEMATIC_TRANSITION_ZOOM_DURATION
+	follow_zoom = CINEMATIC_FOLLOW_ZOOM
 	self.go_back_to_start_on_followed_reached = true
 
 func back_to_default():
 	self.go_back_to_start_on_followed_reached = false
+	transition_move_duration = CINEMATIC_TRANSITION_MOVE_DURATION
+	transition_zoom_duration = CINEMATIC_TRANSITION_ZOOM_DURATION
+	follow_zoom = CINEMATIC_FOLLOW_ZOOM
 	followed = null
 	transition_from = global_position
 	transition_status = 0.0
@@ -84,6 +95,10 @@ func back_to_default():
 
 func follow(object):
 	self.go_back_to_start_on_followed_reached = false
+	transition_move_duration = DEFAULT_TRANSITION_MOVE_DURATION
+	transition_zoom_duration = DEFAULT_TRANSITION_ZOOM_DURATION
+	zoom_speed = DEFAULT_ZOOM_SPEED
+	follow_zoom = DEFAULT_FOLLOW_ZOOM
 	followed = object
 	transition_from = global_position
 	transition_status = 0.0
@@ -113,7 +128,7 @@ func _physics_process(delta):
 				var transition_to = default_position
 				global_position = Tween.interpolate_value(transition_from, transition_to - transition_from, move_transition_status, transition_move_duration_back, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 			if (transition_status > total_transition_duration_back):
-				zoom = default_zoom
+				#zoom = default_zoom
 				transition_status = null
 	elif followed != null:
 		global_position = followed.global_position
