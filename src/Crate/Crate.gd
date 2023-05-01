@@ -48,23 +48,25 @@ func _ready():
 		crate_composite_sound = shock_composite.get_child(audio_player_i)
 
 func _physics_process(delta):
-	for influence in in_range_physic_tools:
-		influence.add_physics_modifier(self)
-	# Keep alive if moving
-	if (launched && prev_pos != null && prev_rot != null && ((prev_pos - position).length() > epsilon || prev_rot - rotation > rot_epsilon)):
-		timer.start(depop_delay)
-	if (global_position.y > 50):
-		print("OOB kill")
-		emit_signal("killme", self)
-	prev_pos = position
-	prev_rot = rotation
+	if !is_dying:
+		for influence in in_range_physic_tools:
+			influence.add_physics_modifier(self)
+		# Keep alive if moving
+		if (launched && prev_pos != null && prev_rot != null && ((prev_pos - position).length() > epsilon || prev_rot - rotation > rot_epsilon)):
+			timer.start(depop_delay)
+		if (global_position.y > 50):
+			print("OOB kill")
+			emit_signal("killme", self)
+		prev_pos = position
+		prev_rot = rotation
 
 func _on_timer_timeout():
 	print("inactivity timeout kill")
 	suicide()
 	
 func suicide():
-	emit_signal("killme", self)
+	if not is_dying:
+		emit_signal("killme", self)
 
 func _on_input_event(viewport, event, shape_idx):
 	if !launched && in_launch_area && event is InputEventMouseButton:
@@ -79,10 +81,20 @@ func _on_detection_area_exited(area):
 	in_range_physic_tools.erase(area)
 	print('Object Left')
 
-
 func _on_body_entered(body):
 	if shock_sound_cooldown.is_stopped():
 		shock_sound_cooldown.start()
 		shock_wood_sound.play_random_sound()
 		if crate_composite_sound != null:
 			crate_composite_sound.play_random_sound()
+
+var is_dying = false
+
+func destroy():
+	if not is_dying:
+		is_dying = true
+		freeze = true
+		$Sounds/Destroy.play_random_sound()
+		var tween = create_tween()
+		tween.tween_property(self, 'modulate:a', 0.0, 0.5)
+		tween.tween_callback(queue_free)
