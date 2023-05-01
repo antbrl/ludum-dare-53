@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://qo703o3t2moa"]
+
+[ext_resource type="Texture2D" uid="uid://b4l0yi78a5urh" path="res://assets/sprites/truck.png" id="1_3sejg"]
+
+[node name="Truck" type="AnimatableBody2D"]
+z_index = -10
+z_as_relative = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3sejg")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-20, -30, 18, -30, 18, -9, 83, -9, 83, 15, 62.8151, 15.1337, 63, 32, 37, 32, 37, 16, -42.0725, 16.2646, -42, 32, -68, 32, -68, 16, -82, 16, -82, -9, -40, -9)
