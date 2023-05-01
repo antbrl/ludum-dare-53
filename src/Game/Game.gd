@@ -60,6 +60,9 @@ func crate_dropped(crate):
 		challenge_score += 1
 
 func crate_killed(crate):
+	if not crate.hit:
+		$Miss.play_random_sound()
+
 	action_ui.set_reset_crates_disabled(true)
 	if phase == Globals.Phase.CHALLENGE:
 		challenge_crates_left -= 1
@@ -68,7 +71,6 @@ func crate_killed(crate):
 		
 		if not crate.hit:
 			hud.miss()
-			$Miss.play_random_sound()
 
 func crate_followed_by_cam(crate):
 	action_ui.set_reset_crates_disabled(false)

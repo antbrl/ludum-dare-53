@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf65dyq2id4sc"]
+[gd_scene load_steps=9 format=3 uid="uid://cf65dyq2id4sc"]
 
 [ext_resource type="Script" path="res://src/EndLevel/EndLevel.gd" id="1"]
 [ext_resource type="AudioStream" uid="uid://dxj30yuudjutl" path="res://assets/sounds/tick/hit.wav" id="2_yojsl"]
 [ext_resource type="AudioStream" uid="uid://btdg1w7mu0yb1" path="res://assets/sounds/tick/miss.wav" id="3_i0vdu"]
 [ext_resource type="AudioStream" uid="uid://p827ewt2lqt" path="res://assets/sounds/tick/result.wav" id="4_lgvud"]
+[ext_resource type="PackedScene" uid="uid://1jb28yihlqxm" path="res://src/Audio/audio_player.tscn" id="5_u6guc"]
+[ext_resource type="AudioStream" uid="uid://cwq6ducqg0wuq" path="res://assets/sounds/tick/clap0.wav" id="6_7mf81"]
+[ext_resource type="AudioStream" uid="uid://c4flhr2kv8cix" path="res://assets/sounds/tick/clap1.wav" id="7_prx1e"]
+[ext_resource type="AudioStream" uid="uid://csctbvyx5wj18" path="res://assets/sounds/tick/clap2.wav" id="8_wql3e"]
 
 [node name="EndLevel" type="Control"]
 layout_mode = 3
@@ -99,11 +103,17 @@ layout_mode = 2
 
 [node name="Hit" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("2_yojsl")
+volume_db = 2.0
 
 [node name="Miss" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("3_i0vdu")
+volume_db = 2.0
 
 [node name="Result" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("4_lgvud")
+
+[node name="Clap" parent="Sounds" instance=ExtResource("5_u6guc")]
+volume_db = 4.0
+sounds = Array[AudioStream]([ExtResource("6_7mf81"), ExtResource("7_prx1e"), ExtResource("8_wql3e")])
 
 [connection signal="pressed" from="CenterContainer/HBoxContainer/VBoxContainer/CenterContainer3/NextLevelButton" to="." method="_on_NextLevelButton_pressed"]

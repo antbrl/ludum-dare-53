@@ -33,17 +33,20 @@ func _ready():
 	
 	var ratio = float(self.hit_crates) / float(self.total_crates)
 	var comment
+	var clap_index = null
 	if ratio == 1.0:
-		comment = 'Perfect !!!'
+		comment = 'Perfect!!!'
+		clap_index = 2
 	elif ratio > 0.75:
-		comment = 'Awesome !'
+		comment = 'Awesome!'
+		clap_index = 1
 	elif ratio > 0.5:
 		comment = 'Ok'
+		clap_index = 0
 	elif ratio > 0.25:
 		comment = 'Focus...'
 	else:
-		comment = 'Va te pendre'
-		#comment = "YOU'RE FIRED !"
+		comment = "Seriously?"
 	comment_label.text = comment
 		
 	var tween = create_tween()
@@ -58,7 +61,7 @@ func _ready():
 		if i < hit_crates:
 			tween.tween_callback(func(): score_label.text = str(i + 1) + '/' + str(total_crates))
 	tween.tween_interval(0.9)
-	tween.tween_callback(func(): comment_label.modulate.a = 1; $Sounds/Result.play())
+	tween.tween_callback(func(): comment_label.modulate.a = 1; $Sounds/Result.play(); if clap_index != null: $Sounds/Clap.play_sound(clap_index))
 
 func init(level_number, total_crates, hit_crates):
 	self.level_number = level_number
