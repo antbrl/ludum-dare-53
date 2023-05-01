@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bqdyskkc8us6p"]
+[gd_scene load_steps=49 format=3 uid="uid://bqdyskkc8us6p"]
 
 [ext_resource type="Script" path="res://src/Crate/Crate.gd" id="1_qunqm"]
 [ext_resource type="Texture2D" uid="uid://beithv6gedupv" path="res://assets/sprites/crate.png" id="3_0xeyi"]
@@ -30,6 +30,14 @@
 [ext_resource type="AudioStream" uid="uid://cmeuykbdrrtxg" path="res://assets/sounds/Crate/Shock/Wood/wood15.wav" id="19_blue2"]
 [ext_resource type="AudioStream" uid="uid://btafgu4kodr8y" path="res://assets/sounds/Crate/Shock/Wood/wood16.wav" id="20_mh6w3"]
 [ext_resource type="AudioStream" uid="uid://d12hxrgr4va0q" path="res://assets/sounds/Crate/Shock/Wood/wood17.wav" id="21_ssng7"]
+[ext_resource type="AudioStream" uid="uid://bcq21nr4s27lj" path="res://assets/sounds/Crate/Shock/Glass/glass0.wav" id="22_wv8qb"]
+[ext_resource type="AudioStream" uid="uid://fkydyndil008" path="res://assets/sounds/Crate/Shock/Glass/glass1.wav" id="23_vke5q"]
+[ext_resource type="AudioStream" uid="uid://6a4isvbltxhy" path="res://assets/sounds/Crate/Shock/Glass/glass2.wav" id="24_kn5np"]
+[ext_resource type="AudioStream" uid="uid://cor74tu3mq25s" path="res://assets/sounds/Crate/Shock/Glass/glass3.wav" id="25_jo7ec"]
+[ext_resource type="AudioStream" uid="uid://byf3ig35xp6dh" path="res://assets/sounds/Crate/Shock/Glass/glass4.wav" id="26_sclpp"]
+[ext_resource type="AudioStream" uid="uid://g0wpp885040v" path="res://assets/sounds/Crate/Shock/Glass/glass5.wav" id="27_bafei"]
+[ext_resource type="AudioStream" uid="uid://cohniloj7mlep" path="res://assets/sounds/Crate/Shock/Glass/glass6.wav" id="28_mwuw2"]
+[ext_resource type="AudioStream" uid="uid://00djpf5jl6pn" path="res://assets/sounds/Crate/Shock/Glass/glass7.wav" id="29_bpy1a"]
 [ext_resource type="AudioStream" uid="uid://byn8lrq0knjef" path="res://assets/sounds/Crate/Shock/Kitchen/pan0.wav" id="31_50xty"]
 [ext_resource type="AudioStream" uid="uid://dnw886xub885v" path="res://assets/sounds/Crate/Shock/Kitchen/pan1.wav" id="32_jjq6d"]
 [ext_resource type="AudioStream" uid="uid://om3phgfb8ve7" path="res://assets/sounds/Crate/Shock/Kitchen/pan2.wav" id="33_be2x8"]
@@ -90,10 +98,15 @@ shape = SubResource("RectangleShape2D_cm2xa")
 [node name="Wood" parent="Sounds/Shock" instance=ExtResource("3_bqtxm")]
 sounds = Array[AudioStream]([ExtResource("4_tfpdg"), ExtResource("5_u0ty2"), ExtResource("6_gpsxs"), ExtResource("7_rwvv0"), ExtResource("8_m347h"), ExtResource("9_ie07k"), ExtResource("10_xcfa1"), ExtResource("11_pre0o"), ExtResource("12_887ne"), ExtResource("13_3nklw"), ExtResource("14_otjq5"), ExtResource("15_5exj7"), ExtResource("16_bmij7"), ExtResource("17_7ufw1"), ExtResource("18_1uses"), ExtResource("19_blue2"), ExtResource("20_mh6w3"), ExtResource("21_ssng7")])
 
-[node name="Human" parent="Sounds/Shock" instance=ExtResource("3_bqtxm")]
+[node name="Composite" type="Node" parent="Sounds/Shock"]
+
+[node name="Glass" parent="Sounds/Shock/Composite" instance=ExtResource("3_bqtxm")]
+sounds = Array[AudioStream]([ExtResource("22_wv8qb"), ExtResource("23_vke5q"), ExtResource("24_kn5np"), ExtResource("25_jo7ec"), ExtResource("26_sclpp"), ExtResource("27_bafei"), ExtResource("28_mwuw2"), ExtResource("29_bpy1a")])
+
+[node name="Human" parent="Sounds/Shock/Composite" instance=ExtResource("3_bqtxm")]
 sounds = Array[AudioStream]([ExtResource("4_n0pde"), ExtResource("5_sq8bl"), ExtResource("6_5tnv6"), ExtResource("7_crnqa"), ExtResource("8_c62im"), ExtResource("9_mx0fy"), ExtResource("10_q0g4r"), ExtResource("11_d1d4o"), ExtResource("12_ryrcg")])
 
-[node name="Pan" parent="Sounds/Shock" instance=ExtResource("3_bqtxm")]
+[node name="Pan" parent="Sounds/Shock/Composite" instance=ExtResource("3_bqtxm")]
 sounds = Array[AudioStream]([ExtResource("31_50xty"), ExtResource("32_jjq6d"), ExtResource("33_be2x8"), ExtResource("34_8qvl2"), ExtResource("35_ktyww"), ExtResource("36_uj53c"), ExtResource("37_iak7y")])
 
 [node name="ShockSoundCooldown" type="Timer" parent="."]

@@ -10,8 +10,9 @@ signal clicked(id)
 @onready var launcher = $"../../Launch"
 @onready var nine_patch_rect = $NinePatchRect
 
-@onready var shock_sound_cooldown = $ShockSoundCooldown
 @onready var shock_wood_sound = $Sounds/Shock/Wood
+@onready var shock_sound_cooldown = $ShockSoundCooldown
+@onready var shock_composite = $Sounds/Shock/Composite
 
 var prev_pos = null
 var prev_rot = null
@@ -42,11 +43,9 @@ func _ready():
 	self.connect("clicked", launcher.handle_click)
 	self.connect("killme", launcher.kill_crate)
 	
-	var audio_player_i = randi() % $Sounds/Shock.get_child_count()
-	if audio_player_i == 0:
-		crate_composite_sound = null
-	else:
-		crate_composite_sound = $Sounds/Shock.get_child(audio_player_i)
+	if randi() % 2 == 0:
+		var audio_player_i = randi() % shock_composite.get_child_count()
+		crate_composite_sound = shock_composite.get_child(audio_player_i)
 	
 
 func _physics_process(delta):
