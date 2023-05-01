@@ -22,7 +22,7 @@ const transition_move_duration_back = 0.5
 const transition_zoom_duration_back= 0.5
 const total_transition_duration_back = 0.5
 
-const default_zoom = Vector2(1.5, 1.5)
+const default_zoom = Vector2(1, 1)
 var follow_zoom = DEFAULT_FOLLOW_ZOOM
 const min_zoom = Vector2(1, 1)
 const max_zoom = Vector2(6, 6)
