@@ -102,13 +102,14 @@ func gui_to_red():
 	gui_top.color    = Color(.72, .27, .33, 0.)
 	gui_bottom.color = Color(.72, .27, .33, 0.)
 
-func gui_to_yellow(): #unused for nown intended for cinematic mode
-	gui_left.color   = Color(.51, .41, .15, 1.)
-	gui_right.color  = Color(.51, .41, .15, 1.)
-	gui_top.color    = Color(.51, .41, .15, 1.)
-	gui_bottom.color = Color(.51, .41, .15, 1.)
+func gui_to_cinematic():
+	gui_left.color   = Color(.72, .27, .33, 1.)
+	gui_right.color  = Color(.72, .27, .33, 1.)
+	gui_top.color    = Color(.72, .27, .33, 1.)
+	gui_bottom.color = Color(.72, .27, .33, 1.)
 
 func cinematic_view_to(object):
+	gui_to_cinematic()
 	mouse_controls_disabled = true
 	follow(object)
 	transition_move_duration = CINEMATIC_TRANSITION_MOVE_DURATION
@@ -118,7 +119,6 @@ func cinematic_view_to(object):
 
 func back_to_default():
 	mouse_controls_disabled = true
-	gui_to_red()
 	self.go_back_to_start_on_followed_reached = false
 	transition_move_duration = CINEMATIC_TRANSITION_MOVE_DURATION
 	transition_zoom_duration = CINEMATIC_TRANSITION_ZOOM_DURATION
@@ -130,7 +130,7 @@ func back_to_default():
 
 func follow(object):
 	mouse_controls_disabled = true
-	gui_to_red()
+	gui_to_cinematic()
 	self.go_back_to_start_on_followed_reached = false
 	transition_move_duration = DEFAULT_TRANSITION_MOVE_DURATION
 	transition_zoom_duration = DEFAULT_TRANSITION_ZOOM_DURATION
@@ -199,6 +199,7 @@ func _physics_process(delta):
 			if (transition_status > total_transition_duration_back):
 				zoom = latest_free_zoom
 				transition_status = null
+				gui_to_red()
 	elif followed != null && !in_level_start_cinematic:
 		global_position = followed.global_position
 		if followed is Crate:
@@ -249,7 +250,6 @@ func _physics_process(delta):
 			var x_border_dst = x1 + x2
 			var y_border_dst = y1 + y2
 			if (x_border_dst == 0 && y_border_dst == 0):
-				print("reenabled")
 				mouse_controls_disabled = false
 				gui_left.color   = Color(.28, .62, .33, 0.)
 				gui_right.color  = Color(.28, .62, .33, 0.)
