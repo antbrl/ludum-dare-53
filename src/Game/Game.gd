@@ -102,3 +102,6 @@ func _on_action_ui_reset_crates():
 
 func _on_action_ui_reset_tools():
 	map.reset_tools()
+
+func show_textbox(title: String, message: String):
+	$UI/TextBox.pop_text_box(title, message)	
