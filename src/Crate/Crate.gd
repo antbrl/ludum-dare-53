@@ -95,7 +95,7 @@ func destroy():
 	if not is_dying:
 		is_dying = true
 		freeze = true
-		$Sounds/Destroy.play_random_sound()
+		#$Sounds/Destroy.play_random_sound()
 		var tween = create_tween()
 		tween.tween_property(self, 'modulate:a', 0.0, 0.5)
 		tween.tween_callback(queue_free)
