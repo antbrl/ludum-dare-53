@@ -8,10 +8,10 @@ var nb_coins
 var total_crates
 var hit_crates
 
-@onready var level_label = $CenterContainer/VBoxContainer/HBoxContainer/LevelNumber
-@onready var result = $CenterContainer/VBoxContainer/Result
-@onready var score_label = $CenterContainer/VBoxContainer/Score
-@onready var comment_label = $CenterContainer/VBoxContainer/Comment
+@onready var level_label = $CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer/LevelNumber
+@onready var result = $CenterContainer/HBoxContainer/VBoxContainer/Result
+@onready var score_label = $CenterContainer/HBoxContainer/VBoxContainer/Score
+@onready var comment_label = $CenterContainer/HBoxContainer/VBoxContainer/Comment
 @onready var crate_icon = preload("res://src/HUD/crate_icon.tscn")
 
 func _ready():

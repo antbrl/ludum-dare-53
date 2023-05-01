@@ -38,7 +38,7 @@ func _ready():
 	
 	action_ui.init(map)
 	hud.init(map.n_challenge_crates)
-	popup.pop_message('Level ' + str(level_number + 1) + ':\n' + map.level_name, 3.0)
+	popup.pop_message('Level ' + str(level_number + 1) + '\n' + map.level_name, 3.0)
 	
 	if level_number == 0:
 		show_textbox('Welcome', 'Your job is to deliver crates to the customer.\nYou are now in TRIAL PHASE, meaning you can build tools to help you reach the customer.\nOnce you will reach the customer once, you will enter to CHALLENGE PHASE')
