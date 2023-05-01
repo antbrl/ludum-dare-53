@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c30ynk6qk8e7t"]
+[gd_scene load_steps=6 format=3 uid="uid://c30ynk6qk8e7t"]
 
 [ext_resource type="Script" path="res://src/Tool/Singularity/singularity.gd" id="1_5xa3s"]
 [ext_resource type="Shader" path="res://src/Tool/Singularity/Singularity.gdshader" id="2_qgqow"]
@@ -8,6 +8,9 @@ radius = 186.269
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dxoqy"]
 shader = ExtResource("2_qgqow")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j0w6r"]
+radius = 96.0
 
 [node name="Singularity" type="Area2D"]
 collision_layer = 4
@@ -22,3 +25,9 @@ material = SubResource("ShaderMaterial_dxoqy")
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(200, -200, 200, 200, -200, 200, -200, -200)
 metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_j0w6r")

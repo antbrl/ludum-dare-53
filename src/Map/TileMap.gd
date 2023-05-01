@@ -5,6 +5,9 @@ signal destroy_tool(tool: Globals.Tool, pos: Vector2i)
 signal update_tool(tool: Globals.Tool, pos: Vector2i, metadata: Dictionary)
 
 @onready var middle_offset = tile_set.tile_size * 0.5
+@onready var ray_cast_2d = $RayCast2D
+
+var must_call_update_tool_overlay = false
 
 func _ready():
 	set_layer_enabled(Globals.TileMapLayers.TOOL, false)
@@ -17,6 +20,12 @@ func _ready():
 func get_mouse_cell() -> Vector2i:
 	return local_to_map(get_local_mouse_position())
 
+func is_cell_taken_by_tool(pos: Vector2i) -> bool:
+	var cell_position = map_to_local(pos) * self.scale
+	ray_cast_2d.position = cell_position
+	ray_cast_2d.force_raycast_update()
+	return ray_cast_2d.is_colliding()
+
 func can_build_on_cell(pos: Vector2i, tool: Globals.Tool) -> bool:
 	# Checks if cell is whitelisted
 	var tool_template_data = get_tool_template_data(pos, tool)
@@ -26,6 +35,9 @@ func can_build_on_cell(pos: Vector2i, tool: Globals.Tool) -> bool:
 	# Checks if another tool is already dropped on that tile
 	var tool_cell = get_cell_tile_data(Globals.TileMapLayers.TOOL, pos)
 	if tool_cell != null:
+		return false
+	
+	if is_cell_taken_by_tool(pos):
 		return false
 
 	return true
@@ -117,7 +129,12 @@ func update_tool_overlay(mode: Globals.Mode, tool: Globals.Tool) -> void:
 		var tool_template = Globals.get_tool_template(tool)
 		var tool_template_data: TileData = get_tool_template_data(cell, tool).data
 		var atlas_coords = Vector2i(1, 3)
-		if can_build_on_cell(cell, tool):
+		if get_cell_source_id(Globals.TileMapLayers.TOOL, cell) > -1 and tool_template.directions.size() > 1:
+			if tool_template.directions.size() == 2:
+				atlas_coords = Vector2i(2, 1)
+			else:
+				atlas_coords = Vector2i(3, 1)
+		elif can_build_on_cell(cell, tool):
 			match tool_template_data.get_custom_data('direction'):
 				Globals.Direction.DOWN:
 					atlas_coords = Vector2i(2, 2)
@@ -137,12 +154,11 @@ func update_tool_overlay(mode: Globals.Mode, tool: Globals.Tool) -> void:
 					atlas_coords = Vector2i(2, 4)
 				_:
 					atlas_coords = Vector2i(0, 3)
-		elif tool_template.directions.size() > 1:
-			if tool_template.directions.size() == 2:
-				atlas_coords = Vector2i(2, 1)
-			else:
-				atlas_coords = Vector2i(3, 1)
-		set_cell(Globals.TileMapLayers.TOOL_OVERLAY, cell, Globals.TileSetSources.TOOL, atlas_coords)
+		elif is_cell_taken_by_tool(cell):
+#				atlas_coords = Vector2i(1, 2)
+			atlas_coords = null
+		if atlas_coords != null:
+			set_cell(Globals.TileMapLayers.TOOL_OVERLAY, cell, Globals.TileSetSources.TOOL, atlas_coords)
 
 func destroy_all_tools():
 	for cell in get_used_cells(Globals.TileMapLayers.TOOL):

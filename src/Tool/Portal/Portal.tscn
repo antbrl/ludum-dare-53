@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6e5c0iscdww1"]
+[gd_scene load_steps=11 format=3 uid="uid://b6e5c0iscdww1"]
 
 [ext_resource type="Script" path="res://src/Tool/Portal/Portal.gd" id="1_6g6il"]
 [ext_resource type="AudioStream" uid="uid://d0m8rg5cpgdbq" path="res://assets/sounds/teleport.wav" id="2_0fne1"]
@@ -44,6 +44,9 @@ void light() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0yxcn"]
 shader = SubResource("Shader_bqvvt")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ql7tu"]
+size = Vector2(32, 96)
+
 [node name="Portal" type="Area2D" groups=["portals"]]
 collision_layer = 4
 script = ExtResource("1_6g6il")
@@ -87,3 +90,9 @@ sounds = Array[AudioStream]([ExtResource("2_0fne1")])
 [node name="Polygon2D" type="Polygon2D" parent="."]
 material = SubResource("ShaderMaterial_0yxcn")
 polygon = PackedVector2Array(-15, -48, 0, -48, 0, 48, -15, 48)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ql7tu")

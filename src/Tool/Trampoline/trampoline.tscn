@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bary4m4n2w5tt"]
+[gd_scene load_steps=13 format=3 uid="uid://bary4m4n2w5tt"]
 
 [ext_resource type="Script" path="res://src/Tool/Trampoline/Trampoline.gd" id="1_qiml6"]
 [ext_resource type="PackedScene" uid="uid://dwe3kab6f72w5" path="res://assets/sprites/Spring.tscn" id="1_r0k5r"]
@@ -72,6 +72,9 @@ _data = {
 "spring": SubResource("Animation_0me08")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itbh7"]
+size = Vector2(96, 50)
+
 [node name="PhysicsTool" type="Area2D"]
 collision_layer = 5
 script = ExtResource("1_qiml6")
@@ -124,3 +127,9 @@ metadata/_edit_use_anchors_ = true
 [node name="AudioPlayer" parent="." instance=ExtResource("4_arqn6")]
 volume_db = 5.0
 sounds = Array[AudioStream]([ExtResource("5_ejyp1"), ExtResource("6_u7gxr"), ExtResource("7_hv1nk")])
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_itbh7")

@@ -79,3 +79,10 @@ layer_10/y_sort_origin = 0
 layer_10/z_index = 0
 layer_10/tile_data = PackedInt32Array()
 script = ExtResource("2_jsknf")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+exclude_parent = false
+target_position = Vector2(0, 0)
+collision_mask = 16
+hit_from_inside = true
+collide_with_areas = true

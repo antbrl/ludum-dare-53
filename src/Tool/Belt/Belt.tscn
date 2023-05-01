@@ -7,10 +7,6 @@
 rough = true
 bounce = 0.05
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4035"]
-radius = 11.5
-height = 91.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_1mqiv"]
 atlas = ExtResource("1_ncik4")
 region = Rect2(0, 0, 96, 32)
@@ -40,18 +36,20 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgp7m"]
+size = Vector2(90, 26)
+
 [node name="Belt" type="StaticBody2D"]
+collision_layer = 17
 physics_material_override = SubResource("PhysicsMaterial_cnao3")
 constant_linear_velocity = Vector2(128, 0)
 script = ExtResource("1_hal4t")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.5)
-rotation = -1.5708
-shape = SubResource("CapsuleShape2D_s4035")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_letc1")
 autoplay = "default"
 frame_progress = 0.819969
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lgp7m")

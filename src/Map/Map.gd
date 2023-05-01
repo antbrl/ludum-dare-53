@@ -107,7 +107,7 @@ func _on_tile_map_build_tool(tool, pos, metadata):
 	tools.add_child(tool_instance)
 	
 	tool_ghost.update()
-	tile_map.update_tool_overlay(mode, current_tool)
+	tile_map.call_deferred('update_tool_overlay', mode, current_tool)
 	
 	for slot in inventory:
 		if slot.tool_id == tool:
@@ -116,11 +116,12 @@ func _on_tile_map_build_tool(tool, pos, metadata):
 
 func _on_tile_map_destroy_tool(tool, pos):
 	if tools_instances.has(pos):
+		tools_instances[pos].process_mode = PROCESS_MODE_DISABLED
 		tools_instances[pos].queue_free()
 		tools_instances.erase(pos)
 		
 		tool_ghost.update()
-		tile_map.update_tool_overlay(mode, current_tool)
+		tile_map.call_deferred('update_tool_overlay', mode, current_tool)
 
 		for slot in inventory:
 			if slot.tool_id == tool:
@@ -142,5 +143,5 @@ func _on_tile_map_update_tool(tool, pos, metadata):
 	if tools_instances.has(pos):
 		tools_instances[pos].direction = metadata.direction
 		
-#		tool_ghost.update()
-#		tile_map.update_tool_overlay(mode, current_tool)
+		tool_ghost.update()
+		tile_map.call_deferred('update_tool_overlay', mode, current_tool)
