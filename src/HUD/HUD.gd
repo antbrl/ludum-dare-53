@@ -8,6 +8,11 @@ extends Control
 var package_number
 var current_package = 0
 
+var mouse_in_left   = false
+var mouse_in_right  = false
+var mouse_in_top    = false
+var mouse_in_bottom = false
+
 func _ready():
 	self.package_counter.modulate.a = 0
 	phase.modulate.a = 0

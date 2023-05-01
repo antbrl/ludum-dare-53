@@ -142,6 +142,14 @@ func _physics_process(delta):
 			buffer += Vector2(0, -1)
 		if (Input.is_action_pressed("ui_down") && !Input.is_action_pressed("zoom-out")):
 			buffer += Vector2(0, 1)
+		var margin_prop = .1
+		var speed = 10
+		var x_ratio = get_viewport().get_mouse_position().x/get_viewport_rect().size.x
+		var y_ratio = get_viewport().get_mouse_position().y/get_viewport_rect().size.y
+		buffer.x += speed*(min(x_ratio, margin_prop) - margin_prop)
+		buffer.x += speed*(max(x_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
+		buffer.y += speed*(min(y_ratio, margin_prop) - margin_prop)
+		buffer.y += speed*(max(y_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
 		var prev_pos = global_position
 		global_position += delta*control_speed*buffer.normalized() 
 		position = Vector2(clamp(position.x,limit_left+get_viewport_rect().size.x/(2*zoom.x),limit_right-get_viewport_rect().size.x/(2*zoom.x)),clamp(position.y,limit_top+get_viewport_rect().size.y/(2*zoom.y),limit_bottom-get_viewport_rect().size.y/(2*zoom.y)))
