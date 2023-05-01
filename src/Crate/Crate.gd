@@ -10,6 +10,9 @@ signal clicked(id)
 @onready var launcher = $"../../Launch"
 @onready var nine_patch_rect = $NinePatchRect
 
+@onready var shock_sound_cooldown = $ShockSoundCooldown
+@onready var shock_wood_sound = $Sounds/Shock/Wood
+
 var prev_pos = null
 var prev_rot = null
 var launched = false
@@ -20,6 +23,8 @@ var in_launch_area = false
 var in_range_physic_tools: Array[PhysicsTool]
 
 var hit = false
+
+var crate_composite_sound: AudioStreamPlayer
 
 func set_launch_area(v):
 	in_launch_area = v
@@ -36,6 +41,13 @@ func _ready():
 	prev_pos = position
 	self.connect("clicked", launcher.handle_click)
 	self.connect("killme", launcher.kill_crate)
+	
+	var audio_player_i = randi() % $Sounds/Shock.get_child_count()
+	if audio_player_i == 0:
+		crate_composite_sound = null
+	else:
+		crate_composite_sound = $Sounds/Shock.get_child(audio_player_i)
+	
 
 func _physics_process(delta):
 	for influence in in_range_physic_tools:
@@ -71,6 +83,8 @@ func _on_detection_area_exited(area):
 
 
 func _on_body_entered(body):
-	if $"Sounds/Shock/ShockTimer".is_stopped():
-		$"Sounds/Shock/ShockTimer".start()
-		$Sounds/Shock/Wood.play_random_sound()
+	if shock_sound_cooldown.is_stopped():
+		shock_sound_cooldown.start()
+		shock_wood_sound.play_random_sound()
+		if crate_composite_sound != null:
+			crate_composite_sound.play_random_sound()

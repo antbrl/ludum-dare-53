@@ -96,7 +96,7 @@ sounds = Array[AudioStream]([ExtResource("4_n0pde"), ExtResource("5_sq8bl"), Ext
 [node name="Pan" parent="Sounds/Shock" instance=ExtResource("3_bqtxm")]
 sounds = Array[AudioStream]([ExtResource("31_50xty"), ExtResource("32_jjq6d"), ExtResource("33_be2x8"), ExtResource("34_8qvl2"), ExtResource("35_ktyww"), ExtResource("36_uj53c"), ExtResource("37_iak7y")])
 
-[node name="ShockTimer" type="Timer" parent="Sounds/Shock"]
+[node name="ShockSoundCooldown" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
 
