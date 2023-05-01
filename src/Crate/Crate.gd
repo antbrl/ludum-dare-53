@@ -75,12 +75,14 @@ func _on_input_event(viewport, event, shape_idx):
 			emit_signal("clicked", self)
 
 func _on_detection_area_entered(area):
-	in_range_physic_tools.append(area)
-	print('Object Entered')
+	var tool = area as PhysicsTool
+	if tool != null:
+		in_range_physic_tools.append(tool)
 
 func _on_detection_area_exited(area):
-	in_range_physic_tools.erase(area)
-	print('Object Left')
+	var tool = area as PhysicsTool
+	if tool != null:
+		in_range_physic_tools.erase(tool)
 
 func _on_body_entered(body):
 	if shock_sound_cooldown.is_stopped():
