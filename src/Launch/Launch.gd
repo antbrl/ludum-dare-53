@@ -94,7 +94,7 @@ func _input(event):
 		interrupt()
 
 func interrupt():
-	if disabled and followed_crate != null:
+	if disabled and followed_crate != null and game.mode == Globals.Mode.THROW:
 		cam.back_to_default()
 		kill_crate(followed_crate)
 

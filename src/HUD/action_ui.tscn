@@ -12,44 +12,45 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_7v0bc")
 
-[node name="ButtonBar" type="HBoxContainer" parent="."]
+[node name="ActionBar" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.02
 anchor_top = 0.98
-anchor_right = 0.02
+anchor_right = 1.0
 anchor_bottom = 0.98
-offset_top = -31.0
-offset_right = 275.0
+offset_top = -35.0
+grow_horizontal = 2
 grow_vertical = 0
+alignment = 1
 
-[node name="SwitchModeButton" type="Button" parent="ButtonBar"]
+[node name="ToolList" type="HBoxContainer" parent="ActionBar"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="ActionBar"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="ButtonBar" type="HBoxContainer" parent="ActionBar"]
+layout_mode = 2
+alignment = 1
+
+[node name="SwitchModeButton" type="Button" parent="ActionBar/ButtonBar"]
 layout_mode = 2
 text = "BTN SWITCH MODE"
 
-[node name="MarginContainer" type="MarginContainer" parent="ButtonBar"]
+[node name="MarginContainer" type="MarginContainer" parent="ActionBar/ButtonBar"]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 
-[node name="ResetCrateButton" type="Button" parent="ButtonBar"]
+[node name="ResetCrateButton" type="Button" parent="ActionBar/ButtonBar"]
 layout_mode = 2
 text = "Reset crate"
 
-[node name="ResetToolsButtons" type="Button" parent="ButtonBar"]
+[node name="ResetToolsButtons" type="Button" parent="ActionBar/ButtonBar"]
 layout_mode = 2
 text = "Reset tools"
 
-[node name="ToolList" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_top = -31.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[connection signal="pressed" from="ButtonBar/SwitchModeButton" to="." method="_on_switch_mode_button_pressed"]
-[connection signal="pressed" from="ButtonBar/ResetCrateButton" to="." method="_on_reset_crate_button_pressed"]
-[connection signal="pressed" from="ButtonBar/ResetToolsButtons" to="." method="_on_reset_tools_buttons_pressed"]
+[connection signal="pressed" from="ActionBar/ButtonBar/SwitchModeButton" to="." method="_on_switch_mode_button_pressed"]
+[connection signal="pressed" from="ActionBar/ButtonBar/ResetCrateButton" to="." method="_on_reset_crate_button_pressed"]
+[connection signal="pressed" from="ActionBar/ButtonBar/ResetToolsButtons" to="." method="_on_reset_tools_buttons_pressed"]

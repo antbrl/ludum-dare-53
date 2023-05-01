@@ -4,12 +4,12 @@ signal mode_change(mode: Globals.Mode)
 signal reset_crates
 signal reset_tools
 
-@onready var tool_list = $ToolList
+@onready var tool_list = $ActionBar/ToolList
 @onready var tool_ui_scene = preload("res://src/HUD/tool_ui.tscn")
 @onready var game = $"../.."
-@onready var switch_mode_button = $ButtonBar/SwitchModeButton
-@onready var reset_crates_button = $ButtonBar/ResetCrateButton
-@onready var reset_tools_button = $ButtonBar/ResetToolsButtons
+@onready var switch_mode_button = $ActionBar/ButtonBar/SwitchModeButton
+@onready var reset_crates_button = $ActionBar/ButtonBar/ResetCrateButton
+@onready var reset_tools_button = $ActionBar/ButtonBar/ResetToolsButtons
 
 var map
 
@@ -60,18 +60,17 @@ func switch_mode(mode: Globals.Mode):
 	self.mode = mode
 	match(mode):
 		Globals.Mode.THROW:
-			switch_button('Switch to construction mode', false)
+			switch_button('Throw mode', false, true)
 			reset_crates_button.visible = true
 			reset_tools_button.visible = false
 			tool_list.visible = false
 		Globals.Mode.CONSTRUCTION:
-			switch_button('Switch to throw mode', false)
-			switch_mode_button.text = 'Switch to throw mode'
+			switch_button('Build mode', false, true)
 			reset_crates_button.visible = false
 			reset_tools_button.visible = true
 			tool_list.visible = true
 		Globals.Mode.CINEMATIC:
-			switch_button('Switch to throw mode', true)
+			switch_button('/', true, false)
 			reset_crates_button.visible = false
 			reset_tools_button.visible = false
 			tool_list.visible = false
@@ -80,9 +79,10 @@ func switch_mode(mode: Globals.Mode):
 
 	emit_signal("mode_change", mode)
 	
-func switch_button(text, disabled):
+func switch_button(text, disabled, visible):
 	switch_mode_button.text = text
 	switch_mode_button.disabled = disabled
+	switch_mode_button.visible = visible
 
 func go_to_challenge_phase():
 	switch_mode(Globals.Mode.THROW)

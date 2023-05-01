@@ -45,11 +45,11 @@ func _process(delta):
 	pass
 
 func is_mouse_on_ui():
-	for c in get_node("../UI/ActionUI/ButtonBar").get_children():
-		if c is Button && c.is_hovered():
-			return true
-	for c in get_node("../UI/ActionUI/ToolList").get_children():
+	for c in get_node("../UI/ActionUI/ActionBar/ToolList").get_children():
 		if c.is_hovered():
+			return true
+	for c in get_node("../UI/ActionUI/ActionBar/ButtonBar").get_children():
+		if c is Button && c.is_hovered():
 			return true
 	return false
 
