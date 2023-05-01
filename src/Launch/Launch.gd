@@ -28,6 +28,8 @@ var disabled_due_to_mode = (Globals.DEFAULT_MODE == Globals.Mode.THROW)
 var disabled = disabled_in_throw || disabled_due_to_mode
 
 var followed_crate
+var current_crate = null
+var follow_me = false
 
 var crate_scene = preload("res://src/Crate/Crate.tscn")
 
@@ -40,6 +42,7 @@ func set_disabled_throw(v):
 	disabled = disabled_due_to_mode || disabled_in_throw
 
 func capture(id):
+	current_crate = id
 	selected_crate = id
 	selected_crate.linear_velocity = Vector2(0, 0)
 
@@ -53,17 +56,24 @@ func release(delta):
 	else:
 		selected_crate.linear_velocity = Vector2(0, 0)
 	just_released = false
-	selected_crate.thrown()
-	cam.follow(selected_crate)
-	followed_crate = selected_crate
-	emit_signal("crate_followed_by_cam", followed_crate)
 	selected_crate = null
+
+func start_following():
+	assert(current_crate != null)
+	followed_crate = current_crate
+	followed_crate.thrown()
+	cam.follow(followed_crate)
+	emit_signal("crate_followed_by_cam", followed_crate)
 	set_disabled_throw(true)
+	follow_me = false
+	current_crate = null
 
 func _physics_process(delta):
 	click_pressed = Input.is_action_pressed("click")
 	if (just_released):
 		release(delta)
+	elif follow_me:
+		start_following()
 	elif (selected_crate == null && click_pressed && !disabled): # Snapping
 		selected_crate_anchor = Vector2(0, 0)
 		var best = null
@@ -98,6 +108,7 @@ func _on_launch_area_mouse_exited():
 	mouse_in_area = false
 	if selected_crate != null:
 		just_released = true
+		follow_me = true
 
 func handle_click(crate):
 	if (selected_crate == null && !disabled):
@@ -125,6 +136,9 @@ func _on_launch_area_body_exited(body):
 		body.set_launch_area(false)
 		if (body == selected_crate):
 			just_released = true
+			follow_me = true
+		elif body == current_crate:
+			follow_me = true
 
 func kill_crate(crate):
 	emit_signal("crate_killed", crate)
@@ -135,3 +149,4 @@ func kill_crate(crate):
 		crates.add_child(new_crate)
 	cam.back_to_default()
 	set_disabled_throw(false)
+	follow_me = false
