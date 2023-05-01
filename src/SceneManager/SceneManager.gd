@@ -62,11 +62,7 @@ func _load_level():
 
 
 func _on_end_of_level(total_crates, hit_crates):
-	if current_level_number + 1 >= len(maps):
-		# Win
-		_run_credits(false)
-	else:
-		_load_end_level(total_crates, hit_crates)
+	_load_end_level(total_crates, hit_crates)
 
 
 func first_level():
@@ -100,9 +96,12 @@ func _load_end_level(total_crates, hit_crates):
 
 
 func _on_next_level():
-	current_level_number += 1
-	_load_level()
-
+	if current_level_number + 1 >= len(maps):
+		# Win
+		_run_credits(false)
+	else:
+		current_level_number += 1
+		_load_level()
 
 func _run_credits(can_go_back):
 	var scene = credits.instantiate()
