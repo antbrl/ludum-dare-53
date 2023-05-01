@@ -20,6 +20,10 @@ var in_range_physic_tools: Array[PhysicsTool]
 
 var hit = false
 
+func _process(delta):
+	if (Input.is_action_just_pressed("crateReset")):
+		suicide()
+
 func set_launch_area(v):
 	in_launch_area = v
 	if !in_launch_area:
