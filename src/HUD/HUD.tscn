@@ -19,15 +19,20 @@ script = ExtResource("2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.01
 anchor_right = 0.5
+anchor_bottom = 0.01
 offset_left = -195.5
 offset_right = 195.5
 offset_bottom = 121.0
 grow_horizontal = 2
 
-[node name="Phase" type="Label" parent="VBoxContainer"]
+[node name="PhasePanel" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Phase" type="Label" parent="VBoxContainer/PhasePanel"]
 layout_mode = 2
 text = "TRIAL PHASE"
 label_settings = SubResource("LabelSettings_rf84r")
