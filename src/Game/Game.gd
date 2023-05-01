@@ -13,6 +13,7 @@ var challenge_score = 0
 @onready var hud = $UI/HUD
 @onready var action_ui = $UI/ActionUI
 @onready var popup = $UI/Popup
+@onready var viewport = $"../../"
 
 @onready var map = $Map
 
@@ -54,10 +55,21 @@ func crate_killed(crate):
 	if phase == Globals.Phase.CHALLENGE:
 		challenge_crates_left -= 1
 		if challenge_crates_left == -1:
-			emit_signal("end_of_level")
+			trigger_end_level_cutscene()
 		
 		if not crate.hit:
 			hud.miss()
+
+func trigger_end_level_cutscene():
+	var tween = create_tween()
+	tween.tween_interval(1.0)
+	tween.tween_property(viewport, 'modulate:a', 0, 1.0)
+	tween.tween_interval(0.2)
+	tween.tween_callback(_end_level)
+
+func _end_level():
+	viewport.modulate.a = 1
+	emit_signal("end_of_level")
 
 func go_to_challenge_phase():
 	popup.pop_message('Now, 5 packages in a row', 3.0)
