@@ -31,3 +31,4 @@ func add_physics_modifier(crate: Crate):
 			var other_portal_vector = Vector2.from_angle(other_portal.rotation)
 			crate.linear_velocity = other_portal.OUTPUT_VELOCITY * other_portal_vector
 			crate.position = other_portal.position + other_portal_vector * 4
+			$AudioPlayer.play_random_sound()

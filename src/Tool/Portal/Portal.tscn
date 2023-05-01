@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6e5c0iscdww1"]
+[gd_scene load_steps=8 format=3 uid="uid://b6e5c0iscdww1"]
 
 [ext_resource type="Script" path="res://src/Tool/Portal/Portal.gd" id="1_6g6il"]
+[ext_resource type="AudioStream" uid="uid://d0m8rg5cpgdbq" path="res://assets/sounds/teleport.wav" id="2_0fne1"]
 [ext_resource type="Texture2D" uid="uid://b4b2rqc1dkvuu" path="res://assets/sprites/portal.png" id="2_y1po2"]
+[ext_resource type="PackedScene" uid="uid://1jb28yihlqxm" path="res://src/Audio/audio_player.tscn" id="4_ewi5c"]
 
 [sub_resource type="Gradient" id="Gradient_wg1qe"]
 offsets = PackedFloat32Array(0.886364, 1)
@@ -19,6 +21,7 @@ height = 96
 [node name="Portal" type="Area2D" groups=["portals"]]
 collision_layer = 4
 script = ExtResource("1_6g6il")
+sound = ExtResource("2_0fne1")
 
 [node name="Portal" type="Sprite2D" parent="."]
 position = Vector2(-16, 0)
@@ -50,3 +53,6 @@ texture = SubResource("GradientTexture2D_tc736")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(5, 1)
 polygon = PackedVector2Array(-23, -49, -23, 47, -19, 47, -19, -49)
+
+[node name="AudioPlayer" parent="." instance=ExtResource("4_ewi5c")]
+sounds = Array[AudioStream]([ExtResource("2_0fne1")])

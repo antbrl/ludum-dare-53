@@ -15,3 +15,6 @@ func _process(delta):
 
 func add_physics_modifier(crate: Crate):
 	pass
+
+func play_sound():
+	$AudioPlayer.play_sound()

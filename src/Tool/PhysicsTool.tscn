@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6qr2e7rf3li1"]
+[gd_scene load_steps=2 format=3 uid="uid://cslffdmwblxos"]
 
 [ext_resource type="Script" path="res://src/Tool/PhysicsTool.gd" id="1_uqjig"]
 
