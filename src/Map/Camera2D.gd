@@ -30,6 +30,9 @@ const max_zoom = Vector2(6, 6)
 const control_speed = 1000
 var zoom_speed = DEFAULT_ZOOM_SPEED
 
+var latest_free_pos = null
+var latest_free_zoom = null
+
 var transition_status = null
 var transition_from = null
 var zoom_from = null
@@ -74,8 +77,9 @@ func _ready():
 	global_position = Vector2(0, -200)
 	default_position = global_position
 	zoom = default_zoom
+	latest_free_pos = global_position
+	latest_free_zoom = zoom
 
-	
 func cinematic_view_to(object):
 	follow(object)
 	transition_move_duration = CINEMATIC_TRANSITION_MOVE_DURATION
@@ -103,6 +107,8 @@ func follow(object):
 	transition_from = global_position
 	transition_status = 0.0
 	zoom_from = zoom
+	latest_free_pos = global_position
+	latest_free_zoom = zoom
 
 func _physics_process(delta):
 	if transition_status != null:
@@ -122,13 +128,13 @@ func _physics_process(delta):
 				followed_object_reached()
 		else:
 			if transition_status < transition_zoom_duration_back:
-				zoom = Tween.interpolate_value(zoom_from, default_zoom - zoom_from, transition_status, transition_zoom_duration_back, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+				zoom = Tween.interpolate_value(zoom_from, latest_free_zoom - zoom_from, transition_status, transition_zoom_duration_back, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 			if (transition_status > total_transition_duration_back - transition_move_duration_back):
 				var move_transition_status = transition_status - (total_transition_duration_back - transition_move_duration_back)
-				var transition_to = default_position
+				var transition_to = latest_free_pos
 				global_position = Tween.interpolate_value(transition_from, transition_to - transition_from, move_transition_status, transition_move_duration_back, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 			if (transition_status > total_transition_duration_back):
-				#zoom = default_zoom
+				zoom = latest_free_zoom
 				transition_status = null
 	elif followed != null:
 		global_position = followed.global_position
@@ -142,16 +148,18 @@ func _physics_process(delta):
 			buffer += Vector2(0, -1)
 		if (Input.is_action_pressed("ui_down") && !Input.is_action_pressed("zoom-out")):
 			buffer += Vector2(0, 1)
+		var prev_pos = global_position
+		global_position += delta*control_speed*buffer.normalized()
+		
 		var margin_prop = .1
-		var speed = 10
+		var speed = 200
 		var x_ratio = get_viewport().get_mouse_position().x/get_viewport_rect().size.x
 		var y_ratio = get_viewport().get_mouse_position().y/get_viewport_rect().size.y
-		buffer.x += speed*(min(x_ratio, margin_prop) - margin_prop)
-		buffer.x += speed*(max(x_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
-		buffer.y += speed*(min(y_ratio, margin_prop) - margin_prop)
-		buffer.y += speed*(max(y_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
-		var prev_pos = global_position
-		global_position += delta*control_speed*buffer.normalized() 
+		position.x += speed*(min(x_ratio, margin_prop) - margin_prop)
+		position.x += speed*(max(x_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
+		position.y += speed*(min(y_ratio, margin_prop) - margin_prop)
+		position.y += speed*(max(y_ratio, 1.0 - margin_prop) - (1.0 - margin_prop))
+		
 		position = Vector2(clamp(position.x,limit_left+get_viewport_rect().size.x/(2*zoom.x),limit_right-get_viewport_rect().size.x/(2*zoom.x)),clamp(position.y,limit_top+get_viewport_rect().size.y/(2*zoom.y),limit_bottom-get_viewport_rect().size.y/(2*zoom.y)))
 		var zoom_diff = 0.0
 		if (Input.is_action_pressed("zoom-in")):
@@ -160,14 +168,12 @@ func _physics_process(delta):
 			zoom_diff -= 1
 		zoom += zoom * Vector2(1, 1)*delta*zoom_diff*zoom_speed
 		zoom = clamp(zoom, min_zoom, max_zoom)
-		
+
 func followed_object_reached():
 	if go_back_to_start_on_followed_reached:
 		self.go_back_to_start_on_followed_reached = false
 		backToDefault.start()
-		
 
 func _on_timer_timeout():
 	back_to_default()
 	backToDefault.stop()
-
