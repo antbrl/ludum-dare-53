@@ -8,6 +8,7 @@ signal clicked(id)
 
 @onready var timer = $Timer
 @onready var launcher = $"../../Launch"
+@onready var nine_patch_rect = $NinePatchRect
 
 var prev_pos = null
 var prev_rot = null
@@ -32,7 +33,7 @@ func set_launch_area(v):
 func thrown():
 	timer.start(depop_delay)
 	launched = true
-	get_node("Sprite2D").modulate = Color(0.5, 0.5, 0.5, 1.0)
+#	nine_patch_rect.modulate = Color(0.5, 0.5, 0.5, 1.0)
 
 func _ready():
 	in_range_physic_tools = []
