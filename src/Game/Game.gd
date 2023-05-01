@@ -90,3 +90,6 @@ func _on_action_ui_mode_change(mode):
 
 func _on_action_ui_reset_crates():
 	map.reset_crates()
+
+func _on_action_ui_reset_tools():
+	map.reset_tools()

@@ -21,3 +21,4 @@ mouse_filter = 2
 
 [connection signal="mode_change" from="UI/ActionUI" to="." method="_on_action_ui_mode_change"]
 [connection signal="reset_crates" from="UI/ActionUI" to="." method="_on_action_ui_reset_crates"]
+[connection signal="reset_tools" from="UI/ActionUI" to="." method="_on_action_ui_reset_tools"]

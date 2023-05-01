@@ -87,3 +87,7 @@ func update_tool_overlay(mode: Globals.Mode, tool: Globals.Tool) -> void:
 				_:
 					atlas_coords = Vector2i(0, 3)
 		set_cell(Globals.TileMapLayers.TOOL_OVERLAY, cell, Globals.TileSetSources.TOOL, atlas_coords)
+
+func destroy_all_tools():
+	for cell in get_used_cells(Globals.TileMapLayers.TOOL):
+		_destroy(cell)
