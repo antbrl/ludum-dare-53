@@ -53,11 +53,12 @@ func _ready():
 		var crate = result.get_child(i)
 		tween.tween_interval(0.5)
 		var node_name = "Hit" if i < hit_crates else "Miss"
-		tween.tween_callback(func(): crate.get_node(node_name).visible = true)
+		var sound_player = $Sounds/Hit if i < hit_crates else $Sounds/Miss
+		tween.tween_callback(func(): crate.get_node(node_name).visible = true; sound_player.play())
 		if i < hit_crates:
 			tween.tween_callback(func(): score_label.text = str(i + 1) + '/' + str(total_crates))
 	tween.tween_interval(0.9)
-	tween.tween_callback(func(): comment_label.modulate.a = 1)
+	tween.tween_callback(func(): comment_label.modulate.a = 1; $Sounds/Result.play())
 
 func init(level_number, total_crates, hit_crates):
 	self.level_number = level_number
