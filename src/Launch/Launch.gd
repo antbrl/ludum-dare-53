@@ -94,7 +94,7 @@ func _input(event):
 		interrupt()
 
 func interrupt():
-	if disabled:
+	if disabled and followed_crate != null:
 		cam.back_to_default()
 		kill_crate(followed_crate)
 
