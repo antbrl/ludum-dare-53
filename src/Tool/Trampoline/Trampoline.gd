@@ -12,22 +12,22 @@ const PUSH_FORCE = 500
 
 func _update_placement():
 	match direction:
-		Globals.Direction.RIGHT:
-			rotation_degrees = 180
-		Globals.Direction.UP:
-			rotation_degrees = 90
 		Globals.Direction.DOWN:
-			rotation_degrees = 270
-		Globals.Direction.DOWN_LEFT:
-			rotation_degrees = 315
-		Globals.Direction.UP_LEFT:
-			rotation_degrees = 45
-		Globals.Direction.UP_RIGHT:
-			rotation_degrees = 135
-		Globals.Direction.DOWN_RIGHT:
-			rotation_degrees = 225
-		_:
 			rotation_degrees = 0
+		Globals.Direction.DOWN_LEFT:
+			rotation_degrees = 45
+		Globals.Direction.LEFT:
+			rotation_degrees = 90
+		Globals.Direction.UP_LEFT:
+			rotation_degrees = 135
+		Globals.Direction.UP:
+			rotation_degrees = 180
+		Globals.Direction.UP_RIGHT:
+			rotation_degrees = 225
+		Globals.Direction.RIGHT:
+			rotation_degrees = 270
+		Globals.Direction.DOWN_RIGHT:
+			rotation_degrees = 315
 
 func add_physics_modifier(crate: Crate):
 	var forceVector = Vector2.UP.rotated(self.rotation)

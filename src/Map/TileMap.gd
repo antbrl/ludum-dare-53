@@ -45,11 +45,18 @@ func get_tool_template_data(pos: Vector2i, tool: Globals.Tool):
 	return {
 		data = data,
 		atlas_coords = get_cell_atlas_coords(layer, pos),
+		alternative = get_cell_alternative_tile(layer, pos),
 	}
 
 func _build(pos: Vector2i, tool: Globals.Tool):
 	var tool_template_data = get_tool_template_data(pos, tool)
-	set_cell(Globals.TileMapLayers.TOOL, pos, Globals.TileSetSources.TOOL, tool_template_data.atlas_coords)
+	set_cell(
+		Globals.TileMapLayers.TOOL,
+		pos,
+		Globals.TileSetSources.TOOL,
+		tool_template_data.atlas_coords,
+		tool_template_data.alternative
+		)
 	var tile_data: TileData = tool_template_data.data
 	var metadata = {
 		direction = tile_data.get_custom_data('direction')

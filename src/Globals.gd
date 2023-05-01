@@ -20,7 +20,6 @@ func get_tool_tile_coords(tool: Globals.Tool, direction = Globals.Direction.NONE
 			for alt_index in source.get_alternative_tiles_count(atlas_coords):
 				var alt_tile = source.get_alternative_tile_id(atlas_coords, alt_index)
 				tile_data = source.get_tile_data(atlas_coords, alt_tile)
-				print(tile_data.get_custom_data('direction'), ' ', direction)
 				if tile_data.get_custom_data('direction') == direction:
 					return [atlas_coords, alt_tile]
 	return [best_atlas_coords, 0]
