@@ -1,8 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bary4m4n2w5tt"]
+[gd_scene load_steps=12 format=3 uid="uid://bary4m4n2w5tt"]
 
 [ext_resource type="Script" path="res://src/Tool/Trampoline/Trampoline.gd" id="1_qiml6"]
 [ext_resource type="PackedScene" uid="uid://dwe3kab6f72w5" path="res://assets/sprites/Spring.tscn" id="1_r0k5r"]
 [ext_resource type="Texture2D" uid="uid://dakc5ys431ytc" path="res://assets/sprites/jump_pad.png" id="2_nqf42"]
+[ext_resource type="PackedScene" uid="uid://1jb28yihlqxm" path="res://src/Audio/audio_player.tscn" id="4_arqn6"]
+[ext_resource type="AudioStream" uid="uid://bvtjebyq116w" path="res://assets/sounds/Tools/Trampoline/trampoline1.wav" id="5_ejyp1"]
+[ext_resource type="AudioStream" uid="uid://cy7y607sb6ih0" path="res://assets/sounds/Tools/Trampoline/trampoline2.wav" id="6_u7gxr"]
+[ext_resource type="AudioStream" uid="uid://chbugbppvytqd" path="res://assets/sounds/Tools/Trampoline/trampoline3.wav" id="7_hv1nk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d2r38"]
 radius = 2.0
@@ -116,3 +120,7 @@ patch_margin_bottom = 2
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioPlayer" parent="." instance=ExtResource("4_arqn6")]
+volume_db = 5.0
+sounds = Array[AudioStream]([ExtResource("5_ejyp1"), ExtResource("6_u7gxr"), ExtResource("7_hv1nk")])

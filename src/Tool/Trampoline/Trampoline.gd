@@ -34,4 +34,5 @@ func add_physics_modifier(crate: Crate):
 	crate.apply_central_impulse(forceVector * PUSH_FORCE)
 	animation_player.stop()
 	animation_player.play("spring")
+	$AudioPlayer.play_random_sound()
 
