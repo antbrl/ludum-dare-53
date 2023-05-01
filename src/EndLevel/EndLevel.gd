@@ -41,9 +41,10 @@ func _ready():
 	elif ratio > 0.5:
 		comment = 'Ok'
 	elif ratio > 0.25:
-		comment = 'Apply yourself...'
+		comment = 'Focus...'
 	else:
-		comment = "YOU'RE FIRED !"
+		comment = 'Va te pendre'
+		#comment = "YOU'RE FIRED !"
 	comment_label.text = comment
 		
 	var tween = create_tween()
