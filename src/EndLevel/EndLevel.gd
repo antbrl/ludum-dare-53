@@ -60,7 +60,7 @@ func _ready():
 	var ms = str(challenge_time%1000)
 	while ms.length() < 3:
 		ms = ms + '0'
-	time_label.text = 'Challenge time: +' + str(floor(challenge_time/1000)) + '\'' + ms
+	time_label.text = 'Challenge time: ' + str(floor(challenge_time/1000)) + '\'' + ms
 	
 	var tween = create_tween()
 	tween.tween_interval(0.8)
