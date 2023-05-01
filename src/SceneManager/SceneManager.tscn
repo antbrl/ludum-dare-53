@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckntwca1o1jbq"]
+[gd_scene load_steps=7 format=3 uid="uid://ckntwca1o1jbq"]
 
 [ext_resource type="Script" path="res://src/SceneManager/SceneManager.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://drx5t4vpsrr2v" path="res://src/Map/Maps/map_1.tscn" id="2_16use"]
 [ext_resource type="AudioStream" uid="uid://bd5yxqos5acse" path="res://assets/musics/BaladeInADisplacedTime.ogg" id="2_ptv8s"]
 [ext_resource type="AudioStream" uid="uid://ludl0q5y1jil" path="res://assets/musics/AdvancedTechnologicalAdvantage.ogg" id="3_6i1ea"]
 [ext_resource type="PackedScene" uid="uid://dvqnqc87u23eq" path="res://src/Map/Maps/map_2.tscn" id="3_o066p"]
+[ext_resource type="Script" path="res://src/SceneManager/DJ.gd" id="4_jvxbv"]
 
 [node name="SceneManager" type="Control"]
 layout_mode = 3
@@ -32,10 +33,14 @@ gui_embed_subwindows = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="Musics" type="Node" parent="."]
+[node name="DJ" type="Node" parent="."]
+script = ExtResource("4_jvxbv")
 
-[node name="GameTheme1" type="AudioStreamPlayer" parent="Musics"]
+[node name="GameTheme1" type="AudioStreamPlayer" parent="DJ"]
 stream = ExtResource("2_ptv8s")
 
-[node name="GameTheme2" type="AudioStreamPlayer" parent="Musics"]
+[node name="GameTheme2" type="AudioStreamPlayer" parent="DJ"]
 stream = ExtResource("3_6i1ea")
+
+[connection signal="finished" from="DJ/GameTheme1" to="DJ" method="_on_music_finished"]
+[connection signal="finished" from="DJ/GameTheme2" to="DJ" method="_on_music_finished"]
