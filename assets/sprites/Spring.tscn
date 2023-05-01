@@ -5,7 +5,7 @@
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q0j04"]
 load_path = "res://.godot/imported/spring.png-e41caa64d692b3be6f843ff8b076fe2b.ctex"
 
-[node name="HoverHint" type="NinePatchRect"]
+[node name="Spring" type="NinePatchRect"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

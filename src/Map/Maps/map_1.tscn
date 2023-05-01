@@ -38,7 +38,15 @@ layer_7/tile_data = PackedInt32Array(-589807, 0, 2, -589806, 0, 2, -655342, 0, 2
 position = Vector2(282, -551)
 
 [node name="Trampoline" parent="Tools" index="1" instance=ExtResource("4_l3fps")]
-position = Vector2(202, -94)
+position = Vector2(31, -90)
+rotation = 0.785398
+
+[node name="Trampoline2" parent="Tools" index="2" instance=ExtResource("4_l3fps")]
+position = Vector2(86, -81)
+
+[node name="Trampoline3" parent="Tools" index="3" instance=ExtResource("4_l3fps")]
+position = Vector2(141, -90)
+rotation = -0.785398
 
 [node name="Bounds" parent="." index="8"]
 metadata/_edit_lock_ = true

@@ -1,22 +1,117 @@
-[gd_scene load_steps=3 format=3 uid="uid://bary4m4n2w5tt"]
+[gd_scene load_steps=8 format=3 uid="uid://bary4m4n2w5tt"]
 
 [ext_resource type="Script" path="res://src/Tool/Trampoline/Trampoline.gd" id="1_qiml6"]
+[ext_resource type="PackedScene" uid="uid://dwe3kab6f72w5" path="res://assets/sprites/Spring.tscn" id="1_r0k5r"]
+[ext_resource type="Texture2D" uid="uid://dakc5ys431ytc" path="res://assets/sprites/jump_pad.png" id="2_nqf42"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4k7og"]
-size = Vector2(400, 31.75)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d2r38"]
+radius = 2.0
+height = 64.0
+
+[sub_resource type="Animation" id="Animation_0me08"]
+resource_name = "spring"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spring:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(32, 12), Vector2(32, 48), Vector2(32, 28), Vector2(32, 12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spring:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(-16, 5), Vector2(-16, -31), Vector2(-16, -11), Vector2(-16, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_66kym"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spring:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, 12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spring:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-16, 5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rj5nq"]
+_data = {
+"RESET": SubResource("Animation_66kym"),
+"spring": SubResource("Animation_0me08")
+}
 
 [node name="Trampoline" type="StaticBody2D"]
+position = Vector2(0, -1)
+
+[node name="Spring" parent="." instance=ExtResource("1_r0k5r")]
+custom_minimum_size = Vector2(32, 0)
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = 5.0
+offset_right = 16.0
+offset_bottom = 17.0
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Spring"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -4.0
+offset_right = 48.0
+texture = ExtResource("2_nqf42")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Shape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6.875)
-shape = SubResource("RectangleShape2D_4k7og")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_d2r38")
 
 [node name="PhysicsTool" type="Area2D" parent="."]
 collision_layer = 5
 script = ExtResource("1_qiml6")
 
 [node name="Shape" type="CollisionShape2D" parent="PhysicsTool"]
-position = Vector2(0, -2.75)
-shape = SubResource("RectangleShape2D_4k7og")
+position = Vector2(0, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_d2r38")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rj5nq")
+}
