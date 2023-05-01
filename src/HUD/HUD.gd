@@ -10,6 +10,11 @@ var current_package = 0
 
 func _ready():
 	self.package_counter.modulate.a = 0
+	phase.modulate.a = 0
+
+	var tween = create_tween()
+	tween.tween_interval(2.0)
+	tween.tween_property(phase, "modulate:a", 1, 1.0)
 
 func init(package_number):
 	self.package_number = package_number
@@ -28,6 +33,8 @@ func miss():
 	current_package += 1
 
 func go_to_challenge_phase():
-	phase.text = "CHALLENGE PHASE"
 	var tween = create_tween()
-	tween.tween_property(package_counter, "modulate:a", 1.0, 2.0)
+	tween.tween_property(phase, "modulate:a", 0, 0.5)
+	tween.tween_callback(func(): phase.text = "CHALLENGE PHASE")
+	tween.parallel().tween_property(phase, "modulate:a", 1, 1.0)
+	tween.parallel().tween_property(package_counter, "modulate:a", 1.0, 2.0)
