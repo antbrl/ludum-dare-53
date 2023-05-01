@@ -72,7 +72,7 @@ func _end_level():
 	emit_signal("end_of_level", map.n_challenge_crates, challenge_score)
 
 func go_to_challenge_phase():
-	popup.pop_message('Now, 5 packages in a row', 3.0)
+	popup.pop_message('Entering challenge mode', 3.0)
 	phase = Globals.Phase.CHALLENGE
 	action_ui.go_to_challenge_phase()
 	hud.go_to_challenge_phase()
