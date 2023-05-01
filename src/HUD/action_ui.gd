@@ -1,7 +1,7 @@
 extends Control
 
 signal mode_change(mode: Globals.Mode)
-signal reset_crate
+signal reset_crates
 signal reset_tools
 
 @onready var tool_list = $ToolList

@@ -9,8 +9,6 @@
 script = ExtResource("1_s3wfw")
 
 [node name="Map" parent="." instance_placeholder="res://src/Map/Map.tscn"]
-inventory = null
-n_challenge_crates = null
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -22,3 +20,4 @@ n_challenge_crates = null
 mouse_filter = 2
 
 [connection signal="mode_change" from="UI/ActionUI" to="." method="_on_action_ui_mode_change"]
+[connection signal="reset_crates" from="UI/ActionUI" to="." method="_on_action_ui_reset_crates"]

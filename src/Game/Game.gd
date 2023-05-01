@@ -82,3 +82,6 @@ func _on_tool_selected(tool_template):
 
 func _on_action_ui_mode_change(mode):
 	map.switch_mode(mode)
+
+func _on_action_ui_reset_crates():
+	map.reset_crates()

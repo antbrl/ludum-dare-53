@@ -123,3 +123,7 @@ func _on_tile_map_destroy_tool(tool, pos):
 
 func _on_back_to_default_timeout():
 	emit_signal("mode_to_construction")
+
+func reset_crates():
+	launch_area.interrupt()
+

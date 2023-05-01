@@ -85,7 +85,11 @@ func _input(event):
 	if !disabled && event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
 		if selected_crate != null:
 			just_released = true
-	elif disabled && event.is_action_pressed("interrupt"):
+	elif event.is_action_pressed("interrupt"):
+		interrupt()
+
+func interrupt():
+	if disabled:
 		cam.back_to_default()
 		disabled = false
 
