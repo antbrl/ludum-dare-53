@@ -60,11 +60,9 @@ func _on_input_event(viewport, event, shape_idx):
 		if event.is_pressed():
 			emit_signal("clicked", self)
 
-
 func _on_detection_area_entered(area):
 	in_range_physic_tools.append(area)
 	print('Object Entered')
-
 
 func _on_detection_area_exited(area):
 	in_range_physic_tools.erase(area)

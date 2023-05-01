@@ -37,11 +37,25 @@ var go_back_to_start_on_followed_reached = false
 @onready var top_c    = null
 @onready var bottom_c = null
 
+var ghost_left   = null
+var ghost_right  = null
+var ghost_top    = null
+var ghost_bottom = null
+var ghost_shift  = 20
+
 func _ready():
 	left_c       = left.global_position.x + left.get_rect().end.x
 	right_c      = right.global_position.x + right.get_rect().position.x
 	top_c        = top.global_position.y + top.get_rect().end.y
 	bottom_c     = bottom.global_position.y + bottom.get_rect().position.y
+	ghost_left   = left.duplicate()
+	ghost_right  = right.duplicate()
+	ghost_top    = top.duplicate()
+	ghost_bottom = bottom.duplicate()
+	ghost_left.global_position -= Vector2(ghost_shift, 0)
+	ghost_right.global_position += Vector2(ghost_shift, 0)
+	ghost_top.global_position -= Vector2(0, ghost_shift)
+	ghost_bottom.global_position += Vector2(0, ghost_shift)
 	limit_left   = left_c
 	limit_right  = right_c
 	limit_top    = top_c
@@ -113,7 +127,9 @@ func _physics_process(delta):
 			buffer += Vector2(0, -1)
 		if (Input.is_action_pressed("ui_down") && !Input.is_action_pressed("zoom-out")):
 			buffer += Vector2(0, 1)
-		global_position += delta*control_speed*buffer.normalized()
+		var prev_pos = global_position
+		global_position += delta*control_speed*buffer.normalized() 
+		position = Vector2(clamp(position.x,limit_left+get_viewport_rect().size.x/(2*zoom.x),limit_right-get_viewport_rect().size.x/(2*zoom.x)),clamp(position.y,limit_top+get_viewport_rect().size.y/(2*zoom.y),limit_bottom-get_viewport_rect().size.y/(2*zoom.y)))
 		var zoom_diff = 0.0
 		if (Input.is_action_pressed("zoom-in")):
 			zoom_diff += 1
