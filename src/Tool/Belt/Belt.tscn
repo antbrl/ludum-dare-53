@@ -1,15 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://brecoajixmed8"]
+[gd_scene load_steps=9 format=3 uid="uid://brecoajixmed8"]
+
+[ext_resource type="Script" path="res://src/Tool/Belt/Belt.gd" id="1_hal4t"]
+[ext_resource type="Texture2D" uid="uid://dvvfrst30lh12" path="res://assets/sprites/belt_animated.png" id="1_ncik4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cnao3"]
 rough = true
 bounce = 0.05
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4035"]
+radius = 11.5
+height = 91.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mqiv"]
+atlas = ExtResource("1_ncik4")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bk0d"]
+atlas = ExtResource("1_ncik4")
+region = Rect2(0, 32, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji484"]
+atlas = ExtResource("1_ncik4")
+region = Rect2(0, 64, 96, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_letc1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mqiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bk0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji484")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
 [node name="Belt" type="StaticBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_cnao3")
 constant_linear_velocity = Vector2(128, 0)
+script = ExtResource("1_hal4t")
+leftwards = false
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-64, 16, 64, 16, 64, -16, -64, -16)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_s4035")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-64, -16, 64, -16, 64, 16, -64, 16)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_letc1")
+autoplay = "default"
+frame_progress = 0.819969

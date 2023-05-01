@@ -16,6 +16,10 @@ func get_tool_whitelist_layer(tool: Globals.Tool):
 			return Globals.TileMapLayers.TOOL_WHITELIST_TRAMPOLINE
 		Globals.Tool.SINGULARITY:
 			return Globals.TileMapLayers.TOOL_WHITELIST_SINGULARITY
+		Globals.Tool.VACUUM:
+			return Globals.TileMapLayers.TOOL_WHITELIST_VACUUM
+		Globals.Tool.BELT:
+			return Globals.TileMapLayers.TOOL_WHITELIST_BELT
 		_:
 			assert(false, 'Missing tool')
 
@@ -36,7 +40,9 @@ enum Tool {
 	NONE = 0,
 	PORTAL = 1,
 	TRAMPOLINE = 2,
-	SINGULARITY = 3
+	SINGULARITY = 3,
+	VACUUM = 4,
+	BELT = 5,
 }
 
 const DEFAULT_TOOL = Tool.TRAMPOLINE
@@ -51,6 +57,8 @@ enum TileMapLayers {
 	TOOL_WHITELIST_TRAMPOLINE = 6,
 	TOOL_WHITELIST_SINGULARITY = 7,
 	TOOL_OVERLAY = 8,
+	TOOL_WHITELIST_VACUUM = 9,
+	TOOL_WHITELIST_BELT = 10,
 }
 
 enum TileSetSources {

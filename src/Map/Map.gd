@@ -17,6 +17,8 @@ signal mode_to_construction()
 @onready var Trampoline = preload("res://src/Tool/Trampoline/trampoline.tscn")
 @onready var Portal = preload("res://src/Tool/Portal/Portal.tscn")
 @onready var singularity = preload("res://src/Tool/Singularity/Singularity.tscn")
+@onready var Vacuum = preload("res://src/Tool/Vacuum/Vacuum.tscn")
+@onready var Belt = preload("res://src/Tool/Belt/Belt.tscn")
 
 @export var inventory: Array[InventorySlot]
 @export var n_challenge_crates: int
