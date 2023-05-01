@@ -4,6 +4,7 @@ signal crate_killed(crate)
 signal crate_followed_by_cam(crate)
 
 @onready var launch_area = $LaunchArea
+@onready var collision_shape = $LaunchArea/LaunchCollisionShape
 @onready var crates = $"../Crates"
 @onready var cam = $"../Camera2D"
 @onready var game = $"../.."
@@ -87,6 +88,12 @@ func _on_launch_area_mouse_entered():
 	mouse_in_area = true
 
 func _on_launch_area_mouse_exited():
+	var glob_rect = collision_shape.get_shape().get_rect()
+	glob_rect.position = glob_rect.position + collision_shape.global_position
+	var mouse_is_inside = glob_rect.has_point(launch_area.get_global_mouse_position())
+	if mouse_is_inside:
+		return
+
 	mouse_in_area = false
 	if selected_crate != null:
 		just_released = true
