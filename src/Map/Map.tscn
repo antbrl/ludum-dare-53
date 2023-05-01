@@ -128,5 +128,6 @@ scale = Vector2(1.525, 39.65)
 
 [connection signal="build_tool" from="TileMap" to="." method="_on_tile_map_build_tool"]
 [connection signal="destroy_tool" from="TileMap" to="." method="_on_tile_map_destroy_tool"]
+[connection signal="update_tool" from="TileMap" to="." method="_on_tile_map_update_tool"]
 [connection signal="timeout" from="Camera2D/BackToDefault" to="." method="_on_back_to_default_timeout"]
 [connection signal="timeout" from="Camera2D/BackToDefault" to="Camera2D" method="_on_timer_timeout"]

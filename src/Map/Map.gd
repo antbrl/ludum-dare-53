@@ -139,3 +139,11 @@ func reset_crates():
 
 func reset_tools():
 	tile_map.destroy_all_tools()
+
+
+func _on_tile_map_update_tool(tool, pos, metadata):
+	if tools_instances.has(pos):
+		tools_instances[pos].direction = metadata.direction
+		
+#		tool_ghost.update()
+#		tile_map.update_tool_overlay(mode, current_tool)

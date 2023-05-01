@@ -1,12 +1,38 @@
 extends Node
 
 @onready var game_settings = preload("res://src/Game/game_settings.tres")
+@onready var tile_set = preload("res://assets/tileset/tileset.tres")
 
 func get_tool_template(tool: Globals.Tool) -> ToolTemplate:
 	for t in game_settings.tool_templates:
 		if t.tool_id == tool:
 			return t
 	return null
+
+func get_tool_tile_coords(tool: Globals.Tool, direction = Globals.Direction.NONE):
+	var source = tile_set.get_source(Globals.TileSetSources.TOOL)
+	var best_atlas_coords = null
+	for tile_index in source.get_tiles_count():
+		var atlas_coords = source.get_tile_id(tile_index)
+		var tile_data = source.get_tile_data(atlas_coords, 0)
+		if tile_data != null and tile_data.get_custom_data('tool') == tool:
+			best_atlas_coords = atlas_coords
+			for alt_index in source.get_alternative_tiles_count(atlas_coords):
+				var alt_tile = source.get_alternative_tile_id(atlas_coords, alt_index)
+				tile_data = source.get_tile_data(atlas_coords, alt_tile)
+				print(tile_data.get_custom_data('direction'), ' ', direction)
+				if tile_data.get_custom_data('direction') == direction:
+					return [atlas_coords, alt_tile]
+	return [best_atlas_coords, 0]
+
+func get_tool_next_direction(tool: Globals.Tool, direction: Globals.Direction) -> Globals.Direction:
+	var directions = get_tool_template(tool).directions
+	if directions.is_empty():
+		return direction
+	var index = directions.find(direction)
+	if index == -1:
+		return directions[0]
+	return directions[(index + 1) % directions.size()]
 
 func get_tool_whitelist_layer(tool: Globals.Tool):
 	match tool:

@@ -2,6 +2,7 @@ extends TileMap
 
 signal build_tool(tool: Globals.Tool, pos: Vector2i, metadata: Dictionary)
 signal destroy_tool(tool: Globals.Tool, pos: Vector2i)
+signal update_tool(tool: Globals.Tool, pos: Vector2i, metadata: Dictionary)
 
 @onready var middle_offset = tile_set.tile_size * 0.5
 
@@ -62,12 +63,32 @@ func _destroy(pos: Vector2i):
 	assert(tool != 0, 'Missing cell data')
 	destroy_tool.emit(tool, pos)
 
+func _rotate(pos: Vector2i, tool: Globals.Tool) -> bool:
+	var tool_cell: TileData = get_cell_tile_data(Globals.TileMapLayers.TOOL, pos)
+	if tool_cell == null:
+		return false
+	if tool_cell.get_custom_data('tool') != tool:
+		return false
+	var direction = tool_cell.get_custom_data('direction')
+	var next_direction = Globals.get_tool_next_direction(tool, direction)
+	var tile_coords = Globals.get_tool_tile_coords(tool, next_direction)
+	if tile_coords[0] == null:
+		return false
+	set_cell(Globals.TileMapLayers.TOOL, pos, Globals.TileSetSources.TOOL, tile_coords[0], tile_coords[1])
+	var metadata = {
+		direction = next_direction
+	}
+	update_tool.emit(tool, pos, metadata)
+	return true
+
 func try_build_at_mouse(tool: Globals.Tool) -> bool:
 	var pos = get_mouse_cell()
-	if not can_build_on_cell(pos, tool):
-		return false
-	_build(pos, tool)
-	return true
+	if can_build_on_cell(pos, tool):
+		_build(pos, tool)
+		return true
+	if _rotate(pos, tool):
+		return true
+	return false
 
 func try_destroy_at_mouse() -> bool:
 	var pos = get_mouse_cell()
@@ -106,7 +127,7 @@ func update_tool_overlay(mode: Globals.Mode, tool: Globals.Tool) -> void:
 					atlas_coords = Vector2i(2, 4)
 				_:
 					atlas_coords = Vector2i(0, 3)
-		elif  tool_template.directions.size() > 1:
+		elif tool_template.directions.size() > 1:
 			if tool_template.directions.size() == 2:
 				atlas_coords = Vector2i(2, 1)
 			else:
