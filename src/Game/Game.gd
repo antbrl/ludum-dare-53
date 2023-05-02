@@ -42,7 +42,7 @@ func _ready():
 	launcher.connect("crate_followed_by_cam", crate_followed_by_cam)
 	
 	if level_number == 0:
-		show_textbox('Welcome', 'Your job is to deliver crates to the customer.\nYou are now in TRIAL PHASE, meaning you can build tools\nto help you reach the customer.\n\nAfter reaching the customer,\nyou will enter to CHALLENGE PHASE')
+		show_textbox('Welcome', 'Your job is to deliver crates to the customer.\nYou are now in SETUP PHASE, meaning you can place items\nto help you reach the customer.\n\nAfter reaching the customer,\nyou will enter the CHALLENGE PHASE.')
 		welcome_textbox_displayed = true
 	else:
 		end_init()
