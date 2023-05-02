@@ -49,7 +49,8 @@ func update():
 		if tile_data_dict != null:
 			var tile_data: TileData = tile_data_dict.data
 			direction = tile_data.get_custom_data('direction')
-		node.direction = direction
+		if "direction" in node:
+			node.direction = direction
 
 	preview.modulate = Color(1, 1, 1, 0.45)
 	if not tile_map.can_build_on_cell(mouse_cell, map.current_tool):
