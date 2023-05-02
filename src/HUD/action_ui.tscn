@@ -47,7 +47,7 @@ layout_mode = 2
 [node name="ResetCrateButton" type="Button" parent="ActionBar/ButtonBar"]
 layout_mode = 2
 focus_mode = 0
-text = "Reset crate"
+text = "Reset crate (r)"
 
 [node name="ResetToolsButtons" type="Button" parent="ActionBar/ButtonBar"]
 layout_mode = 2
