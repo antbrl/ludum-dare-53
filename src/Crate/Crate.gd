@@ -85,7 +85,9 @@ func _ready():
 	var picked_skin = randi() % len(CrateSkin)
 	crate_main_sound = SkinMainSound[picked_skin]
 	
-	$Sprite.texture.region = SkinAtlasRegion[picked_skin]
+	print(SkinAtlasRegion[picked_skin])
+	$Sprite.region_enabled = true
+	$Sprite.region_rect = SkinAtlasRegion[picked_skin]
 	
 	var composites = SkinCompositeSound[picked_skin]
 	crate_composite_sound = composites[randi() % len(composites)]
