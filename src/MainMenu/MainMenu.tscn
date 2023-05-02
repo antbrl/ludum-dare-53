@@ -20,6 +20,14 @@ grow_vertical = 2
 theme = ExtResource("2_7fykg")
 script = ExtResource("1")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -124.0
+offset_top = -181.0
+offset_right = 2281.0
+offset_bottom = 1305.0
+color = Color(0.0784314, 0.0784314, 0.0784314, 0.0941176)
+
 [node name="PanelContainer2" type="PanelContainer" parent="."]
 layout_mode = 2
 offset_left = 420.0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cf65dyq2id4sc"]
 
 [ext_resource type="Script" path="res://src/EndLevel/EndLevel.gd" id="1"]
-[ext_resource type="Theme" uid="uid://bx772wrwhnwih" path="res://assets/fonts/game.tres" id="1_0endl"]
+[ext_resource type="Theme" path="res://assets/fonts/game.tres" id="1_0endl"]
 [ext_resource type="AudioStream" uid="uid://dxj30yuudjutl" path="res://assets/sounds/tick/hit.wav" id="2_yojsl"]
 [ext_resource type="AudioStream" uid="uid://btdg1w7mu0yb1" path="res://assets/sounds/tick/miss.wav" id="3_i0vdu"]
 [ext_resource type="AudioStream" uid="uid://p827ewt2lqt" path="res://assets/sounds/tick/result.wav" id="4_lgvud"]

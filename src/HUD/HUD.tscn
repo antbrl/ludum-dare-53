@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dwiu4cm7rlq0p"]
 
-[ext_resource type="Theme" uid="uid://bx772wrwhnwih" path="res://assets/fonts/game.tres" id="1_vtv4h"]
+[ext_resource type="Theme" path="res://assets/fonts/game.tres" id="1_vtv4h"]
 [ext_resource type="Script" path="res://src/HUD/HUD.gd" id="2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rf84r"]
