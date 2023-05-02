@@ -3,7 +3,7 @@ extends Control
 @onready var package_panel = $VBoxContainer/PackagePanel
 @onready var icon_list = $VBoxContainer/PackagePanel/VBoxContainer/PackageCounter/Icons
 @onready var phase_panel = $VBoxContainer/PhasePanel
-@onready var phase_label = $VBoxContainer/PhasePanel/Phase
+@onready var phase_label = $VBoxContainer/PhasePanel/VBoxContainer/Phase
 @onready var crate_icon = preload("res://src/HUD/crate_icon.tscn")
 
 var package_number
