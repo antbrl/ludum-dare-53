@@ -16,8 +16,8 @@ signal clicked(id)
 var prev_pos = null
 var prev_rot = null
 var launched = false
-const epsilon = 2
-const rot_epsilon = 1
+const epsilon = .5
+const rot_epsilon = .5
 
 var in_launch_area = false
 var in_range_physic_tools: Array[PhysicsTool]

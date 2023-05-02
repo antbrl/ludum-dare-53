@@ -15,6 +15,11 @@ const snap_dist = 150.0
 const max_speed = 1400.0
 const max_rot = 1000.0
 
+const boost_cooldown_ms = 500
+var last_boost
+
+var boost
+
 var mouse_in_area = false
 var click_pressed = false
 
@@ -124,6 +129,11 @@ func _input(event):
 			just_released = true
 	elif event.is_action_pressed("interrupt"):
 		interrupt()
+	elif disabled && followed_crate != null && event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && (last_boost == null || last_boost - Time.get_ticks_msec() < boost_cooldown_ms):
+		var diff = followed_crate.global_position - get_global_mouse_position()
+		var strength = 10
+		last_boost = Time.get_ticks_msec()
+		followed_crate.apply_impulse(strength*diff.normalized()*min(100.0/max(diff.length() - 40, 0), 7))
 
 func interrupt():
 	if disabled and followed_crate != null and game.mode == Globals.Mode.THROW:
