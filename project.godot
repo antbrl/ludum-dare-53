@@ -14,7 +14,7 @@ config/name="Careless Express"
 config/description="Ludum Dare 53"
 run/main_scene="res://src/SceneManager/SceneManager.tscn"
 config/features=PackedStringArray("4.0")
-config/icon="res://assets/sprites/crate.png"
+config/icon="res://assets/sprites/fragile_icon.png"
 
 [autoload]
 
