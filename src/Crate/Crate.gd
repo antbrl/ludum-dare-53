@@ -129,11 +129,12 @@ func _on_detection_area_exited(area):
 		in_range_physic_tools.erase(tool)
 
 func _on_body_entered(body):
-	if shock_sound_cooldown.is_stopped():
-		shock_sound_cooldown.start()
-		crate_main_sound.play_random_sound()
-		if crate_composite_sound != null:
-			crate_composite_sound.play_random_sound()
+	if $FirstShockSound.is_stopped():
+		if shock_sound_cooldown.is_stopped():
+			shock_sound_cooldown.start()
+			crate_main_sound.play_random_sound()
+			if crate_composite_sound != null:
+				crate_composite_sound.play_random_sound()
 
 var is_dying = false
 
