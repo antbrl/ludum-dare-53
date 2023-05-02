@@ -55,6 +55,8 @@ var mouse_controls_disabled = false
 @onready var top    = get_node("../Bounds/Top")
 @onready var bottom = get_node("../Bounds/Bottom")
 
+@onready var action_ui =  $"../../UI/ActionUI"
+
 @onready var gui_left   = get_node("../CanvasLayer/GUIBounds/Left")
 @onready var gui_right  = get_node("../CanvasLayer/GUIBounds/Right")
 @onready var gui_top    = get_node("../CanvasLayer/GUIBounds/Top")
@@ -103,6 +105,7 @@ func gui_to_red():
 	gui_bottom.color = Color(.72, .27, .33, 0.)
 
 func gui_to_cinematic():
+	action_ui.get_node("ActionBar/ButtonBar/SwitchModeButton").disabled = true
 	gui_left.color   = Color(.72, .27, .33, 1.)
 	gui_right.color  = Color(.72, .27, .33, 1.)
 	gui_top.color    = Color(.72, .27, .33, 1.)
@@ -200,6 +203,7 @@ func _physics_process(delta):
 				zoom = latest_free_zoom
 				transition_status = null
 				gui_to_red()
+				action_ui.get_node("ActionBar/ButtonBar/SwitchModeButton").disabled = false
 	elif followed != null && !in_level_start_cinematic:
 		global_position = followed.global_position
 		if followed is Crate:
