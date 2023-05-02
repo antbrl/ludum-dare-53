@@ -43,7 +43,7 @@ func update():
 		return
 	
 	var node = preview.get_child(0)
-	if node != null and tool_template != null and tool_template.directions.size() > 1:
+	if node != null and tool_template != null:
 		var tile_data_dict = tile_map.get_tool_template_data(mouse_cell, tool_template.tool_id)
 		var direction = Globals.Direction.DOWN
 		if tile_data_dict != null:
