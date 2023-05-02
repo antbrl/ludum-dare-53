@@ -1,12 +1,17 @@
-[gd_resource type="Resource" load_steps=13 format=3 uid="uid://jmja37wug37s"]
+[gd_resource type="Resource" load_steps=18 format=3 uid="uid://jmja37wug37s"]
 
 [ext_resource type="Script" path="res://src/Game/game_settings.gd" id="1_6baoe"]
+[ext_resource type="PackedScene" uid="uid://b6e5c0iscdww1" path="res://src/Tool/Portal/Portal.tscn" id="2_oldp0"]
 [ext_resource type="Script" path="res://src/Tool/ToolTemplate.gd" id="2_vdkyx"]
 [ext_resource type="Texture2D" uid="uid://kas0ttlw63ja" path="res://assets/sprites/portal_icon.png" id="3_swvch"]
 [ext_resource type="Texture2D" uid="uid://ba2hoigmj5w8y" path="res://assets/sprites/trampoline.png" id="4_5l6u7"]
+[ext_resource type="PackedScene" uid="uid://bary4m4n2w5tt" path="res://src/Tool/Trampoline/trampoline.tscn" id="5_drnhp"]
 [ext_resource type="Texture2D" uid="uid://cylrkdskpn2rj" path="res://assets/sprites/hole.png" id="5_pricg"]
 [ext_resource type="Texture2D" uid="uid://c3k1ev5n0itwc" path="res://assets/sprites/vacuum_icon.png" id="6_5k0ul"]
+[ext_resource type="PackedScene" uid="uid://c30ynk6qk8e7t" path="res://src/Tool/Singularity/Singularity.tscn" id="7_1garr"]
 [ext_resource type="Texture2D" uid="uid://bsc3e0b13i0yw" path="res://assets/sprites/belt_static1.png" id="7_01wtf"]
+[ext_resource type="PackedScene" uid="uid://b6qpenbk5ehie" path="res://src/Tool/Vacuum/Vacuum.tscn" id="9_3fsnt"]
+[ext_resource type="PackedScene" uid="uid://brecoajixmed8" path="res://src/Tool/Belt/Belt.tscn" id="11_kse07"]
 
 [sub_resource type="Resource" id="Resource_mw5a7"]
 script = ExtResource("2_vdkyx")
@@ -14,6 +19,7 @@ texture = ExtResource("3_swvch")
 tool_name = "Portal"
 tool_id = 1
 directions = Array[int]([])
+scene = ExtResource("2_oldp0")
 
 [sub_resource type="Resource" id="Resource_c63kg"]
 script = ExtResource("2_vdkyx")
@@ -21,6 +27,7 @@ texture = ExtResource("4_5l6u7")
 tool_name = "Trampoline"
 tool_id = 2
 directions = Array[int]([1, 6, 2, 7, 3, 8, 4, 5])
+scene = ExtResource("5_drnhp")
 
 [sub_resource type="Resource" id="Resource_h255h"]
 script = ExtResource("2_vdkyx")
@@ -28,6 +35,7 @@ texture = ExtResource("5_pricg")
 tool_name = "Singularity"
 tool_id = 3
 directions = Array[int]([])
+scene = ExtResource("7_1garr")
 
 [sub_resource type="Resource" id="Resource_k6wnl"]
 script = ExtResource("2_vdkyx")
@@ -35,6 +43,7 @@ texture = ExtResource("6_5k0ul")
 tool_name = "Vacuum"
 tool_id = 4
 directions = Array[int]([1, 2, 3, 4])
+scene = ExtResource("9_3fsnt")
 
 [sub_resource type="Resource" id="Resource_xrom7"]
 script = ExtResource("2_vdkyx")
@@ -42,6 +51,7 @@ texture = ExtResource("7_01wtf")
 tool_name = "Belt"
 tool_id = 5
 directions = Array[int]([1, 3])
+scene = ExtResource("11_kse07")
 
 [resource]
 script = ExtResource("1_6baoe")

@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="ToolTemplate" load_steps=2 format=3 uid="uid://bf0fc1nl7h3a3"]
-
-[ext_resource type="Script" path="res://src/Tool/ToolTemplate.gd" id="1_it3ak"]
-
-[resource]
-script = ExtResource("1_it3ak")
-tool_name = ""

@@ -10,9 +10,12 @@ script = ExtResource("2_k0a5w")
 modulate = Color(1, 1, 1, 0.45098)
 top_level = true
 
+[node name="Preview" type="Node2D" parent="."]
+process_mode = 4
+
 [node name="HoverHint" parent="." instance=ExtResource("2_21euv")]
 texture_filter = 1
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0

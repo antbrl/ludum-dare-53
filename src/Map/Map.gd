@@ -40,7 +40,7 @@ var tools_instances := Dictionary()
 
 func update_tool(tool_template: ToolTemplate):
 	current_tool = tool_template.tool_id
-	tool_ghost.tool_changed(tool_template.texture)
+	tool_ghost.set_tool_template(tool_template)
 
 func count_remaining_tools() -> int:
 	var total: int = 0

@@ -25,6 +25,7 @@ Globals="*res://src/Globals.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/resizable=false
+window/dpi/allow_hidpi=false
 
 [editor_plugins]
 
