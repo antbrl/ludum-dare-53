@@ -71,6 +71,7 @@ theme = ExtResource("2_7fykg")
 text = "Credits"
 
 [node name="Quit" type="Button" parent="PanelContainer2/PanelContainer/VBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("2_7fykg")
 text = "Quit"
