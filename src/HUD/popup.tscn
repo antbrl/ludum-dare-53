@@ -16,11 +16,11 @@ script = ExtResource("1_uhyni")
 
 [node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.15
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.15
 offset_left = -20.0
 offset_top = -32.0
 offset_right = 20.0

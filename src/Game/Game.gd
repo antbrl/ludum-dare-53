@@ -47,6 +47,7 @@ func _ready():
 	else:
 		end_init()
 
+var level_popup_shown = true
 func end_init():
 	action_ui.init(map)
 	hud.init(map.n_challenge_crates)
@@ -109,7 +110,7 @@ func _end_level():
 func go_to_challenge_phase():
 	if level_number == 0:
 		show_textbox('Congratulations !', 'By delivering a dummy crate to the customer, you know enter CHALLENGE PHASE. You will now have to throw 5 crates in a row.\nThe more you can deliver, the higher your score ! Good luck')
-	popup.pop_message('Entering challenge mode', 3.0)
+	#popup.pop_message('Entering challenge mode', 3.0)
 	time_panel.visible = true
 	phase = Globals.Phase.CHALLENGE
 	action_ui.go_to_challenge_phase()
@@ -135,3 +136,8 @@ func _on_text_box_popup_closed():
 	if welcome_textbox_displayed:
 		welcome_textbox_displayed = false
 		end_init()
+
+func _on_popup_popup_hidden():
+	if level_popup_shown:
+		hud.reveal_panel()
+		level_popup_shown = false

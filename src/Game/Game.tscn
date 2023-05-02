@@ -34,4 +34,5 @@ sounds = Array[AudioStream]([ExtResource("11_y5xgq")])
 [connection signal="mode_change" from="UI/ActionUI" to="." method="_on_action_ui_mode_change"]
 [connection signal="reset_crates" from="UI/ActionUI" to="." method="_on_action_ui_reset_crates"]
 [connection signal="reset_tools" from="UI/ActionUI" to="." method="_on_action_ui_reset_tools"]
+[connection signal="popup_hidden" from="UI/Popup" to="." method="_on_popup_popup_hidden"]
 [connection signal="popup_closed" from="UI/TextBox" to="." method="_on_text_box_popup_closed"]
