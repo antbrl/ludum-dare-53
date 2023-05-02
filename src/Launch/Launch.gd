@@ -15,7 +15,7 @@ const snap_dist = 150.0
 const max_speed = 1400.0
 const max_rot = 1000.0
 
-const boost_cooldown_ms = 500
+const boost_cooldown_ms = 75
 var last_boost
 
 var boost
@@ -129,7 +129,7 @@ func _input(event):
 			just_released = true
 	elif event.is_action_pressed("interrupt"):
 		interrupt()
-	elif disabled && followed_crate != null && event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && (last_boost == null || last_boost - Time.get_ticks_msec() < boost_cooldown_ms):
+	elif disabled && followed_crate != null && event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && (last_boost == null || Time.get_ticks_msec() - last_boost >= boost_cooldown_ms):
 		var diff = followed_crate.global_position - get_global_mouse_position()
 		var strength = 10
 		last_boost = Time.get_ticks_msec()
