@@ -18,15 +18,15 @@ func _ready():
 	self.package_panel.modulate.a = 0
 	phase_panel.modulate.a = 0
 
-	var tween = create_tween()
-	tween.tween_interval(2.0)
-	tween.tween_property(phase_panel, "modulate:a", 1, 1.0)
-
 func init(package_number):
 	self.package_number = package_number
 	for i in range(package_number):
 		var crate_icon_instance = crate_icon.instantiate()
 		icon_list.add_child(crate_icon_instance)
+	
+	var tween = create_tween()
+	tween.tween_interval(2.0)
+	tween.tween_property(phase_panel, "modulate:a", 1, 1.0)
 
 func hit():
 	var icon = icon_list.get_child(current_package)

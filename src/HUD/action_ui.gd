@@ -16,9 +16,11 @@ var map
 var mode = Globals.DEFAULT_MODE
 
 func _ready():
+	visible = false
 	set_reset_crates_disabled(true)
 
 func init(map):
+	visible = true
 	self.map = map
 	map.connect("tool_built", _tool_built)
 	map.connect("tool_destroyed", _tool_destroyed)

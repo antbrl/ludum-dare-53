@@ -25,6 +25,8 @@ var map_scene
 
 var hit_crates = []
 
+var welcome_textbox_displayed
+
 func _ready():
 	self.map = self.map.create_instance(true, map_scene)
 	self.challenge_crates_left = map.n_challenge_crates
@@ -39,13 +41,16 @@ func _ready():
 	launcher.connect("crate_killed", crate_killed)
 	launcher.connect("crate_followed_by_cam", crate_followed_by_cam)
 	
-	
+	if level_number == 0:
+		show_textbox('Welcome', 'Your job is to deliver crates to the customer.\nYou are now in TRIAL PHASE, meaning you can build tools to help you reach the customer.\nOnce you will reach the customer once, you will enter to CHALLENGE PHASE')
+		welcome_textbox_displayed = true
+	else:
+		end_init()
+
+func end_init():
 	action_ui.init(map)
 	hud.init(map.n_challenge_crates)
 	popup.pop_message('Level ' + str(level_number + 1) + '\n' + map.level_name, 3.0)
-	
-	if level_number == 0:
-		show_textbox('Welcome', 'Your job is to deliver crates to the customer.\nYou are now in TRIAL PHASE, meaning you can build tools to help you reach the customer.\nOnce you will reach the customer once, you will enter to CHALLENGE PHASE')
 
 
 func _process(delta):
@@ -125,3 +130,8 @@ func _on_action_ui_reset_tools():
 
 func show_textbox(title: String, message: String):
 	$UI/TextBox.pop_text_box(title, message)	
+
+func _on_text_box_popup_closed():
+	if welcome_textbox_displayed:
+		welcome_textbox_displayed = false
+		end_init()
