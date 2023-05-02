@@ -46,7 +46,7 @@ layout_mode = 2
 
 [node name="Phase" type="Label" parent="VBoxContainer/PhasePanel/VBoxContainer"]
 layout_mode = 2
-text = "Trial Phase"
+text = "Setup Phase"
 label_settings = SubResource("LabelSettings_rf84r")
 horizontal_alignment = 1
 
