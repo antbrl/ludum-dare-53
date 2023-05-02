@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bvgh060edrp7j"]
 
 [ext_resource type="Script" path="res://src/MainMenu/MainMenu.gd" id="1"]
-[ext_resource type="Theme" path="res://assets/fonts/game.tres" id="2_7fykg"]
+[ext_resource type="Theme" uid="uid://bx772wrwhnwih" path="res://assets/fonts/game.tres" id="2_7fykg"]
 [ext_resource type="PackedScene" uid="uid://dlpvuna0o368n" path="res://src/Map/TileMap.tscn" id="2_yx611"]
 [ext_resource type="PackedScene" uid="uid://qo703o3t2moa" path="res://src/Truck/Truck.tscn" id="4_0sfxn"]
 [ext_resource type="Texture2D" uid="uid://beithv6gedupv" path="res://assets/sprites/crate.png" id="5_pe5e8"]
@@ -63,7 +63,7 @@ text = "Start"
 [node name="Level selection" type="Button" parent="PanelContainer2/PanelContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_7fykg")
-text = "Level selection"
+text = "Level Selection"
 
 [node name="Credits" type="Button" parent="PanelContainer2/PanelContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
