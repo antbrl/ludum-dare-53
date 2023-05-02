@@ -38,7 +38,7 @@ func update():
 	tween.tween_property(self, "position", tile_map.map_to_local(new_mouse_cell), 0.05)
 	mouse_cell = new_mouse_cell
 	
-	if tile_map.get_cell_tile_data(Globals.TileMapLayers.TOOL_OVERLAY, mouse_cell) == null:
+	if tile_map.get_cell_tile_data(Globals.TileMapLayers.TOOL_OVERLAY, mouse_cell) == null or tile_map.get_cell_tile_data(Globals.TileMapLayers.TOOL, mouse_cell) != null:
 		preview.modulate = Color(1, 1, 1, 0)
 		return
 	
