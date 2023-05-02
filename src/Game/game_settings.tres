@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://src/Game/game_settings.gd" id="1_6baoe"]
 [ext_resource type="Script" path="res://src/Tool/ToolTemplate.gd" id="2_vdkyx"]
-[ext_resource type="Texture2D" uid="uid://kas0ttlw63ja" path="res://assets/sprites/portal_icon.png" id="3_swvch"]
+[ext_resource type="Texture2D" uid="uid://dmx1e4e4bgysa" path="res://assets/sprites/portal_icon.png" id="3_swvch"]
 [ext_resource type="Texture2D" uid="uid://ba2hoigmj5w8y" path="res://assets/sprites/trampoline.png" id="4_5l6u7"]
-[ext_resource type="Texture2D" uid="uid://cylrkdskpn2rj" path="res://assets/sprites/hole.png" id="5_pricg"]
-[ext_resource type="Texture2D" uid="uid://mj66aw0saq5" path="res://assets/sprites/vacuum.png" id="6_emlpb"]
+[ext_resource type="Texture2D" uid="uid://ddyq68ug45ary" path="res://assets/sprites/hole.png" id="5_pricg"]
+[ext_resource type="Texture2D" uid="uid://c3k1ev5n0itwc" path="res://assets/sprites/vacuum_icon.png" id="6_5k0ul"]
 [ext_resource type="Texture2D" uid="uid://bsc3e0b13i0yw" path="res://assets/sprites/belt_static1.png" id="7_01wtf"]
 
 [sub_resource type="Resource" id="Resource_mw5a7"]
@@ -31,7 +31,7 @@ directions = Array[int]([])
 
 [sub_resource type="Resource" id="Resource_k6wnl"]
 script = ExtResource("2_vdkyx")
-texture = ExtResource("6_emlpb")
+texture = ExtResource("6_5k0ul")
 tool_name = "Vacuum"
 tool_id = 4
 directions = Array[int]([1, 2, 3, 4])
