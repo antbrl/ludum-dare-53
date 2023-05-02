@@ -38,6 +38,10 @@ func update():
 	tween.tween_property(self, "position", tile_map.map_to_local(new_mouse_cell), 0.05)
 	mouse_cell = new_mouse_cell
 	
+	if tile_map.get_cell_tile_data(Globals.TileMapLayers.TOOL_OVERLAY, mouse_cell) == null:
+		preview.modulate = Color(1, 1, 1, 0)
+		return
+	
 	var node = preview.get_child(0)
 	if node != null and tool_template != null and tool_template.directions.size() > 1:
 		var tile_data_dict = tile_map.get_tool_template_data(mouse_cell, tool_template.tool_id)
