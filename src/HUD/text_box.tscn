@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bo08pd4eyn8sm"]
+[gd_scene load_steps=3 format=3 uid="uid://bo08pd4eyn8sm"]
 
 [ext_resource type="Script" path="res://src/HUD/text_box.gd" id="1_77b6y"]
+[ext_resource type="Theme" uid="uid://bx772wrwhnwih" path="res://assets/fonts/game.tres" id="1_ghe61"]
 
 [node name="TextBox" type="Control"]
 layout_mode = 3
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_force_pass_scroll_events = false
+theme = ExtResource("1_ghe61")
 script = ExtResource("1_77b6y")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

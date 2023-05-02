@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwiu4cm7rlq0p"]
+[gd_scene load_steps=4 format=3 uid="uid://dwiu4cm7rlq0p"]
 
+[ext_resource type="Theme" uid="uid://bx772wrwhnwih" path="res://assets/fonts/game.tres" id="1_vtv4h"]
 [ext_resource type="Script" path="res://src/HUD/HUD.gd" id="2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rf84r"]
@@ -15,15 +16,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme = ExtResource("1_vtv4h")
 script = ExtResource("2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.01
+anchor_top = 0.02
 anchor_right = 0.5
-anchor_bottom = 0.01
+anchor_bottom = 0.02
 offset_left = -195.5
 offset_right = 195.5
 offset_bottom = 121.0
@@ -32,21 +34,52 @@ grow_horizontal = 2
 [node name="PhasePanel" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Phase" type="Label" parent="VBoxContainer/PhasePanel"]
+[node name="VBoxContainer" type="HBoxContainer" parent="VBoxContainer/PhasePanel"]
 layout_mode = 2
-text = "TRIAL PHASE"
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PhasePanel/VBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="Phase" type="Label" parent="VBoxContainer/PhasePanel/VBoxContainer"]
+layout_mode = 2
+text = "Trial Phase"
 label_settings = SubResource("LabelSettings_rf84r")
 horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/PhasePanel/VBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
 
 [node name="PackagePanel" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="PackageCounter" type="HBoxContainer" parent="VBoxContainer/PackagePanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PackagePanel"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PackagePanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="PackageCounter" type="HBoxContainer" parent="VBoxContainer/PackagePanel/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Icons" type="HBoxContainer" parent="VBoxContainer/PackagePanel/PackageCounter"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PackagePanel/VBoxContainer/PackageCounter"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="Icons" type="HBoxContainer" parent="VBoxContainer/PackagePanel/VBoxContainer/PackageCounter"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/PackagePanel/VBoxContainer/PackageCounter"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/PackagePanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
 [node name="TimePanel" type="PanelContainer" parent="."]

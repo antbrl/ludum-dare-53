@@ -3,7 +3,7 @@ extends Control
 signal popup_hidden()
 
 @onready var panel = $Panel
-@onready var label = $Panel/Label
+@onready var label = $Panel/HBoxContainer/Label
 
 func _ready():
 	modulate.a = 0
