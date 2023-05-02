@@ -112,7 +112,8 @@ func suicide():
 		emit_signal("killme", self)
 
 func _on_input_event(viewport, event, shape_idx):
-	if !launched && in_launch_area && event is InputEventMouseButton:
+	if !launched && in_launch_area && event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
+		print("YES")
 		if event.is_pressed():
 			emit_signal("clicked", self)
 
