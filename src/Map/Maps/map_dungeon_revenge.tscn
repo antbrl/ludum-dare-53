@@ -68,7 +68,7 @@ position = Vector2(1231, -237)
 scale = Vector2(5, 5)
 
 [node name="Crate" parent="Crates" index="0"]
-position = Vector2(-238, -534)
+position = Vector2(-272, -130)
 
 [node name="Sky" parent="ParallaxBackground" index="0"]
 metadata/_edit_lock_ = true

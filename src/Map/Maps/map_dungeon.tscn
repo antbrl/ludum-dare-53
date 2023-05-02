@@ -41,7 +41,7 @@ position = Vector2(1231, -237)
 scale = Vector2(5, 5)
 
 [node name="Crate" parent="Crates" index="0"]
-position = Vector2(-238, -534)
+position = Vector2(-274, -129)
 
 [node name="Top" parent="Bounds" index="0"]
 position = Vector2(777, -2158)
