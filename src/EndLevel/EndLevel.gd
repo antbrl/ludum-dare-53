@@ -55,7 +55,7 @@ func _ready():
 		comment = "Seriously?"
 	comment_label.text = comment
 	
-	bonus_label.text = 'Bonus: +' + str(remaining_tools) + ' (unused items)'
+	bonus_label.text = 'Bonus: ' + str(remaining_tools) + ' unused items'
 	
 	var ms = str(challenge_time%1000)
 	while ms.length() < 3:
