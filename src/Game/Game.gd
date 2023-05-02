@@ -109,7 +109,7 @@ func _end_level():
 
 func go_to_challenge_phase():
 	if level_number == 0:
-		show_textbox('Congratulations!', 'By delivering a dummy crate to the customer, you know enter CHALLENGE PHASE. You will now have to throw 5 crates in a row.\nThe more you can deliver, the higher your score!\nGood luck!')
+		show_textbox('Congratulations!', 'By delivering a dummy crate to the customer, you now enter the CHALLENGE PHASE. You will now have to throw 5 crates in a row.\nThe more you can deliver, the higher your score!\nGood luck!')
 	#popup.pop_message('Entering challenge mode', 3.0)
 	time_panel.visible = true
 	phase = Globals.Phase.CHALLENGE

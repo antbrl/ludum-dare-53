@@ -54,7 +54,7 @@ text_overrun_behavior = 2
 layout_mode = 2
 text = "Text"
 vertical_alignment = 1
-text_overrun_behavior = 2
+autowrap_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
