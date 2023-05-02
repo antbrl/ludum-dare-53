@@ -2,8 +2,8 @@ extends Control
 
 signal popup_closed
 
-@onready var title = $PanelContainer/VBoxContainer/Title
-@onready var text = $PanelContainer/VBoxContainer/Text
+@onready var title = $PanelContainer/HBoxContainer/VBoxContainer/Title
+@onready var text = $PanelContainer/HBoxContainer/VBoxContainer/Text
 
 func _ready():
 	visible = false
