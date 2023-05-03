@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://c670vsla6rvsu"]
+[gd_scene load_steps=16 format=3 uid="uid://c670vsla6rvsu"]
 
 [ext_resource type="Script" path="res://src/SceneManager/SceneManager.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://drx5t4vpsrr2v" path="res://src/Map/Maps/map_tuto_trampo.tscn" id="2_16use"]
+[ext_resource type="PackedScene" uid="uid://hflsim7c1a60" path="res://src/Map/Maps/map_nico.tscn" id="2_cfbhi"]
 [ext_resource type="AudioStream" uid="uid://bd5yxqos5acse" path="res://assets/musics/BaladeInADisplacedTime.ogg" id="2_ptv8s"]
 [ext_resource type="PackedScene" uid="uid://bacixa76pdnll" path="res://src/Map/Maps/map_dungeon.tscn" id="2_r5s32"]
 [ext_resource type="PackedScene" uid="uid://cltddgvew1a21" path="res://src/Map/Maps/map_tuto_belt.tscn" id="3_2tq3h"]
@@ -24,7 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1")
-maps = Array[PackedScene]([ExtResource("2_16use"), ExtResource("3_2tq3h"), ExtResource("6_6qpxn"), ExtResource("4_vgcl2"), ExtResource("5_1xu6x"), ExtResource("4_52hqx"), ExtResource("3_o066p"), ExtResource("2_r5s32"), ExtResource("10_qgwqt"), ExtResource("11_27sfc")])
+maps = Array[PackedScene]([ExtResource("2_16use"), ExtResource("3_2tq3h"), ExtResource("6_6qpxn"), ExtResource("4_vgcl2"), ExtResource("5_1xu6x"), ExtResource("4_52hqx"), ExtResource("3_o066p"), ExtResource("2_r5s32"), ExtResource("10_qgwqt"), ExtResource("11_27sfc"), ExtResource("2_cfbhi")])
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 0
