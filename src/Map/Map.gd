@@ -23,6 +23,7 @@ signal mode_to_construction()
 @export var inventory: Array[InventorySlot]
 @export var n_challenge_crates: int
 @export var level_name: String
+@export var is_post_jam: bool = false
 
 @onready var initial_tools_count = 0
 
@@ -49,6 +50,7 @@ func count_remaining_tools() -> int:
 	return total
 
 func _ready():
+	$CanvasLayer/PostJamWatermark.visible = is_post_jam
 	assert(n_challenge_crates > 0, "negative n_challenge_crates")
 	
 	var default_tool_id = inventory[0].tool_id

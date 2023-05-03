@@ -33,6 +33,7 @@ position = Vector2(1, 2)
 inventory = Array[ExtResource("2_xmf2q")]([SubResource("Resource_ka0mx"), SubResource("Resource_cpfyv"), SubResource("Resource_0bj3c"), SubResource("Resource_xjrcx"), SubResource("Resource_f5snj")])
 n_challenge_crates = 5
 level_name = "The moat"
+is_post_jam = true
 
 [node name="TileMap" parent="." index="0"]
 position = Vector2(14, 0)

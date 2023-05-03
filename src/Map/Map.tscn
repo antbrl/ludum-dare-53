@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cerdlyf71wibk"]
+[gd_scene load_steps=16 format=3 uid="uid://cerdlyf71wibk"]
 
 [ext_resource type="Script" path="res://src/Map/Map.gd" id="1_lb1fb"]
 [ext_resource type="PackedScene" uid="uid://bqdyskkc8us6p" path="res://src/Crate/Crate.tscn" id="2_qey5k"]
@@ -13,6 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://bw4aksfp746oe" path="res://assets/sprites/mountain_1.png" id="10_ejniv"]
 [ext_resource type="Texture2D" uid="uid://b5ymlxoi3khqc" path="res://assets/sprites/mountain_2.png" id="11_o1ia3"]
 [ext_resource type="Texture2D" uid="uid://c5augmwq8w31e" path="res://assets/sprites/mountain_3.png" id="12_cfib4"]
+[ext_resource type="Theme" uid="uid://bx772wrwhnwih" path="res://assets/fonts/game.tres" id="14_kpmte"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nf8tf"]
+font_size = 32
+font_color = Color(0.964706, 0.431373, 0.407843, 1)
 
 [node name="Map" type="Node2D"]
 texture_filter = 1
@@ -178,6 +183,31 @@ grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.505882, 0.447059, 0.14902, 1)
+
+[node name="PostJamWatermark" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_kpmte")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/PostJamWatermark"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.05
+anchor_right = 0.05
+anchor_bottom = 0.07
+offset_right = 206.0
+offset_bottom = 35.0
+
+[node name="Label" type="Label" parent="CanvasLayer/PostJamWatermark/PanelContainer"]
+layout_mode = 2
+text = "Post-Jam level"
+label_settings = SubResource("LabelSettings_nf8tf")
+horizontal_alignment = 1
 
 [connection signal="build_tool" from="TileMap" to="." method="_on_tile_map_build_tool"]
 [connection signal="destroy_tool" from="TileMap" to="." method="_on_tile_map_destroy_tool"]
