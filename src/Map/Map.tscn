@@ -33,7 +33,6 @@ script = ExtResource("1_lb1fb")
 script = ExtResource("7_7mhk7")
 
 [node name="BackToDefault" type="Timer" parent="Camera2D"]
-wait_time = 2.0
 
 [node name="Launch" parent="." instance=ExtResource("8_6t0vn")]
 

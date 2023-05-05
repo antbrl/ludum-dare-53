@@ -4,7 +4,7 @@ var followed = null
 var default_position = null
 
 const DEFAULT_TRANSITION_MOVE_DURATION = 0.8
-const CINEMATIC_TRANSITION_MOVE_DURATION = 2.0
+const CINEMATIC_TRANSITION_MOVE_DURATION = 2
 
 const DEFAULT_TRANSITION_ZOOM_DURATION = 0.5
 const CINEMATIC_TRANSITION_ZOOM_DURATION = 1
@@ -16,7 +16,7 @@ const CINEMATIC_FOLLOW_ZOOM = Vector2(1, 1)
 
 var transition_move_duration = DEFAULT_TRANSITION_MOVE_DURATION
 var transition_zoom_duration = DEFAULT_TRANSITION_ZOOM_DURATION
-const total_transition_duration = 1.0
+var total_transition_duration = 1.0
 
 const transition_move_duration_back = 0.5
 const transition_zoom_duration_back= 0.5
@@ -113,11 +113,11 @@ func gui_to_cinematic():
 
 func cinematic_view_to(object):
 	gui_to_cinematic()
-	mouse_controls_disabled = true
 	follow(object)
 	transition_move_duration = CINEMATIC_TRANSITION_MOVE_DURATION
 	transition_zoom_duration = CINEMATIC_TRANSITION_ZOOM_DURATION
 	follow_zoom = CINEMATIC_FOLLOW_ZOOM
+	total_transition_duration = 2.5
 	self.go_back_to_start_on_followed_reached = true
 
 func back_to_default():
@@ -132,6 +132,7 @@ func back_to_default():
 	zoom_from = zoom
 
 func follow(object):
+	total_transition_duration = 1.0
 	mouse_controls_disabled = true
 	gui_to_cinematic()
 	self.go_back_to_start_on_followed_reached = false
