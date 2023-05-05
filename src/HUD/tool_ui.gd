@@ -20,4 +20,5 @@ func update_quantity(quantity):
 	self.quantity_label.set_text(str(self.quantity))
 
 func _on_pressed():
+	self.grab_focus()
 	emit_signal("tool_selected", self.tool_template)
