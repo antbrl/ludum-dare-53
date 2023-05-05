@@ -37,7 +37,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgp7m"]
-size = Vector2(90, 26)
+size = Vector2(90, 23)
 
 [node name="Belt" type="StaticBody2D"]
 collision_layer = 17
@@ -52,4 +52,5 @@ autoplay = "default"
 frame_progress = 0.819969
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_lgp7m")
