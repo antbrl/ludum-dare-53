@@ -26,6 +26,9 @@ void fragment() {
 	vec.y *= 15.0 / 96.0;
 	float x = length(vec / 15.0);
 
+	float angle = mod(atan(-vec.x, vec.y) + 2.0 * PI, 2.0 * PI);
+	x +=  (sin((angle + 1.0) * 10.0) + 1.0) * pow(sin(TIME), 2) * .015;
+
 	vec3 start = vec3(1.0);
 	vec3 mid = vec3(0.0, 1.0, 1.0);
 	vec3 color = mix(start, mid, x*1.3);
@@ -87,7 +90,7 @@ polygon = PackedVector2Array(-23, -49, -23, 47, -19, 47, -19, -49)
 [node name="AudioPlayer" parent="." instance=ExtResource("4_ewi5c")]
 sounds = Array[AudioStream]([ExtResource("2_0fne1")])
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="LightEffect" type="Polygon2D" parent="."]
 material = SubResource("ShaderMaterial_0yxcn")
 polygon = PackedVector2Array(-15, -48, 0, -48, 0, 48, -15, 48)
 

@@ -39,8 +39,10 @@ func update():
 	mouse_cell = new_mouse_cell
 	
 	if tile_map.get_cell_tile_data(Globals.TileMapLayers.TOOL_OVERLAY, mouse_cell) == null or tile_map.get_cell_tile_data(Globals.TileMapLayers.TOOL, mouse_cell) != null:
-		preview.modulate = Color(1, 1, 1, 0)
+		preview.visible = false
 		return
+	else:
+		preview.visible = true
 	
 	var node = preview.get_child(0)
 	if node != null and tool_template != null:
