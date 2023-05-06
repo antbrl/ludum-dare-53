@@ -19,6 +19,9 @@ var launched = false
 const epsilon = 2
 const rot_epsilon = 1
 
+const max_speed = 1400.0
+const max_rot = 1000.0
+
 var in_launch_area = false
 var in_range_physic_tools: Array[PhysicsTool]
 
@@ -91,6 +94,12 @@ func _ready():
 	
 	var composites = SkinCompositeSound[picked_skin]
 	crate_composite_sound = composites[randi() % len(composites)]
+
+func _physics_process(delta):
+	if (linear_velocity.length() > max_speed):
+		linear_velocity = linear_velocity.normalized()*max_speed
+	if (abs(angular_velocity) > max_rot):
+		angular_velocity = clamp(angular_velocity, -max_rot, max_rot)
 
 func _process(delta):
 	if !is_dying:
