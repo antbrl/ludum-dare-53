@@ -72,7 +72,6 @@ scale = Vector2(1.1875, 1.1875)
 texture = ExtResource("2_bd3qt")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_cm2xa")
 
 [node name="Timer" type="Timer" parent="."]
@@ -83,7 +82,6 @@ one_shot = true
 collision_mask = 5
 
 [node name="CollisionShape" type="CollisionShape2D" parent="Detection"]
-position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_cm2xa")
 
 [node name="Sounds" type="Node" parent="."]
