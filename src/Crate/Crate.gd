@@ -88,17 +88,11 @@ func _ready():
 	print(SkinAtlasRegion[picked_skin])
 	$Sprite.region_enabled = true
 	$Sprite.region_rect = SkinAtlasRegion[picked_skin]
-	print($Sprite.get_rect())
-	print($CollisionShape.get_position())
-	print($CollisionShape.shape.get_rect())
 	
 	var composites = SkinCompositeSound[picked_skin]
 	crate_composite_sound = composites[randi() % len(composites)]
 
 func _process(delta):
-	print($Sprite.get_rect())
-	print($CollisionShape.get_position())
-	print($CollisionShape.shape.get_rect())
 	if !is_dying:
 		for influence in in_range_physic_tools:
 			influence.add_physics_modifier(self)
