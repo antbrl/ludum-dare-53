@@ -19,7 +19,7 @@ var launched = false
 const epsilon = 2
 const rot_epsilon = 1
 
-const max_speed = 1400.0
+const max_speed = 3000.0
 const max_rot = 1000.0
 
 var in_launch_area = false
