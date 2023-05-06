@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bw4aksfp746oe" path="res://assets/sprites/mountain_1.png" id="10_ejniv"]
 [ext_resource type="Texture2D" uid="uid://b5ymlxoi3khqc" path="res://assets/sprites/mountain_2.png" id="11_o1ia3"]
 [ext_resource type="Texture2D" uid="uid://c5augmwq8w31e" path="res://assets/sprites/mountain_3.png" id="12_cfib4"]
-[ext_resource type="Theme" uid="uid://bx772wrwhnwih" path="res://assets/fonts/game.tres" id="14_kpmte"]
+[ext_resource type="Theme" path="res://assets/fonts/game.tres" id="14_kpmte"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nf8tf"]
 font_size = 32
