@@ -13,7 +13,7 @@ signal crate_followed_by_cam(crate)
 
 const snap_dist = 150.0
 const max_speed = 1400.0
-const max_rot = 1000.0
+const max_rot   = 1000.0
 
 var mouse_in_area = false
 var click_pressed = false
@@ -21,16 +21,18 @@ var click_pressed = false
 var just_released = false
 
 var selected_crate          = null
-var selected_crate_last_pos = null
+var selected_crate_pos_1    = null
+var selected_crate_pos_2    = null
+var previous_delta          = null
 var selected_crate_anchor   = null
 
 var disabled_in_throw = false
 var disabled_due_to_mode = (Globals.DEFAULT_MODE == Globals.Mode.THROW)
 var disabled = disabled_in_throw || disabled_due_to_mode
 
-var followed_crate
-var current_crate = null
-var follow_me = false
+var followed_crate = null
+var current_crate  = null
+var follow_me      = false
 
 var crate_scene = preload("res://src/Crate/Crate.tscn")
 
@@ -50,11 +52,16 @@ func capture(id):
 
 func release(delta):
 	assert(selected_crate != null, "no crate selected")
-	if (selected_crate_last_pos != null):
-		var current_velocity = (selected_crate.to_global(selected_crate_anchor) - selected_crate_last_pos)/delta
-		if (current_velocity.length() > max_speed):
-			current_velocity *= max_speed/current_velocity.length()
-		selected_crate.linear_velocity = current_velocity
+	if (selected_crate_pos_1 != null):
+		var outgoing_velocity = 0
+		if (selected_crate_pos_2 != null):
+			outgoing_velocity = (selected_crate.global_position - selected_crate_pos_2)/(previous_delta + delta)
+		else:
+			outgoing_velocity = (selected_crate.global_position - selected_crate_pos_1)/delta
+		if (outgoing_velocity.length() > max_speed):
+			print("speed capped")
+			outgoing_velocity *= max_speed/outgoing_velocity.length()
+		selected_crate.linear_velocity = outgoing_velocity
 	else:
 		selected_crate.linear_velocity = Vector2(0, 0)
 	selected_crate.play_throw_sound()
@@ -96,7 +103,9 @@ func _physics_process(delta):
 		selected_crate.global_position += pos_diff
 		selected_crate.angular_velocity += -1 * pos_diff.normalized().cross(com_anchor_vec)
 		selected_crate.angular_velocity = clamp(selected_crate.angular_velocity, -max_rot, max_rot)
-		selected_crate_last_pos = crate_pos
+		selected_crate_pos_2 = selected_crate_pos_1
+		selected_crate_pos_1 = crate_pos
+		previous_delta = delta
 
 func _on_launch_area_mouse_entered():
 	mouse_in_area = true
